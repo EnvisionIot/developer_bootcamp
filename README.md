@@ -1,7 +1,5 @@
 ![Developer Bootcamp](media/Academy_Developer_Bootcamp.png)
 
-Welcome！
-
 Welcome on board the 5-day EnOS Developer Bootcamp!
 
 In this training, you’ll:
