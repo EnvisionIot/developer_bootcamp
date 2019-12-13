@@ -58,4 +58,4 @@ For how to define data sample to trigger alerts, see [302-3_monitoring_alert_of_
 You can also use the event service APIs to query alert records. For example, using the Search Active Alerts API to 
 query active alerts by organization ID and other filtering conditions. For more information about EnOS API, go to EnOS Console > EnOS API.
 
-We'll walk you throught the usage of EnOS API in the application development workshop.
+We'll walk you through the usage of EnOS API in the application development workshop.
