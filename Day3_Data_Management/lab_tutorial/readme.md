@@ -56,27 +56,27 @@ Unit 6. Monitoring Device State and Data
 
 10 minutes
 
-> [Unit 1. Configuring Storage Policy for the Device Data](303-1 configuring_storage_policy.md)
->
-> 10 minutes
+[Unit 1. Configuring Storage Policy for the Device Data](303-1_configuring_storage_policy.md)
 
-> [Unit 2. Calculating the Discharge Energy of the Battery](303-2 calculating_discharge_energy.md)
->
-> 20 minutes
+10 minutes
 
-> [Unit 3. Calculating the Health Level of the Battery](303-3 calculating_health_level.md)
->
-> 30 minutes
+[Unit 2. Calculating the Discharge Energy of the Battery](303-2_calculating_discharge_energy.md)
 
-> [Unit 4. Monitoring Health Level Alerts](303-4 monitoring_alerts.md)
->
-> 20 minutes
+20 minutes
 
-> [Unit 5. Generating Data Quality Report](303-5 generating_data_quality_report.md)
->
-> 30 minutes
+[Unit 3. Calculating the Health Level of the Battery](303-3_calculating_health_level.md)
 
-> [Unit 6. Archiving Uploaded Data of the Battery](303-6 archiving_data.md)
->
-> 10 minutes
+30 minutes
+
+[Unit 4. Monitoring Health Level Alerts](303-4_monitoring_alerts.md)
+
+20 minutes
+
+[Unit 5. Generating Data Quality Report](303-5_generating_data_quality_report.md)
+
+30 minutes
+
+[Unit 6. Archiving Uploaded Data of the Battery](303-6_archiving_data.md)
+
+10 minutes
 
