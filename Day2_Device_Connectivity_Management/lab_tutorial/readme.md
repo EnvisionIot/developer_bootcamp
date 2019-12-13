@@ -2,8 +2,8 @@
 
 ## Scenario
 
-Device Management Offering helps you quickly and securely connect this smart battery devices to EnOS Cloud and start to 
-transfer data, manage its lifecycle, and map the physical asset structure to the digital world.
+Device Management Offering helps you quickly and securely connect devices to EnOS Cloud and start to 
+transfer data, manage its lifecycle, and map the physical asset hierachy to the digital world.
 
 The scenario is as depicted in the following chart:
 
@@ -11,29 +11,29 @@ The scenario is as depicted in the following chart:
 
 This tutorial walks you through a typical path of smart battery management, that is:
 
-- Connecting a simulator Smart Battery into EnOS - Java SDK.
-- Simulate the battery measure points data using a Java program developed through EnOS Simulator
-- Monitoring the Alerts of Smart Battery.
+- Registering & connecting a simulated Smart Battery into EnOS.
+- Simulate the battery to post measuring points data using a Java program developed through Java SDK
+- Monitoring the alerts of Smart Battery.
 
 
 ## Prerequisites
 
-1. You have signed up to EnOS for an individual account or an enterprise account to access the EnOS Console.
-2. Your account must have been assigned full access to the model service, device connectivity & management service, and data asset management service.
+1. You have signed up to EnOS as an individual account or an enterprise account to access the **EnOS Console**.
+2. Your account must have been assigned full access to the model service, device connectivity & management services, and data management services (in the training, this is already done by the trainer).
 
 ## Units
 
 This tutorial includes the following units:
 
-[Unit 1. Connecting the Smart Battery into EnOS](302-1_connecting_device_to_EnOS_cloud.md)
+[Lab 1. Connecting the Smart Battery into EnOS](302-1_connecting_device_to_EnOS_cloud.md)
 
 40 minutes
 
-[Unit 2. Simulating Posting Measuring Point of Device](302-2_simulating_measure_points.md)
+[Lab 2. Simulating Posting Measuring Point of Device](302-2_simulating_measure_points.md)
 
 30 minutes
 
-[Unit 3. Monitoring Alerts of Smart Battery](302-3_monitoring_alerts_of_device.md)
+[Lab 3. Monitoring Alerts of Smart Battery](302-3_monitoring_alerts_of_device.md)
 
 30 minutes
 
