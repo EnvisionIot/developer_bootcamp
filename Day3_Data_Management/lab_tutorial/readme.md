@@ -29,32 +29,7 @@ asset tree service.
 
 ## Units
 
-Units
 This tutorial includes the following units:
-
-Unit 1. Registering Device on the EnOS Console
-
-10 minutes
-
-Unit 2. Connecting Device into EnOS Cloud
-
-20 minutes
-
-Unit 3. Reporting Device Measuring Point Data
-
-20 minutes
-
-Unit 4. Controlling Device State
-
-10 minutes
-
-Unit 5. Monitoring Device Alerts
-
-10 minutes
-
-Unit 6. Monitoring Device State and Data
-
-10 minutes
 
 [Unit 1. Configuring Storage Policy for the Device Data](303-1_configuring_storage_policy.md)
 
