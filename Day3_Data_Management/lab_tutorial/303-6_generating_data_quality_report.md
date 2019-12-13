@@ -1,4 +1,4 @@
-# Lab 5. Generating Data Quality Report
+# Lab 6. Generating Data Quality Report
 
 EnOS Data Asset Management service supports evaluating data quality from multiple dimensions (completeness, accuracy, and timeliness of data). By tagging data records with quality index when processing stream data with StreamSets operators, we can generate data quality reports to effectively evaluate the quality of ingested data.
 
@@ -92,7 +92,4 @@ When the updated StreamSets pipeline is running for a while, we can now view the
 
    ![](media/data_quality_report.png)
 
-## Next Lab
-
-[Archiving Uploaded Data of the Battery](303-6 archiving_data.md)
-
+<!-- end -->

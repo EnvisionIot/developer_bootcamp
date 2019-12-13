@@ -1,4 +1,4 @@
-﻿Tutorial: Stream Data Processing
+﻿Tutorial: Device management
 ================================
 
 EnOS™ Device Management Offering helps you quickly and securely connect physical devices to EnOS Cloud and start to transfer data, manage device lifecycle, and map the physical asset structure to the digital world.

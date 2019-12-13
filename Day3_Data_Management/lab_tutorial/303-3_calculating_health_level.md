@@ -8,9 +8,9 @@ In this lab, we will develop a stream data processing job with StreamSets operat
 2. Calculate the average temperature of the battery in every 2 minutes.
 3. Compare the average temperature with the maximum temperature that the battery can work with (defined by the `UpperLimitTemp` attribute of the **SmartBattery_Demo** model).  
 4. Based on the result of the comparison, output the following health levels of the battery:
-  - **Level code 100**: Health (the average temperature is lower than the `UpperLimitTemp`)
-  - **Level code 200**: Unhealthy (the average temperature is higher than the `UpperLimitTemp`, but not higher than 3%)
-  - **Level code 300**: Extremely Unhealthy (the average temperature is higher than the `UpperLimitTemp`, and exceeding 3%)
+  - **Level code 90**: Health (the average temperature is lower than the `UpperLimitTemp`)
+  - **Level code 60**: Unhealthy (the average temperature is higher than the `UpperLimitTemp`, but not higher than 3%)
+  - **Level code 30**: Extremely Unhealthy (the average temperature is higher than the `UpperLimitTemp`, and exceeding 3%)
 
 To meet the requirement of the above business scenario, we need to use the following StreamSets operators:
 
@@ -154,11 +154,11 @@ Under the **Script** tab, enter the following script in the **Python Script** fi
 # Comparing the average temperature with the specified temperature limit
 def get_health_level(temp_avg, temp_limit):
     if temp_avg > temp_limit * 1.03:
-        return 300
+        return 30
     elif temp_avg > temp_limit:
-        return 200
+        return 60
     else:
-        return 100
+        return 90
 
 # Getting the temperature data from the input data records       
 for record in records:

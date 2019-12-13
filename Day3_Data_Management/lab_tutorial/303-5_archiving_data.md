@@ -1,4 +1,4 @@
-# Lab 6: Archiving Uploaded Data of the Battery
+# Lab 5: Archiving Uploaded Data of the Battery
 
 EnOS Data Asset Management service supports archiving data of huge size and with lower access frequency to the target database, thus achieving data backup.
 
@@ -61,3 +61,7 @@ In the **Model** field, search and select the **SmartBattry_Demo** model, so tha
 ## Starting the data archiving Job
 
 After completing the above configuration, click **OK** to submit the data archiving job. The job configuration will take effect immediately once it is submitted, and the system starts reading and archiving data from the specified message channel.
+
+## Next Lab
+
+[Generating Data Quality Report](303-6 generating_data_quality_report.md)

@@ -190,5 +190,4 @@ Take the following steps to view the alert records for the battery health level:
 
 ## Next Lab
 
-[Generating Data Quality Report](303-5 generating_data_quality_report.md)
-
+[Archiving Uploaded Data of the Battery](303-5 archiving_data.md)

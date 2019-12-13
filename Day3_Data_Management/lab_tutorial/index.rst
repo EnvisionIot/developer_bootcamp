@@ -14,5 +14,5 @@ This tutorial will guide you through creating stream data processing jobs with a
    calculating_discharge_energy
    calculating_health_level
    monitoring_alerts
-   generating_data_quality_report
    archiving_data
+   generating_data_quality_report
