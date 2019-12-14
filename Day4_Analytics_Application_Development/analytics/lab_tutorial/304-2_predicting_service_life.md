@@ -1,8 +1,8 @@
 # Lab 3: Predicting Battery Service Life
 
-Based on the accumulated domain knowledge, EnOS provides a machine learning algorithm for predicting the battery service life based on the `cycle_number` data.
+In this lab, we'll use a machine learning model (which is based on the accumulated domain knowledge & model training) for predicting the battery service life based on the `cycle_number` data.
 
-In this lab, we will develop a Python script using the machine learning algorithm to calculate the battery service life data and view the results in a curve chart with EnOS Data Explorer.
+We will develop a Python script using the machine learning algorithm to calculate the battery service life data and view the results in a curve chart with EnOS Data Explorer.
 
 ## Copying battery data files
 
@@ -37,9 +37,9 @@ In [Lab 2](converting_data.md), we have stored the battery data as a text file i
 
 
 
-## Developing Python script
+## Programing Python script
 
-After the battery data file is copied to the local directory, we can develop Python script to predict the service life of the battery using the data in the file.
+After the battery data file is copied to the local directory, we can program Python script to predict the service life of the battery using the data in the file.
 
 1. In the note, type the following Python scripts for calculating the battery service life prediction data (`SOH Prediction`):
 
