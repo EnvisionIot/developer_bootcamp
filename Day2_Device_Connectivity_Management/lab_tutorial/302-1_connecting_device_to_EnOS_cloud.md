@@ -7,6 +7,10 @@ directly to the EnOS Cloud.
 
 > **Note** that you'll need to replace the configuration name with your own by following the naming pattern: `xxx_studentId`.
 
+## Procedure Overview
+
+[](media/procedure.png)
+
 ## Step 1: Defining a Model
 
 A model is the abstraction of the features of an object that is connected to IoT hub. The device model defines the features of a device, including attributes, measuring points, services, and events. 

@@ -1,4 +1,4 @@
-# Tutorial Overview
+# Device Connectivity & Management Workshop
 
 ## Scenario
 
@@ -9,7 +9,7 @@ is an important indicator of the battery status and safety. By connecting the sm
 
 The scenario is depicted in the following chart:
 
-![](media/scenario_connect_alert.png)
+![](media/scenario.png)
 
 This tutorial walks you through a typical path of smart battery management, that is:
 
@@ -22,7 +22,7 @@ This tutorial walks you through a typical path of smart battery management, that
 1. You have signed up to EnOS as an individual account or an enterprise account to access the **EnOS Console**.
 2. Your account must have been assigned full access to the model service, device connectivity & management services, and data management services (in the training, this is already done by the trainer).
 
-## Units
+## Labs
 
 This tutorial includes the following units:
 
