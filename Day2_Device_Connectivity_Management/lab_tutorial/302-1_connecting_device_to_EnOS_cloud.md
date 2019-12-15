@@ -9,7 +9,7 @@ directly to the EnOS Cloud.
 
 ## Procedure Overview
 
-[](media/procedure.png)
+![](media/procedure.png)
 
 ## Step 1: Defining a Model
 
