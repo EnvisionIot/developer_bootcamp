@@ -9,7 +9,7 @@ This tutorial walks you through registering a smart battery device on the EnOS C
    :maxdepth: 1
    :caption:
 
-   overview
+   README
    connecting_to_EnOS_Cloud
    simulating_measure_points
    monitoring_alerts_of_device
