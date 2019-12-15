@@ -2,10 +2,12 @@
 
 ## Scenario
 
-Device Management Offering helps you quickly and securely connect devices to EnOS Cloud and start to 
-transfer data, manage its lifecycle, and map the physical asset hierachy to the digital world.
+The first thing you start to do on an IoT platform is to connect your devices and data. This tutorial is the basic learning module you need to complete first.
 
-The scenario is as depicted in the following chart:
+In the energy industry, monitoring the status of batteries during charging is common business scenario. Temperature 
+is an important indicator of the battery status and safety. By connecting the smart battery devices into EnOS, you can ingest the real-time temperature data, configure alert settings to monitor the battery status, and control the state of the battery device.
+
+The scenario is depicted in the following chart:
 
 ![](media/scenario_connect_alert.png)
 
@@ -14,7 +16,6 @@ This tutorial walks you through a typical path of smart battery management, that
 - Registering & connecting a simulated Smart Battery into EnOS.
 - Simulate the battery to post measuring points data using a Java program developed through Java SDK
 - Monitoring the alerts of Smart Battery.
-
 
 ## Prerequisites
 
@@ -37,3 +38,6 @@ This tutorial includes the following units:
 
 30 minutes
 
+## Related Documentation
+
+https://support.envisioniot.com/docs/device-connection/en/latest/device_management_overview.html
