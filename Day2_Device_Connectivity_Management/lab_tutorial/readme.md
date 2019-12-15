@@ -1,8 +1,9 @@
 # Device Connectivity & Management Workshop
 
-## Scenario
-
 The first thing you start to do on an IoT platform is to connect your devices and data. This tutorial is the basic learning module you need to complete first.
+
+
+## Scenario
 
 In the energy industry, monitoring the status of batteries during charging is common business scenario. Temperature 
 is an important indicator of the battery status and safety. By connecting the smart battery devices into EnOS, you can ingest the real-time temperature data, configure alert settings to monitor the battery status, and control the state of the battery device.
