@@ -215,7 +215,7 @@ After we have completed the configuration of the web application, we can add the
 
 In this step, extract the provided front-end package into the Java web project by the following steps:
 
-1. Download the front-end package `Front_End_File.zip`.
+1. Download the front-end package `Front_End.zip` from https://github.com/EnvisionIot/developer_bootcamp/tree/master/App_Front_End.
 
 2. Extract the front-end package to the `resources` directory of the Java web project. Ensure that the `static` directory, `templates` directory, and the `application.properties` file are under the same directory. The directory structure is as follows:
 

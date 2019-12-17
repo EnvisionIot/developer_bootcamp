@@ -254,7 +254,7 @@ We will use PyCharm for developing the application.
 
 In this step, we will extract the provided front-end package into the Python web project by the following steps:
 
-1. Download the front-end package `Front_End_File.zip`.
+1. Download the front-end package `Front_End.zip` from https://github.com/EnvisionIot/developer_bootcamp/tree/master/App_Front_End.
 
 2. Extract the front-end package to the `root` directory of the Python web project. Ensure that the `static` directory,  `battery.html`, and the `run.py` file are under the same directory. The directory structure is as follows:
 
