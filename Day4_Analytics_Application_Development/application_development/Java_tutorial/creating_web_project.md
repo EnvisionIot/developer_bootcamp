@@ -251,7 +251,9 @@ In this step, extract the provided front-end package into the Java web project b
    }
    ```
 
-4. Open a browser and enter `http://127.0.0.1:8080` in the address field. View the displaying result of the application. See the following example:
+4. Run the `BatteryWebApplication` class to start the application.
+
+5. Open a browser and enter `http://127.0.0.1:8080` in the address field. View the displaying result of the application. See the following example:
 
    ![](media/application-0.png)
 
