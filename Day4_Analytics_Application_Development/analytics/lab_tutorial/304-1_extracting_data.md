@@ -35,7 +35,7 @@ Take the following steps to view the archived data of the battery in HDFS:
    hadoop fs -ls -R /user/$(whoami)/smart_battery/
    ```
 
-   **Note**: In the above example, the path `smart_battery` is specified in the data archiving job that is created in the [Archiving Uploaded Data of the Battery](../../../D3_Data_Management/Labs/stream_data_processing_tutorial/archiving_data.md) lab. You may need to replace it with the path you specified.
+   **Note**: In the above example, the path `smart_battery` is specified in the data archiving job that is created in the [Archiving Uploaded Data of the Battery](https://github.com/EnvisionIot/developer_bootcamp/blob/master/Day3_Data_Management/lab_tutorial/303-5_archiving_data.md) lab. You may need to replace it with the path you specified.
 
 2. Click the **Run this paragraph** icon to run the scripts. See the following example:
 
@@ -233,4 +233,4 @@ Take the following steps to perform the "column-to-row" operation on the created
 
 ## Next Lab
 
-[Predicting Battery Service Life](304-2 predicting_service_life.md)
+[Predicting Battery Service Life](304-2_predicting_service_life.md)
