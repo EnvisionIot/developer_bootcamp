@@ -4,14 +4,13 @@
 
 EnOS provides REST APIs that cover the core business processes of the system. Based on these APIs, developers can integrate the device, asset, data, and alert resources on EnOS Cloud in one application, meeting the requirements of various business scenarios.
 
-In the [Device Connectivity and Management](http://git.envisioncn.com/knowledge-transfer/bootcamp/blob/master/D2_Device_Connectivity&Management/Labs/device_management_tutorial/302-1%20connecting_device_to_EnOS_cloud.md) lab, we have connected smart batteries into EnOS. In this tutorial, we will develop a web based application to query and display the list of smart battery devices, the health, remaining energy, current, voltage, temperature, and alert data of each smart battery. 
+In the [Device Connectivity and Management](https://github.com/EnvisionIot/developer_bootcamp/blob/master/Day2_Device_Connectivity_Management/lab_tutorial/302-1_connecting_device_to_EnOS_cloud.md) lab, we have connected smart batteries into EnOS. In this tutorial, we will develop a web based application with Java to query and display the list of smart battery devices, the health, remaining energy, current, voltage, temperature, and alert data of each smart battery. 
 
 This tutorial walks you through a typical path of developing an application using the EnOS Java Core SDK (Poseidon), and that is:
 
 - Getting the SA (service account) of the application that is registered on the EnOS Console.
 - Creating a Java web project and installing the EnOS Java Core SDK 
 - Invoking EnOS API with SDK and verifying the returned data
-- Developing back-end interfaces for data to be displayed on the front-end
 - Viewing the queried battery data on the front-end interface
 
 ## Prerequisites
@@ -31,10 +30,10 @@ This tutorial includes the following units:
 >
 > 30 minutes
 
-> [Unit 3. Invoking EnOS APIs](invoking_api.md)
+> [Unit 3. Invoking EnOS APIs](invoking_api_java.md)
 >
 > 30 minutes
 
-> [Unit 4. Developing the Front End](developing_front_end.md)
+> [Unit 4. Developing by Yourself](developing_by_yourself_java.md)
 >
 > 30 minutes

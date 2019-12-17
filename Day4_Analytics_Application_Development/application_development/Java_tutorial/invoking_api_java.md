@@ -2,9 +2,13 @@
 
 In this unit, we can start to invoke EnOS APIs to get the asset information of batteries and the ingested history data of batteries stored in TSDB.
 
-## Getting battery asset information
+## Getting battery asset list
 
-With the application properties configured and tested, we can now invoke EnOS APIs to get the battery asset information.
+> In this step, we will invoke the EnOS API *Search Related Asset Node*. The request format is:
+>
+> https://{apigw-address}/asset-tree-service/v2.1/asset-nodes?action=searchRelatedAsset
+
+Take the following steps to invoke the EnOS API to get the battery asset list from the asset tree:
 
 1. From the left navigation bar of the project space, open the `src/main/java/com.example.batteryweb` directory, and click **File > New > Package** from the menu to create 3 packages named `service`, `controller`, and `model` for storing functional classes.
 
@@ -121,17 +125,17 @@ With the programming work completed, we can now test running the code.
 
    ![](media/battery_web_app.png)
 
-3. Open a browser and enter `http://127.0.0.1:8080/battery/list` in the address field. Check the queried list of battery assets in JSON format. See the following example:
+3. Open a browser and enter `http://127.0.0.1:8080` in the address field. Check the queried list of battery assets. See the following example:
 
-   ![](media/asset_list.png)
+   ![](media/application-1.png)
 
+## Getting asset information of a specific battery
 
+> In this step, we will invoke the EnOS API *Get Asset*. The request format is:
+>
+> https://{apigw-address}/asset-service/v2.1/assets?action=get
 
-## Getting more data of batteries
-
-We can now invoke EnOS APIs to get more data of the smart batteries.
-
-### Getting data of a specific battery
+Take the following step to invoke the EnOS API to get the specified battery asset information:
 
 1. Open the `DataService` class and add the following code for getting the battery data with specific asset ID:
 
@@ -154,11 +158,19 @@ We can now invoke EnOS APIs to get more data of the smart batteries.
        }
    ```
 
-3. Open a browser and enter `http://127.0.0.1:8080/battery/asset/{assetId}` in the address field. Check the queried battery asset data in JSON format.
+3. Open the `BatteryWebApplication` class and click **Run 'BatteryWebApplication'** to start the application.
 
+4. Open a browser and enter `http://127.0.0.1:8080` in the address field. Check the queried battery asset data. See the following example:
 
+   ![](media/application-2.png)
 
-### Getting the status of a specific battery
+## Getting the status of a specific battery
+
+> In this step, we will invoke the EnOS API *Get Asset Latest Data*. The request format is:
+>
+> https://{apigw-address}/tsdb-service/v2.0/latest?orgId={}&assetIds={}&measurepoints={}&timeWindow={}&accessKey={}
+
+Take the following steps to invoke the EnOS API to get the status of a specific battery, including health level and remaining power:
 
 To get the status data of a battery, we need to create 2 classes named `Data` and `GetDataResponse` in the `model` package to receive data returned from EnOS Cloud for easier data parsing.
 
@@ -199,7 +211,7 @@ To get the status data of a battery, we need to create 2 classes named `Data` an
 3. Open the `DataService` class and add the following code for getting battery status data from EnOS Cloud:
 
    ```
-       public GetDataResponse getData(String assertId, String measurepoints) {
+       public GetDataResponse getData(String assetId, String measurepoints) {
            IPoseidonRequest request = new PoseidonRequest() {
                @Override
                public String baseUri() {
@@ -214,7 +226,7 @@ To get the status data of a battery, we need to create 2 classes named `Data` an
                @Override
                public Map<String, Object> queryParams() {
                    Map<String, Object> params = new HashMap();
-                   params.put("assetIds", config.assertId);
+                   params.put("assetIds", assetId);
                    params.put("measurepoints", measurepoints);
                    params.put("orgId", config.orgId);
                    params.put("accessKey", config.accessKey);
@@ -257,131 +269,58 @@ To get the status data of a battery, we need to create 2 classes named `Data` an
    }
    ```
 
-5. Open a browser and enter `http://127.0.0.1:8080/battery/status/{assetId}` in the address field. Check the queried battery asset data in JSON format.
+5. Open the `BatteryWebApplication` class and click **Run 'BatteryWebApplication'** to start the application.
 
+6. Open a browser and enter `http://127.0.0.1:8080` in the address field. Check the queried battery status data. See the following example:
 
+   ![](media/application-3.png)
 
-### Getting the history data of a specific battery
+## Getting the active alerts of a specific asset tree
 
-1. Open the `DataService` class and add the following code for getting battery history data from EnOS Cloud:
+> In this step, we will invoke the EnOS API *Search Active Alerts*. The request format is:
+>
+> https://{apigw-address}/event-service/v2.1/active-alerts?action=search
 
-   ```
-   public GetDataResponse getHistoryData(String assertId, String measurepoints) {
-       IPoseidonRequest request = new PoseidonRequest() {
-           @Override
-           public String baseUri() {
-               return "/tsdb-service/v2.0/ai";
-           }
-   
-           @Override
-           public String method() {
-               return "GET";
-           }
-   
-           @Override
-           public Map<String, Object> queryParams() {
-               Map<String, Object> params = new HashMap();
-               params.put("assetIds", config.assertId);
-               params.put("measurepoints", measurepoints);
-   
-               DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-               fmt.setTimeZone(TimeZone.getTimeZone("UTC"));
-               Date nowTime = new Date();
-               Calendar calendar = Calendar.getInstance();
-               calendar.setTime(nowTime);
-               calendar.add(Calendar.DATE, -1);
-               Date startTime=calendar.getTime();
-   
-               params.put("startTime", fmt.format(startTime));
-               params.put("endTime", fmt.format(nowTime));
-               params.put("orgId", config.orgId);
-               return params;
-           }
-       };
-   
-       return getResponse(request, GetDataResponse.class);
-   }
-   ```
+Take the following steps to invoke the EnOS API to get the active alerts of a specific asset tree.
 
-2. Open the `DataController` class and add the following code for returning the queried battery history data through HTTP:
+To get the active alert data of batteries on an asset tree, we need to create 2 classes named `Alert` and `GetAlertResponse` in the `model` package to receive alert data returned from EnOS Cloud for easier data parsing.
+
+1. Open the `model` package, create a class named `Alert`, and enter the following code:
 
    ```
-   @RequestMapping("/battery/tsdb/{id}")
-   public Map<String, Object> tsdb(@PathVariable("id") String id) {
-       String measurepoints = "current,voltage,temp";
-       GetDataResponse resp = dataService.getHistoryData(id, measurepoints);
+   package com.example.batteryweb.model;
    
-       // Reformat returned data for front-end display 
-       Map<String, Object> result = new HashMap<>();
-       List<Double> voltage = new ArrayList<>();
-       List<Double> current = new ArrayList<>();
-       List<Double> temp = new ArrayList<>();
-       result.put("voltage", voltage);
-       result.put("current", current);
-       result.put("temp", temp);
+   import com.envisioniot.enos.event_service.vo.ActiveAlert;
    
-       Set<String> time = new HashSet<>();
-       for(Map<String, Object> items: resp.getData().getItems()){
-           for (String point: measurepoints.split(",")) {
-               if (items.containsKey(point)) {
-                   time.add(items.get("localtime").toString());
-                   List<Double> pointList = (List<Double>) result.get(point);
-                   pointList.add((Double) items.get(point));
-                   break;
-               }
-           }
+   public class Alert extends ActiveAlert {
+       private String assetName;
+   
+       public String getAssetName() {
+           return assetName;
        }
-       result.put("time", time);
    
-       return result;
+       public void setAssetName(String assetName) {
+           this.assetName = assetName;
+       }
    }
    ```
 
-3. Open a browser and enter `http://127.0.0.1:8080/battery/tsdb/{assetId}` in the address field. Check the queried battery history data in JSON format.
+2. Open the `model` package, create a class named `GetAlertResponse`, and enter the following code:
 
+   ```
+   package com.example.batteryweb.model;
+   
+   import com.envisioniot.enos.api.common.constant.response.v2.EnosPageRspV2;
+   
+   public class GetAlertResponse extends EnosPageRspV2<Alert> {
+       public GetAlertResponse() {
+       }
+   }
+   ```
 
+3. Open the `DataService` class and add the following code for getting active alert data of an asset tree for the smart battery model: 
 
-### Getting the alert data of a specific asset tree
-
-在获取告警信息前，需要行创建一个Alert和GetAlertResponse类，封装EnOS返回的数据，以便更方便解析出详细的告警数据
-
-* 选择 model 包目录，创建一个 Alert 类，加入以下代码
-
-* ```java
-  package com.example.batteryweb.model;
-  
-  import com.envisioniot.enos.event_service.vo.ActiveAlert;
-  
-  public class Alert extends ActiveAlert {
-      private String assetName;
-  
-      public String getAssetName() {
-          return assetName;
-      }
-  
-      public void setAssetName(String assetName) {
-          this.assetName = assetName;
-      }
-  }
-  ```
-
-* 再创建一个GetAlertResponse类，加入以下代码
-
-  ```java
-  package com.example.batteryweb.model;
-  
-  import com.envisioniot.enos.api.common.constant.response.v2.EnosPageRspV2;
-  
-  public class GetAlertResponse extends EnosPageRspV2<Alert> {
-      public GetAlertResponse() {
-      }
-  }
-  ```
-
-
-1. Open the `DataService` class and add the following code for getting active alert data of an asset tree for the smart battery model: 
-
-   ```java
+   ```
    public GetAlertResponse getAlerts() {
      SearchActiveAlertRequest request = new SearchActiveAlertRequest();
      request.setOrgId(config.orgId);
@@ -393,9 +332,9 @@ To get the status data of a battery, we need to create 2 classes named `Data` an
    }
    ```
 
-2. Open the `DataController` class and add the following code for returning the queried active alert data through HTTP:
+4. Open the `DataController` class and add the following code for returning the queried active alert data through HTTP:
 
-   ```java
+   ```
    @RequestMapping("/battery/alerts")
    public GetAlertResponse alerts() {
      GetAlertResponse alerts = dataService.getAlerts();
@@ -408,13 +347,19 @@ To get the status data of a battery, we need to create 2 classes named `Data` an
    }
    ```
 
-3. Open a browser and enter `http://127.0.0.1:8080/battery/alerts` in the address field. Check the queried alert data.
+5. Open the `BatteryWebApplication` class and click **Run 'BatteryWebApplication'** to start the application.
 
+6. Open a browser and enter `http://127.0.0.1:8080` in the address field. Check the queried alert data. See the following example:
 
+   ![](media/application-4.png)
 
 ## Setting data uploading frequency
 
-We can set the data uploading frequency of batteries through the service feature that is defined for the **SmartBattery_Demo** model. 
+> In this step, we will invoke the EnOS API *Invoke Service*. The request format is:
+>
+> https://{apigw-address}/connect-service/v2.1/commands?action=invokeService
+
+Take the following steps to invoke the EnOS API to set the battery data upload frequency:
 
 1. Open the `DataService` class and add the following code for invoking the service of the smart battery model: 
 
@@ -445,18 +390,28 @@ We can set the data uploading frequency of batteries through the service feature
    }
    ```
 
-3. Open a browser and enter `http://127.0.0.1:8080/battery/service/{assetId}` in the address field. Check the queried alert data.
+3. Open the `BatteryWebApplication` class and click **Run 'BatteryWebApplication'** to start the application.
 
-Now we have completed the back-end development of the web application
+4. In this step, we still cannot see the direct result of the changed data uploading frequency because we have not retrieved the dynamic battery data, including the voltage, current, and temperature.
+
+
+
+Now we have completed most of the back-end development of the web application. In the next unit, you will need to complete the remaining development work.
+
+
+
+## Getting the battery history data
+
+![](media/application-5.png)
 
 
 
 ## Reference
 
-For more information of EnOS APIs, go to **EnOS Console > EnOS API**.
+For more information about EnOS APIs, go to **EnOS Console > EnOS API**.
 
 
 
 ## Next Lab
 
-[Developing the Front End](developing_front_end.md)
+[Developing by Yourself](developing_by_yourself_java.md)

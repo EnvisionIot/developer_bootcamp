@@ -30,7 +30,7 @@ Take the following steps to create a Springboot web project:
 
    ![](media/download_dependencies.png)
 
-8. When the dependencies are all downloaded. A Java Springboot web application project is created.
+8. When the dependencies are all downloaded, a Java Springboot web application project is created.
 
    ![](media/created_project.png)
 
@@ -70,13 +70,8 @@ After the project is created, we need to add Maven dependency of EnOS Java Core 
                <groupId>junit</groupId>
                <artifactId>junit</artifactId>
            </dependency>
-           <dependency>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-devtools</artifactId>
-               <optional>true</optional>
-           </dependency>
    ```
-
+   
 3. In the lower-right corner, a hint of "Maven projects need to be imported" will be displayed. Click **Import Changes** to import the maven dependencies.
 
    ![](media/import_changes.png)
@@ -94,6 +89,10 @@ In this step, configure the application properties file with the following value
 1. Open the `src/main/resources/application.properties` file, and enter the following values:
 
    ```
+   spring.freemarker.suffix=.html
+   spring.freemarker.encoding=utf-8
+   spring.freemarker.cache=false
+   
    enos.ou.id=o15724268424841
    enos.apim.addr=https://apim-ppe1.envisioniot.com
    enos.app.key=e4b623dd-8c88-4864-aed6-b6abbf5fd292
@@ -112,8 +111,8 @@ In this step, configure the application properties file with the following value
    | enos.apim.addr             | EnOS API gateway address. For the **EnOS_Training_Center** OU, keep the value in the above sample. |
    | enos.app.key               | Access Key of the application SA. For the **SmartBattery_Demo** application, keep the value in the above sample. |
    | enos.app.secret            | Secret Key of the application SA.                            |
-   | enos.battery.parentAssetId | 父资产树ID,用于查询指定资产目录下的电池设备.需要修改为实验时创建的ID |
-   | enos.battery.assertTreeId  | ID of the asset tree for the battery devices. For the **Envision Smart Battery Provider** asset tree, keep the value in the above sample. |
+   | enos.battery.assetTreeId   | ID of the asset tree for the battery devices. For the **Envision Smart Battery Provider** asset tree, keep the value in the above sample. |
+   | enos.battery.parentAssetId | Asset ID of the parent node of batteries on the asset tree, which is used for querying list of batteries under a specific asset tree node. Replace the value with the asset ID of a node on the created asset tree. |
    | enos.sub.server            | Data subscription server address. For the **EnOS_Training_Center** OU, keep the value in the above sample. |
    | enos.sub.id                | ID of the data subscription job. Replace the value with the ID of your data subscription job. |
 
@@ -210,6 +209,63 @@ In this step, test the configured parameters with a unit test.
 
 
 
+## Adding the Front End
+
+After we have completed the configuration of the web application, we can add the front end of the application for displaying the queried battery data.
+
+In this step, extract the provided front-end package into the Java web project by the following steps:
+
+1. Download the front-end package `Front_End_File.zip`.
+
+2. Extract the front-end package to the `resources` directory of the Java web project. Ensure that the `static` directory, `templates` directory, and the `application.properties` file are under the same directory. The directory structure is as follows:
+
+   ```shell
+   ├── src
+   │   ├── main
+   │   │   ├── java/
+   │   │   └── resources/
+   │   │       ├── application.properties
+   │   │       ├── static/
+   │   │       └── templates/
+   ```
+
+3. Open the `controller` package, create a class named `BatteryController`, and enter the following code for developing a front-end page:
+
+   ```
+   package com.example.batteryweb.controller;
+   
+   import lombok.extern.slf4j.Slf4j;
+   import org.springframework.stereotype.Controller;
+   import org.springframework.web.bind.annotation.RequestMapping;
+   
+   import javax.servlet.http.HttpServletRequest;
+   import java.util.Map;
+   
+   @Controller
+   @Slf4j
+   public class BatteryController {
+       @RequestMapping("/")
+       public String chat(HttpServletRequest request, Map<String, String> data) {
+           return "battery";
+       }
+   }
+   ```
+
+4. Open a browser and enter `http://127.0.0.1:8080` in the address field. View the displaying result of the application. See the following example:
+
+   ![](media/application-0.png)
+
+Now, as shown in the above picture, no data is displayed.
+
+In the next step, we will try calling EnOS APIs to get the following battery data step by step:
+
+- Get the battery asset list
+- Get battery asset information
+- Get the battery status (health level and remaining power)
+- Get the asset alert records
+- Set battery data uploading frequency
+- Get the dynamic data of batteries: real-time voltage, current, and temperature
+
 ## Next Unit
 
-[Invoking EnOS APIs](invoking_api.md)
+[Invoking EnOS APIs](invoking_api_java.md)

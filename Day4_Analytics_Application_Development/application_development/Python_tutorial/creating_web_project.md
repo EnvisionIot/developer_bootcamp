@@ -1,215 +1,294 @@
 # Creating a Web Project
 
-In this unit, we will create a Java Springboot web project for developing the application and add maven dependencies for the EnOS Java Core SDK.
+In this unit, we will create a Python Flask web project for developing the application.
+
+## Installing Python dependency
+
+Ensure that have installed Python 3 and PyCharm on your workstation. If not, please refer to Day 1 part for environment setup.
+
+1. Install Flask Web Framework:
+
+   ```
+   pip install flask
+   ```
+
+2. Install EnOS Python Core SDK. We will use this SDK to access EnOS API：
+
+   ```
+   pip install aphrodite
+   ```
 
 ## Creating a project
 
-To save the effort of creating a project from scratch, we can create a project by importing the project configuration package. 
+We will use PyCharm for developing the application. 
 
-Take the following steps to create a Springboot web project:
+1. Open the JetBrains PyCharm Community Edition and select **File > New Project** from the menu.
 
-1. Open the [Spring Initializr](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.2.2.RELEASE&packaging=jar&jvmVersion=1.8&groupId=com.example&artifactId=battery-web&name=battery-web&description=demo%20project%20for%20spring%20boot&packageName=com.example.battery-web&dependencies=devtools,lombok,web,freemarker) site with the configured `battery-web` project information.
+2. On the **Create Project** window:
 
-2. Click the **Generate** button to download the project configuration package `battery-web.zip`.
+- Browse and select the target project folder.
+- Choose the existing Python interpreter and click **Create**.
 
-   ![](media/spring_initializr.png)
+<img src="media/create_project.png" style="zoom:67%;" />
 
-3. Extract the `battery-web.zip` file to the current directory.
+3. In the project, select **File > New > Python File** from the menu and create a python file named `run.py`.
 
-4. Open the IntelliJ IDEA Community Edition and select **File > Open** from the menu.
+   ![create_python_file](media/create_python_file.png)
 
-5. On the **Open File or Project** window, browse and select the extracted project folder, and click **OK**.
-
-   ![](media/open_project.png)
-
-6. Open the project in a new window.
-
-   ![](media/open_project_in_new_window.png)
-
-7. Wait for the dependencies to be downloaded. 
-
-   ![](media/download_dependencies.png)
-
-8. When the dependencies are all downloaded. A Java Springboot web application project is created.
-
-   ![](media/created_project.png)
-
-
-
-## Adding Maven dependency of EnOS SDK
-
-After the project is created, we need to add Maven dependency of EnOS Java Core SDK, which is required for invoking EnOS APIs.
-
-1. From the left navigation bar of the project space, double click the `pom.xml` file to open it.
-
-   ![](media/pom_xml.png)
-
-2. In the `pom.xml` file, find the `</dependencies> ` line, and insert the the following dependencies before it:
+   Open the `run.py` file and add the following code:
 
    ```
-           <dependency>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-websocket</artifactId>
-           </dependency>
-           <dependency>
-               <groupId>com.envisioniot</groupId>
-               <artifactId>enos-dm-api-pojo</artifactId>
-               <version>0.2.5</version>
-           </dependency>
-           <dependency>
-               <groupId>com.envisioniot</groupId>
-               <artifactId>enos-subscribe</artifactId>
-               <version>2.3.0</version>
-           </dependency>
-           <dependency>
-               <groupId>log4j</groupId>
-               <artifactId>log4j</artifactId>
-               <version>1.2.16</version>
-           </dependency>
-           <dependency>
-               <groupId>junit</groupId>
-               <artifactId>junit</artifactId>
-           </dependency>
-           <dependency>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-devtools</artifactId>
-               <optional>true</optional>
-           </dependency>
-   ```
-
-3. In the lower-right corner, a hint of "Maven projects need to be imported" will be displayed. Click **Import Changes** to import the maven dependencies.
-
-   ![](media/import_changes.png)
-
-4. Wait for the dependencies to be downloaded. 
-
-When the synchronization is completed, the Maven dependency of EnOS SDK is added.
-
-
-
-## Configuring application properties
-
-In this step, configure the application properties file with the following values:
-
-1. Open the `src/main/resources/application.properties` file, and enter the following values:
-
-   ```
-   enos.ou.id=o15724268424841
-   enos.apim.addr=https://apim-ppe1.envisioniot.com
-   enos.app.key=e4b623dd-8c88-4864-aed6-b6abbf5fd292
-   enos.app.secret=4840b294-4649-4b2f-8dd0-845284225a67
-   enos.battery.modelId=SmartBattery_Demo
-   enos.battery.assertTreeId=50XiYXpx
-   enos.sub.server=subscribe-ppe1.envisioniot.com:9001
-   enos.sub.id=sub-1574736106350
-   ```
-
-   Description to the properties is as follows:
-
-   | Properties                | Description                                                  |
-   | ------------------------- | ------------------------------------------------------------ |
-   | enos.ou.id                | ID of the organization on EnOS Console. For the **EnOS_Training_Center** OU, keep the value in the above sample. |
-   | enos.apim.addr            | EnOS API gateway address. For the **EnOS_Training_Center** OU, keep the value in the above sample. |
-   | enos.app.key              | Access Key of the application SA. For the **SmartBattery_Demo** application, keep the value in the above sample. |
-   | enos.app.secret           | Secret Key of the application SA.                            |
-   | enos.battery.modelId      | ID of the model for smart battery. Replace the value with the model you created. |
-   | enos.battery.assertTreeId | ID of the asset tree for the battery devices. For the **Envision Smart Battery Provider** asset tree, keep the value in the above sample. |
-   | enos.sub.server           | Data subscription server address. For the **EnOS_Training_Center** OU, keep the value in the above sample. |
-   | enos.sub.id               | ID of the data subscription job. Replace the value with the ID of your data subscription job. |
-
-   See the following screen capture:
-
-   ![](media/app_properties.png)
-
+   from flask import Flask, request, render_template  # Lightweight web framework
+   from datetime import timedelta, datetime
+   from services import *
    
-
-2. Open the `src/main/java/com.example.batteryweb` directory, and click **File > New > Java Class** from the menu to create a class named `AppConfig` for reading and writing in the properties file.
-
-   ![](media/battery_config_class.png)
-
-3. In the created `AppConfig` class, enter the following code:
-
-   ```
-   package com.example.batteryweb;
+   # *****application logic*****
    
-   import org.springframework.beans.factory.annotation.Value;
-   import org.springframework.stereotype.Component;
+   # Initialize hte web framework
+   app = Flask(__name__, template_folder='./', static_folder='./static/')
    
-   @Component
-   public class AppConfig {
-       @Value("${enos.apim.addr}")
-       public String addr;
    
-       @Value("${enos.app.key}")
-       public String accessKey;
+   # The following @app.route decorator is used to register the web request handler
    
-       @Value("${enos.app.secret}")
-       public String accessSecret;
+   @app.route('/', endpoint='index')
+   def index():
+       return render_template('battery.html')
    
-       @Value("${enos.ou.id}")
-       public String orgId;
    
-       @Value("${enos.battery.modelId}")
-       public String modelId;
+   @app.route('/battery/list/', endpoint='battery.list')
+   def list():
+       parent_assetId = '0RmeXD6D'  # Change this to your battery's parent assentId
+       results = get_child_asset_list(parent_assetId)
    
-       @Value("${enos.battery.assertTreeId}")
-       public String assertTreeId;
+       resp = {}
+       battery_list = {}
    
-       @Value("${enos.sub.server}")
-       public String subServer;
+       if results is not None:
+           for item in results['data']:
+               battery_list[item['name']['defaultValue']] = item['assetId']
    
-       @Value("${enos.sub.id}")
-       public String subId;
-   }
-   ```
-
-Now, the parameter configuration for the application development is completed. See the following screen capture. 
-
-![](media/completed_configuration.png)
-
-
-
-## Testing the configured parameters
-
-In this step, test the configured parameters with a unit test.
-
-1. Open the `src/test/java/com.example.batteryweb` directory and create a class named `AppConfigTests`.
-
-2. In the created `AppConfigTests` class, enter the following code:
-
-   ```
-   package com.example.batteryweb;
+       # Sort the asset list in ascending order by the aseet name
+       sorted_list = [{'name': k, 'assetId': battery_list[k]} for k in sorted(battery_list.keys())]
+       resp['batteries'] = sorted_list
    
-   import org.junit.jupiter.api.Test;
-   import org.springframework.beans.factory.annotation.Autowired;
-   import org.springframework.boot.test.context.SpringBootTest;
+       return resp
    
-   @SpringBootTest
-   public class AppConfigTests {
-       @Autowired
-       private AppConfig config;
    
-       @Test
-       void testAppConfig() {
-           System.out.println("enos.apim.addr = "+ config.addr);
-           System.out.println("enos.app.accessKeyr = "+ config.accessKey);
-           System.out.println("enos.app.secretr = "+ config.accessSecret);
+   @app.route('/battery/asset/<assetId>', endpoint='battery.asset')
+   def asset(assetId):
+       req = get_asset_info(assetId)
+       return req
+   
+   
+   @app.route('/battery/status/<assetId>', endpoint='battery.status')
+   def status(assetId):
+       req = get_asset_info(assetId)
+       capacity = 10
+       if req is not None:
+           capacity = req['data']['attributes']['Capacity']
+   
+       health_level = 100
+       accumulating_power = 0
+   
+       req = get_asset_latest_data(assetId, 'health_level,accumulating_power')
+       if req is not None:
+           for item in req['data']['items']:
+               if 'health_level' in item.keys():
+                   health_level = int(item['health_level']) / 10
+               elif 'accumulating_power' in item.keys():
+                   accumulating_power = int(item['accumulating_power'])
+   
+       # Calculate the remaining power percentage of batteries
+       remaining_power = "%.0f%%" % (100 * accumulating_power / capacity)
+   
+       resp = {'health_level': health_level, 'remaining_power': remaining_power}
+   
+       return resp
+   
+   
+   @app.route('/battery/tsdb/<assetId>', endpoint='battery.tsdb')
+   def tsdb(assetId):
+       endTime = datetime.now()
+       startTime = endTime + timedelta(hours=-1)
+       startTime = startTime.strftime(format='%Y-%m-%d %H:%M:%S')
+       endTime = endTime.strftime(format='%Y-%m-%d %H:%M:%S')
+       req = get_asset_ai_raw_data(assetId, startTime, endTime)
+   
+       # Arrange the returned data in array format
+       time = []
+       current = []
+       voltage = []
+       temp = []
+   
+       if req is not None:
+           for item in req['data']['items']:
+               if 'current' in item.keys():
+                   time.append(item['localtime'])
+                   current.append(item['current'])
+               elif 'voltage' in item.keys():
+                   voltage.append(item['voltage'])
+               elif 'temp' in item.keys():
+                   temp.append(item['temp'])
+               else:
+                   pass
+   
+       # Assemble the response structure
+       resp = {'time': time, 'voltage': voltage, 'current': current, 'temp': temp}
+   
+       return resp
+   
+   
+   @app.route('/battery/alerts/', endpoint='battery.alerts')
+   def alerts():
+       req = get_active_alerts()
+   
+       # Add asset name for each alert record
+       if req is not None:
+           for item in req['data']:
+               result = get_asset_info(item['assetId'])
+               item['assetName'] = result['data']['name']['defaultValue']
+   
+       return req
+   
+   
+   @app.route('/battery/service/<assetId>', endpoint='battery.service', methods=['POST'])
+   def service(assetId):
+       req = {}
+       if request.method == 'POST':
+           if request.form['command'] == 'set_frequency':
+               freq = int(request.form['parameter'])
+               req = set_battery_frequency(assetId, freq)
+   
+       res = {
+           "status": "success",
+           "result": req
        }
-   }
+       return res
+   
+   
+   # Main entrance
+   if __name__ == '__main__':
+       app.debug = True
+       app.run()
    ```
 
-3. Click the **Run Test** icon next to `testAppConfig()` and select **Run 'testAppConfig()'** to run the unit test.
+4. In the project, select **File > New > Python File** from the menu and create a python file named `services.py`.
 
-   ![](media/unit_test.png)
+   ![create_python_file2](media/create_python_file2.png)
 
-4. Check the results of the unit test. See the following example.
+   Open the `services.py` file and add following code: 
 
-   ![](media/unit_test_result.png)
+   ```
+   from poseidon import poseidon  # This is the python SDK for EnOS API.
+   import urllib.parse as parser  # The library to convert a dictionary into query string.
+   
+   # The AccessKey and SecretKey, you get it when you register an application
+   app_access_key = '0787eefe-d96c-4db6-a97c-c5ee16ce9a93'
+   app_secret_key = '7b12307f-4993-4ef3-8554-93c6cc0e3cb6'
+   
+   # The api gateway address
+   api_gateway = 'https://apim-ppe1.envisioniot.com'
+   
+   # This is the training OU Id in which we perform our experiment
+   training_orgId = 'o15724268424841'
+   # Asset Tree Id
+   battery_provider_treeId = '50XiYXpx'
+   
+   
+   # The following function is used to query assets under the specified parent node,
+   # by specifying orgId and treeId of the asset tree.
+   # Refer to `Search Related Asset Node` API doc in our doc center.
+   # Args:
+   #   parentId: The parent asset Id under which the child assets is located
+   def get_child_asset_list(parentId):
+       pass
+   
+   
+   # The following function is used to query the specified asset information by specifying asset Id.
+   # Refer to `Get Asset` API doc in our doc center.
+   # Args:
+   #   assetId: The asset Id you want to query
+   def get_asset_info(assetId):
+       pass
+   
+   
+   # The following function is used to get the latest reading of all measurement points of a specified device.
+   # Refer to `Get Asset Latest Data` API doc in our doc center.
+   # Args:
+   #   assetIds: The asset Id to query, multiple assets can be sperated by comma.
+   #   measurepoints: The measure poin Ids to query, multiple measure points can be sperated by comma.
+   def get_asset_latest_data(assetIds, measurepoints):
+       pass
+   
+   
+   # The following function is used to get the AI raw data of current, voltage and temperature
+   # for the specified battery device within a certain period.
+   # Refer to `Get Asset AI Raw Data` API doc in our doc center.
+   # Args:
+   #   assetId: The asset Id you want to query
+   #   startTime: Time of start sampling data, UTC time format or local time format
+   #   endTime: Time of end sampling data, UTC time format or local time format
+   def get_asset_ai_raw_data(assetId, startTime, endTime):
+       pass
+   
+   
+   # The following function is used to get the current active alerts from all the batteries
+   # on the battery asset tree.
+   # Refer to `Search Active Alerts` API doc in our doc center.
+   def get_active_alerts():
+       pass
+   
+   
+   # The following function is used to get the current active alerts from all the batteries
+   # on the battery asset tree.
+   # Refer to `Search Active Alerts` API doc in our doc center.
+   def set_battery_frequency(assetId, frequency):
+       pass
+   ```
 
-5. (Optional) Add more lines in `testAppConfig()` to test reading data of other configured parameters.
+5. The final Python project structure is as follows:
 
+<img src="media/python_project_structure.png" alt="python_project_structure" style="zoom:50%;" />
 
+## Adding the Front End
+
+In this step, we will extract the provided front-end package into the Python web project by the following steps:
+
+1. Download the front-end package `Front_End_File.zip`.
+
+2. Extract the front-end package to the `root` directory of the Python web project. Ensure that the `static` directory,  `battery.html`, and the `run.py` file are under the same directory. The directory structure is as follows:
+
+   ```shell
+   ├── root
+   │   ├── static/
+   │   ├── battery.html
+   │   ├── run.py
+   │   ├── services.py
+   ```
+
+3. In the project root directory, run the following command to start the application:
+
+   ```
+   python run.py
+   ```
+
+   ![start_app](media/start_app.png)
+
+4. Open a browser and enter `http://127.0.0.1:5000` in the address field. View the displaying result of the application. See the following example:
+
+   ![application](media/application-0.png)
+
+Now, as shown in the above picture, no data is displayed. 
+
+In the next step, we will try calling EnOS APIs to get the following battery data step by step:
+
+- Get the battery asset list
+- Get battery asset information
+- Get the battery status (health level and remaining power)
+- Get the asset alert records
+- Set battery data uploading frequency 
+- Get the dynamic data of batteries: real-time voltage, current, and temperature
 
 ## Next Unit
 
-[Invoking EnOS APIs](invoking_api.md)
+[Invoking EnOS APIs](invoking_api_python.md)

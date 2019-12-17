@@ -1,6 +1,6 @@
-# Lab 1: Data ETL
+# Lab 1: Data Transformation
 
-Use Data Explorer to load the data from HDFS to Hive, and transform the data into a format that is ready for analytics.
+EnOS Data Explorer provides a browser-based interactive data exploration and analytics environment by integrating with the mainstream data exploring tools Zeppelin Notebook and Jupyter Notebook.
 
 ## Extracting Data from HDFS to Hive
 
@@ -31,10 +31,7 @@ Take the following steps to view the archived data of the battery in HDFS:
 
    ```
    %sh
-   # View the current user
    whoami
-   
-   # List the files under the user's directory
    hadoop fs -ls -R /user/$(whoami)/smart_battery/
    ```
 
@@ -48,7 +45,7 @@ Take the following steps to view the archived data of the battery in HDFS:
 
    ![](media/viewing_file_result.png)
 
-4. In the note, type the following script to show the content of your data file file:
+4. In the note, type the following script for viewing the content of a specific file:
 
    ```
    %sh
@@ -66,8 +63,6 @@ Take the following steps to view the archived data of the battery in HDFS:
 Take the following steps to create a Hive table with columns defined to receive the archived battery data:
 
 1. In the Zeppelin note, type the following scripts:
-
-> Note that you'll need to replace `data_o15724268424841` with your own.
 
    ```
    %hive
@@ -238,4 +233,4 @@ Take the following steps to perform the "column-to-row" operation on the created
 
 ## Next Lab
 
-[Predicting Battery Service Life](304-2_predicting_service_life.md)
+[Predicting Battery Service Life](304-2 predicting_service_life.md)
