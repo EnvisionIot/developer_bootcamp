@@ -126,6 +126,7 @@ Now we can perform the following tasks:
 4. Under Connection **Battery_Connection_TraineeId** , click **Add Device** . In **Add Device** , select **SmartBattery_Product_TraineeId** and then the smart battery **SmartBattery_SubDevice_TraineeId**. Click **Save** to add the battery to this connection. 
 
 5. For the battery, click **Edit** to enter **Edit Device** pop-up, select **SmartBattery_Template_TraineeId** for **Template** . Set **Logical Address** of  **SmartBattery_SubDevice_TraineeId** to **1**.
+
  ![Battery 1](media/edit_device_battery_1.png)
 
 
