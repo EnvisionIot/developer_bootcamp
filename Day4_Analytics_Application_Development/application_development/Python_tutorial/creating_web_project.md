@@ -45,7 +45,7 @@ We will use PyCharm for developing the application.
    # *****application logic*****
    
    # Initialize hte web framework
-   app = Flask(__name__, template_folder='./', static_folder='./static/')
+   app = Flask(__name__, template_folder='./templates/', static_folder='./static/')
    
    
    # The following @app.route decorator is used to register the web request handler
@@ -57,7 +57,7 @@ We will use PyCharm for developing the application.
    
    @app.route('/battery/list/', endpoint='battery.list')
    def list():
-       parent_assetId = '0RmeXD6D'  # Change this to your battery's parent assentId
+       parent_assetId = '6Pvbj63S'  # Change this to your battery's parent assentId
        results = get_child_asset_list(parent_assetId)
    
        resp = {}
@@ -256,12 +256,12 @@ In this step, we will extract the provided front-end package into the Python web
 
 1. Download the front-end package `Front_End.zip` from https://github.com/EnvisionIot/developer_bootcamp/tree/master/App_Front_End.
 
-2. Extract the front-end package to the `root` directory of the Python web project. Ensure that the `static` directory,  `battery.html`, and the `run.py` file are under the same directory. The directory structure is as follows:
+2. Extract the front-end package to the `root` directory of the Python web project. Ensure that the `static` directory,  `templates` directory, the `run.py` and `services.py` file are under the same directory. The directory structure is as follows:
 
    ```shell
    ├── root
    │   ├── static/
-   │   ├── battery.html
+   │   ├── templates/
    │   ├── run.py
    │   ├── services.py
    ```
