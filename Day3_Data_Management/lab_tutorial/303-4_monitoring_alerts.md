@@ -10,9 +10,9 @@ In [Lab 3](303-3 calculating_health_level.md), we defined 3 health levels of the
 
 | Health Level Code | Alert Severity ID | Description                        |
 | ----------------- | ----------------- | ---------------------------------- |
-| 100               | Normal_Alert      | The battery is healthy             |
-| 200               | Warning_Alert     | The battery is unhealthy           |
-| 300               | Fatal_Alert       | The battery is extremely unhealthy |
+| 90                | Normal_Alert      | The battery is healthy             |
+| 60                | Warning_Alert     | The battery is unhealthy           |
+| 30                | Fatal_Alert       | The battery is extremely unhealthy |
 
 Take the following steps to create the alert severity:
 
@@ -84,7 +84,7 @@ Take the following steps to create alert triggering rule for the **Warning_Alert
 
    - **Rule ID**
 
-     Enter an ID for the alert rule, for example, `SMH-200`.
+     Enter an ID for the alert rule, for example, `SMH-60`.
 
    - **Select Model**
 
@@ -92,7 +92,7 @@ Take the following steps to create alert triggering rule for the **Warning_Alert
 
    - **Condition**
 
-     Specify the triggering condition for the alert and enter the corresponding value or value scope for the condition. Based on the business scenario, for the **Warning_Alert** severity level, the conditions are `health_level>=200` and `health_level<300`.
+     Specify the triggering condition for the alert and enter the corresponding value or value scope for the condition. Based on the business scenario, for the **Warning_Alert** severity level, the conditions are `health_level>=30` and `health_level<60`.
 
    - **Scope**
 
@@ -126,7 +126,7 @@ Take the following steps to create alert triggering rule for the **Fatal_Alert**
 
    - **Rule ID**
 
-     Enter an ID for the alert rule, for example, `SMH-300`.
+     Enter an ID for the alert rule, for example, `SMH-30`.
 
    - **Select Model**
 
@@ -134,7 +134,7 @@ Take the following steps to create alert triggering rule for the **Fatal_Alert**
 
    - **Condition**
 
-     Specify the triggering condition for the alert and enter the corresponding value or value scope for the condition. Based on the business scenario, for the **Fatal_Alert** severity level, the condition is `health_level>=300`.
+     Specify the triggering condition for the alert and enter the corresponding value or value scope for the condition. Based on the business scenario, for the **Fatal_Alert** severity level, the condition is `health_level<=30`.
 
    - **Scope**
 
@@ -184,10 +184,10 @@ Take the following steps to view the alert records for the battery health level:
 
 3. Click the **Search** button to query alert records. See the following example:
 
-   ![](media/data_quality_report.png)
+   ![](media/alert_records.png)
 
 4. Click the **History Alerts** tab and take the same steps to query history alert records of your battery device.
 
 ## Next Lab
 
-[Archiving Uploaded Data of the Battery](303-5 archiving_data.md)
+[Archiving Uploaded Data of the Battery](303-5_archiving_data.md)

@@ -64,7 +64,7 @@ See the following example of the completed configuration:
 
 ![](media/stream_config.png)
 
-For more information about the *Multi-Point Merging* template, see [Configuring a Multi-Point Data Calculation Job](https://support-cn5.envisioniot.com/docs/data-asset/en/latest/howto/stream/configuring_multi_point_template.html).
+For more information about the *Multi-Point Merging* template, see [Configuring a Multi-Point Data Calculation Job](https://support.envisioniot.com/docs/data-asset/en/latest/howto/stream/configuring_multi_point_template.html).
 
 
 
@@ -113,4 +113,4 @@ See the following example of the queried data:
 
 ## Next Lab
 
-[Calculating the Health Level of the Battery](303-3 calculating_health_level.md)
+[Calculating the Health Level of the Battery](303-3_calculating_health_level.md)

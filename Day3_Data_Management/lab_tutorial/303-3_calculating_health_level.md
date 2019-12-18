@@ -31,7 +31,7 @@ The business scenario is as depicted in the following figure:
 
 Take the following steps to create a StreamSets pipeline:
 
-1. Download the StreamSets pipeline configuration template from https://support-cn5.envisioniot.com/docs/data-asset/en/latest/_static/streamsets_pipeline_demo.json (right click the link and save the `streamsets_pipeline_demo.json` file to a local directory).
+1. Download the StreamSets pipeline configuration template from https://support.envisioniot.com/docs/data-asset/en/latest/_static/streamsets_pipeline_demo.json (right click the link and save the `streamsets_pipeline_demo.json` file to a local directory).
 
 2. Log in EnOS Console, select **Stream Data Processing > StreamSets**, click the triangle beside the **Create New Pipeline** button, and select **Import Pipeline**.
 
@@ -219,5 +219,5 @@ See the following example of the queried data:
 
 ## Next Lab
 
-[Monitoring Health Level Alerts](303-4 monitoring_alerts.md)
+[Monitoring Health Level Alerts](303-4_monitoring_alerts.md)
 

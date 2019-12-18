@@ -2,12 +2,12 @@
 
 EnOS Data Asset Management service supports evaluating data quality from multiple dimensions (completeness, accuracy, and timeliness of data). By tagging data records with quality index when processing stream data with StreamSets operators, we can generate data quality reports to effectively evaluate the quality of ingested data.
 
-As we know, the voltage of the battery will stay in a certain range without big changes during discharge. In this lab, we will update the stream data processing pipeline created in [Lab 3](303-3 calculating_health_level.md) to filter the voltage data of the battery by the **Off Limit Tagger** operator. Voltage data that exceeds the threshold will be tagged with quality index. With the quality tagging, we can generate data quality report to monitor the accuracy of the ingested voltage data .
+As we know, the voltage of the battery will stay in a certain range without big changes during discharge. In this lab, we will update the stream data processing pipeline created in [Lab 3](303-3_calculating_health_level.md) to filter the voltage data of the battery by the **Off Limit Tagger** operator. Voltage data that exceeds the threshold will be tagged with quality index. With the quality tagging, we can generate data quality report to monitor the accuracy of the ingested voltage data .
 
 
 ## Updating the StreamSets pipeline
 
-Take the following steps to update the StreamSets pipeline created in [Lab 3](303-3 calculating_health_level.md) to add the **Off Limit Tagger** operator:
+Take the following steps to update the StreamSets pipeline created in [Lab 3](303-3_calculating_health_level.md) to add the **Off Limit Tagger** operator:
 
 1. Select **Stream Data Processing > StreamSets** from the left navigation panel of EnOS Console.
 
@@ -62,7 +62,7 @@ See the following example:
 
 When the configuration of the operators is completed, we can now validate the configuration and start running the pipeline.
 
-For detailed steps, refer to the *Validating and running the pipeline* section in [Lab 3](303-3 calculating_health_level.md).
+For detailed steps, refer to the *Validating and running the pipeline* section in [Lab 3](303-3_calculating_health_level.md).
 
 ## Generating data quality report
 

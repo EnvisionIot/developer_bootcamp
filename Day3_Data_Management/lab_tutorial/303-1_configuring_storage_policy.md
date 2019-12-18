@@ -16,7 +16,7 @@ In this lab, configure a storage policy for the following measuring points that 
 | health_level     | DI Data      | Output point of the stream processing job for analyzing the health level of the battery |
 | cycle_number     | Generic Data | Number of charge-discharge cycles that has happened on the battery                                 |
 
-For detailed description of the supported storage types, see [Configuring TSDB Storage](https://support-cn5.envisioniot.com/docs/data-asset/en/latest/configuring_tsdb_storage.html).
+For detailed description of the supported storage types, see [Configuring TSDB Storage](https://support.envisioniot.com/docs/data-asset/en/latest/configuring_tsdb_storage.html).
 
 ## Creating a storage policy group
 
@@ -76,5 +76,5 @@ For **Generic Data** storage policy, configure as follows:
 
 ## Next Lab
 
-[Calculating the Discharge Energy of the Battery](303-2 calculating_discharge_energy.md)
+[Calculating the Discharge Energy of the Battery](303-2_calculating_discharge_energy.md)
 

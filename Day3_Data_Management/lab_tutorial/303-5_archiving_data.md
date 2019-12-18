@@ -34,7 +34,7 @@ Complete the data storage configuration, including configuration of the storage 
 
 2. **Storage Resource**: Select the corresponding HDFS storage resource that has been requested through Resource Management for the organization.
 
-3. **Storage Path**: Specify the path where the archived files are located in the storage system and select the time partition format for the storage path root directory. The path must start and end with "/". For detailed information about time partition format, see [Storage Path Partition Parameters](https://support-cn5.envisioniot.com/docs/data-asset/en/latest/reference/archive_storage#storage-path-partition-parameters).
+3. **Storage Path**: Specify the path where the archived files are located in the storage system and select the time partition format for the storage path root directory. The path must start and end with "/". For detailed information about time partition format, see [Storage Path Partition Parameters](https://support.envisioniot.com/docs/data-asset/en/latest/reference/archive_storage#storage-path-partition-parameters).
 
 4. Specify generating the storage path by event time.
 
@@ -64,4 +64,4 @@ After completing the above configuration, click **OK** to submit the data archiv
 
 ## Next Lab
 
-[Generating Data Quality Report](303-6 generating_data_quality_report.md)
+[Generating Data Quality Report](303-6_generating_data_quality_report.md)
