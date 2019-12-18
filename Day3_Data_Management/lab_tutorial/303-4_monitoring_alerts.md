@@ -92,7 +92,7 @@ Take the following steps to create alert triggering rule for the **Warning_Alert
 
    - **Condition**
 
-     Specify the triggering condition for the alert and enter the corresponding value or value scope for the condition. Based on the business scenario, for the **Warning_Alert** severity level, the conditions are `health_level>=30` and `health_level<60`.
+     Specify the triggering condition for the alert and enter the corresponding value or value scope for the condition. Based on the business scenario, for the **Warning_Alert** severity level, the conditions are `health_level>30` and `health_level<=60`.
 
    - **Scope**
 
