@@ -34,11 +34,11 @@ This tutorial includes the following units:
 
 20 minutes
 
-[Lab 5. Generating Data Quality Report](303-5_generating_data_quality_report.md)
-
-30 minutes
-
-[Lab 6. Archiving Uploaded Data of the Battery](303-6_archiving_data.md)
+[Lab 5. Archiving Uploaded Data of the Battery](303-5_archiving_data.md)
 
 10 minutes
+
+[Lab 6. Generating Data Quality Report](303-6_generating_data_quality_report.md)
+
+30 minutes
 
