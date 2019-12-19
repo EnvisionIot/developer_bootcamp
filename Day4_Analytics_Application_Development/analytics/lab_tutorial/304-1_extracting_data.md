@@ -52,6 +52,8 @@ Take the following steps to view the archived data of the battery in HDFS:
    hadoop fs -cat /user/$(whoami)/smart_battery/20191115/07/data_20191115T0700_bINF3y.csv|head -5
    ```
 
+   **Note**: In the above example, the .csv file is the archived battery data. You may need to replace it with the archived data file of your batteries.
+
 5. Run the scripts and view the running results. See the following example:
 
    ![](media/viewing_data_result.png)
@@ -85,6 +87,8 @@ Take the following steps to create a Hive table with columns defined to receive 
    MSCK REPAIR TABLE `smart_battery`;
    ```
 
+   **Note**: In the above example, the `smart_battery` is the name of the table to be created. You need to replace it with your specific table name.
+
 2. Run the scripts and view the running results. See the following example:
 
    ![](media/creating_hive_result.png)
@@ -95,6 +99,8 @@ Take the following steps to create a Hive table with columns defined to receive 
    %hive
    select * from smart_battery limit 5;
    ```
+
+   **Note**: In the above example, the `smart_battery` is the name of the created table. You need to replace it with your table name.
 
 4. Run the scripts and view the running results. See the following example:
 
@@ -133,7 +139,7 @@ Take the following steps to create a relational data table for the extracted bat
    LINES TERMINATED BY '\n';
    ```
 
-   **Note**: In this example, `data_o15724268424841` is the user ID. You may need to replace it with the user ID of your organization.
+   **Note**: In this example, `data_o15724268424841` is the user ID. You may need to replace it with the user ID of your organization. The `smart_battery_format` is the name of the table to be created. You need to replace it with your specific table name.
 
 2. Run the scripts and view the running results. See the following example:
 
@@ -145,6 +151,8 @@ Take the following steps to create a relational data table for the extracted bat
    %hive
    select * from smart_battery_format limit 5;
    ```
+
+   **Note**: In the above example, the `smart_battery_format` is the name of the created table. You need to replace it with your table name.
 
 4. Run the scripts and view the running results. See the following example:
 
@@ -203,6 +211,8 @@ Take the following steps to perform the "column-to-row" operation on the created
    sort by b.`asset_id`, b.`time`;
    ```
 
+   **Note**: In the above example, the `smart_battery_format` is the name of the created table. You need to replace it with your table name.
+
 2. Run the scripts and view the running results. It may take 3-5 minutes to complete the conversion. See the following example:
 
    ![](media/viewing_conversion_result.png)
@@ -214,6 +224,8 @@ Take the following steps to perform the "column-to-row" operation on the created
    select * from smart_battery_format;
    ```
 
+   **Note**: In the above example, the `smart_battery_format` is the name of the created table. You need to replace it with your table name.
+
 4. Run the scripts and view the running results. See the following example:
 
    ![](media/viewing_conversion_result_1.png)
@@ -224,6 +236,8 @@ Take the following steps to perform the "column-to-row" operation on the created
    %sh
    hadoop fs -ls /user/hive/warehouse/$(whoami).db/smart_battery_format
    ```
+
+   **Note**: In the above example, the `smart_battery_format` is the name of the created table. You need to replace it with your table name.
 
 6. Run the scripts and view the running results. See the following example:
 
