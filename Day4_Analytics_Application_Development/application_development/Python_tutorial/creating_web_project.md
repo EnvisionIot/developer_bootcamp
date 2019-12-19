@@ -94,9 +94,9 @@ We will use PyCharm for developing the application.
        if req is not None:
            for item in req['data']['items']:
                if 'health_level' in item.keys():
-                   health_level = int(item['health_level']) / 10
+                   health_level = int(item['health_level'])
                elif 'accumulating_power' in item.keys():
-                   accumulating_power = int(item['accumulating_power'])
+                   accumulating_power = float(item['accumulating_power'])
    
        # Calculate the remaining power percentage of batteries
        remaining_power = "%.0f%%" % (100 * accumulating_power / capacity)
