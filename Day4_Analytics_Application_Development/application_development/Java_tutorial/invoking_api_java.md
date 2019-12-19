@@ -243,32 +243,28 @@ To get the status data of a battery, we need to create 2 classes named `Data` an
    ```java
    @RequestMapping("/battery/status/{id}")
    public Map<String, Object> status(@PathVariable("id") String id) {
-     GetAssetResponse asset = dataService.getAssetById(id);
-     GetDataResponse data = dataService.getData(id, "health_level,accumulating_power");
-   
-     int health_level=0;
-     double remaining_power = 0;
-   
-     for (Map<String, Object> item: data.getData().getItems()) {
-       if (item.containsKey("health_level")) {
-         health_level = (int)item.get("health_level");
+       GetAssetResponse asset = dataService.getAssetById(id);
+       GetDataResponse data = dataService.getData(id, "health_level,accumulating_power");
+       int health_level=0;
+       double remaining_power = 0;
+       for (Map<String, Object> item: data.getData().getItems()) {
+           if (item.containsKey("health_level")) {
+               health_level = (int)item.get("health_level");
+           }
+           double capacity = (double)asset.getData().getAttributes().get("Capacity");
+           if (item.containsKey("accumulating_power")) {
+               double power = (double)item.get("accumulating_power");
+               remaining_power = Double.parseDouble(String.format("%.0f%%", (100*power/capacity)));
+           }
        }
-       double capacity = (double)asset.getData().getAttributes().get("Capacity");
-       if (item.containsKey("accumulating_power")) {
-         int power = (int)item.get("accumulating_power");
-         remaining_power = Double.parseDouble(String.format("%.0f%%", (100*power/capacity)));
-       }
-     }
-   
-     // Simplifying returned data
-     Map<String, Object> result = new HashMap<>();
-     result.put("health_level", health_level);
-     result.put("remaining_power", remaining_power);
-   
-     return result;
+       // Simplifying returned data
+       Map<String, Object> result = new HashMap<>();
+       result.put("health_level", health_level);
+       result.put("remaining_power", remaining_power);
+       return result;
    }
    ```
-
+   
 5. Open the `BatteryWebApplication` class and click **Run 'BatteryWebApplication'** to start the application.
 
 6. Open a browser and enter `http://127.0.0.1:8080` in the address field. Check the queried battery status data. See the following example:
