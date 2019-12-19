@@ -66,7 +66,9 @@ Take the following steps to invoke the EnOS API for getting the history data of 
        for(Map<String, Object> items: resp.getData().getItems()){
            for (String point: measurepoints.split(",")) {
                if (items.containsKey(point)) {
-                   time.add(items.get("localtime").toString());
+                   if (point.equals("current") ) {
+                       time.add(items.get("localtime").toString());
+                   }
                    List<Double> pointList = (List<Double>) result.get(point);
                    pointList.add((Double) items.get(point));
                    break;
