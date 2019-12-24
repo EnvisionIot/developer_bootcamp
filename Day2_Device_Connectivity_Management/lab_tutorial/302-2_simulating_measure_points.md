@@ -1,7 +1,7 @@
 # Lab 2. Simulating Measuring Points
 
 ##  Using device simulator
-To get started without programing (devive-end development), verify features that require data ingestion as the prerequisite, or to troubleshoot issues, you can use the device simulator that EnOS provides.
+To get started without programing (device-end development), verify features that require data ingestion as the prerequisite, or to troubleshoot issues, you can use the device simulator that EnOS provides.
 
 - Getting started with EnOS: You can leverage this function to simulate a device to transmit data to understand how 
 to use the capabilities of EnOS.
