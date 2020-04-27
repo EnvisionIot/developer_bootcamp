@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Smart Battery App</title>
+<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script>
+<script src="js/battery_chart.js"></script>
+<link href="css/css.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<div class='container-fluid'>
+  <div class="sideBar">
+    <img class="logo" src="img/EnOS_logo.png" alt="Cinque Terre">
+    <div>
+      <label for="id_bat_list" class="batlist">Battery Devices:</label>
+      <ul class="nav nav-pills flex-column" id="id_bat_list">
+      </ul>
+    </div>
+  </div>
+  <div class="content">
+    <div class="form-group">
+      <label for="sel1">Data Upload Frequency</label>
+      <!-- Single button -->
+      <div class="btn-group">
+        <button type="button" id='select' class="btn select btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Normal-5s <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="select-option" value='5' data='Normal-5s' >Normal-5s</li>
+          <li class="select-option" value='2' data='High Frequency-2s'>High Frequency-2s</li>
+        </ul>
+      </div>
+    </div>
+    <div id='id_battery_title'>
+      <span id='id_battery_name'></span>
+      <span id='id_battery_desc'></span>
+    </div>
+    <div class='ass_detail' >
+      <div class="healthchart">
+        <div id="id_healthchart" style="width: 150px;height:150px;"></div>
+        <span class="healthchart-title">Healthiness Score</span>
+        <div class="fraction">
+          <span id='fraction_per' class="fraction_per"></span>
+          <span class="fraction_unit">points</span>
+        </div>
+       
+          
+       
+      </div>
+      
+
+        <div class="bg-light" >
+          <span style="font-size: 14px;">Remaining Power</span>
+          <span class='health-info powerPer' id='id_powerPer'></span>
+          <div class="progress" id="id_remaining_power"></div>
+        </div>
+        <div class="bg-light">
+          <span>Asset ID</span>
+          <span class='health-info' id="id_asset_id"></span>
+          <span></span>
+        </div>
+        <div class="bg-light">
+          <span>Temperature Upper Limit</span>
+          <span class='health-info' id="id_asset_temp_limit" ></span>
+          <span></span>
+        </div>
+        <div class="bg-light">
+          <span>Capacity</span>
+          <span class='health-info' id="id_asset_capacity"></span>
+        </div>
+        <div class="bg-light">
+          <span>Timezone</span>
+          <span class='health-info' id="id_asset_timezone"></span>
+        </div>
+    </div>
+    <div class="tsdbchart">
+      <div id="id_tsdbchart" style="width: 100%;height:300px; float: left;"></div>
+    </div>
+    <div class="alarm_info">
+      <span class="alarm_info_title">Alerts</span>
+      <table class='table table-sm' id='id_alerts_table'>
+        <thead class='bg-light'>
+          <th>Asset Name</th>
+          <th>Asset ID</th>
+          <th>Event ID</th>
+          <th>Alert Severity</th>
+          <th>Alert Content</th>
+          <th>Occurring Time</th>
+        </thead>
+        <tbody>
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</body>
+<script>
+  var g_current_selected_index = -1;
+  var g_assetId_list = [];
+
+  function get_asset_data() {
+    // 获取asset数据
+    var url = "/battery/asset/" + g_assetId_list[g_current_selected_index];
+
+    $.get(url, function (data, status) {
+      if (status == 'success') {
+        //alert("Data: " + data + "\nStatus: " + status);
+        $('#id_asset_name').text(data.data.name.defaultValue);
+        $('#id_asset_id').text(data.data.assetId);
+        $('#id_asset_model').text(data.data.modelId);
+        $('#id_asset_timezone').text(data.data.timezone);
+        $('#id_asset_capacity').text(data.data.attributes.Capacity+" Ah");
+        $('#id_asset_temp_limit').text(data.data.attributes.UpperLimitTemp+" °C");
+        $('#id_battery_desc').text(data.data.description);
+        $('#id_battery_name').text(data.data.name.defaultValue);
+      }
+    });
+  }
+
+  function refresh_status_data() {
+    // 获取电池状态数据
+    var url = "/battery/status/" + g_assetId_list[g_current_selected_index];
+
+    $.get(url, function (data, status) {
+      if (status == 'success') {
+        //alert("Data: " + data + "\nStatus: " + status);
+        health_chart_update(data.health_level);
+        $('#fraction_per').html(data.health_level)
+        var progress = parseInt(data.remaining_power);
+        var barColor, srcHtml;
+        if (progress > 50) {
+          barColor = 'bg-success';
+        }
+        else if (progress > 20) {
+          barColor = 'bg-warning';
+        }
+        else {
+          barColor = 'bg-danger';
+        }
+
+        srcHtml = '<div class="progress-bar ' + barColor + '" style="width:'
+          + data.remaining_power + '"></div>'
+
+        $('#id_remaining_power').html(srcHtml)
+        powerPercent = '<span>'+data.remaining_power+'</span>'
+        $('#id_powerPer').html(powerPercent);
+      }
+    });
+  }
+
+  function refresh_tsdb_data() {
+    // 获取TSDB数据
+    var url = "/battery/tsdb/" + g_assetId_list[g_current_selected_index];
+
+    $.get(url, function (data, status) {
+      if (status == 'success') {
+        //alert("Data: " + data + "\nStatus: " + status);
+        tsdb_chart_update(data.time, data.voltage, data.current, data.temp);
+        //health_chart('id_healthchart', 84);
+      }
+    });
+  }
+
+  function refresh_alert_data() {
+    // 获取告警数据
+    $.get("/battery/alerts/", function (data, status) {
+      if (status == 'success') {
+        var i;
+        var ll = data.data;
+        var len = ll.length;
+        $('#id_alerts_table tbody').empty();
+
+        for (i = 0; i < len; i++) {
+          var str = '';
+          var lowstr = ll[i].severityDesc.defaultValue.toLowerCase();
+          if(lowstr.indexOf('fatal')!==-1){
+            str = 'danger'
+          }else if(lowstr.indexOf('warning')!==-1){
+            str = 'warning'
+          }else{
+            str = 'success'
+          }
+          
+          var table_row_html = "<tr><td>" + ll[i].assetName + "</td><td>" + ll[i].assetId +
+            "</td><td>" + ll[i].eventId.slice(0, 15) + "</td><td class='alerts_grade'><i class="+str+"></i>" + ll[i].severityDesc.defaultValue +
+            "</td><td>" + ll[i].contentDesc.defaultValue +
+            "</td><td>" + ll[i].localOccurTime + "</td></tr>"
+
+          $('#id_alerts_table tbody').append(table_row_html)
+        }
+      }
+    });
+  }
+
+  $(document).ready(function () {
+    // 初始化tsdb_chart
+    tsdb_chart_initialize('id_tsdbchart');
+    // 初始化health_chart
+    health_chart_initialize('id_healthchart');
+
+    $(window).bind('resize', function () {
+      window_resize();
+    });
+    // 获取电池列表
+    $.get("/battery/list/", function (data, status) {
+      if (status == 'success') {
+        //alert("Data: " + data + "\nStatus: " + status);
+        var i;
+        var bat_list = data.batteries;
+        var len = bat_list.length;
+        for (i = 0; i < len; i++) {
+          if (i == 0) {
+            g_current_selected_index = 0;
+            var itemHtml = '<li class="nav-item"><a class="nav-link active" href="#" data-toggle="pill" data-index=' + i + '>' + bat_list[i].name + '</a></li>';
+
+          }
+          else {
+            var itemHtml = '<li class="nav-item"><a class="nav-link" href="#" data-toggle="pill" data-index=' + i + '>' + bat_list[i].name + '</a></li>';
+          }
+          $('#id_bat_list').append(itemHtml);
+          g_assetId_list.push(bat_list[i].assetId)
+        }
+        
+        if (g_current_selected_index >= 0) {
+          $(".nav-link").click(function () {
+            var slected_index = parseInt($(this).attr('data-index'));
+
+            if (slected_index != g_current_selected_index) {
+              g_current_selected_index = slected_index;
+              get_asset_data();
+              refresh_status_data();
+            }
+          });
+
+          get_asset_data();
+
+          var interval_status;
+          refresh_status_data();
+          clearInterval(interval_status);
+          interval_status = setInterval(refresh_status_data, 3000);
+
+          var interval_tsdb;
+          refresh_tsdb_data();
+          clearInterval(interval_tsdb);
+          interval_tsdb = setInterval(refresh_tsdb_data, 3000);
+
+          var interval_alert;
+          refresh_alert_data();
+          clearInterval(interval_alert);
+          interval_alert = setInterval(refresh_alert_data, 10000);
+        }
+      }
+      else {
+        alert("获取电池设备列表出错")
+      }
+    });
+    
+    $('.select-option').click(function(){
+      $('#select').text($(this).text())
+
+      // 改变电池数据上送频率
+      var url = "/battery/service/" + g_assetId_list[g_current_selected_index];
+      var freq = $(this).attr("value");
+      $.post(url,
+      {
+        command: "set_frequency",
+        parameter: freq
+      },
+      function(data, status){
+          //alert("Data: " + data + "\nStatus: " + status);
+      });
+    });
+  });
+  
+</script>
+</html>

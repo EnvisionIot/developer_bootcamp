@@ -1,0 +1,257 @@
+html,body{
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.container-fluid{
+  height: 100%;
+  padding: 0;
+}
+.row{
+  height: 100%;
+  float: left;
+}
+.sideBar{
+  width:230px;
+  height: 100%;
+  display: block;
+  float: left;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 0px 13px 0px rgba(0,0,0,0.08);
+  position: fixed;
+}
+.content{
+  width: calc(100% - 230px);
+  float: left;
+  padding: 0 32px;
+  margin-left: 230px;
+  padding-bottom:57px;
+}
+.logo{
+  width: 100px;
+  padding: 20px;
+}
+.form-group{
+  margin: 20px 0;
+  height: 36px;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(62,62,71,1);
+  line-height: 36px;
+}
+.form-group label{
+  padding-right: 13px;
+}
+.ass_detail{
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr ;
+  align-items: center;
+  padding: 40px 0 30px 70px;
+}
+.batlist{
+  height:42px;
+  font-size:13px;
+  font-weight:500;
+  color:rgba(164,165,179,1);
+  line-height:42px;
+  padding-left: 21px;
+}
+.select{
+  width:232px;
+  height:36px;
+  background:rgba(255,255,255,1);
+  border-radius:2px;
+  border:1px solid rgba(215,216,224,1);
+  display: flex;
+  justify-content: space-between;
+  line-height: 10px;
+}
+#id_battery_title{
+  display: grid;
+  gap: 8px;
+}
+#id_battery_name{
+  font-size: 30px;
+  font-weight: 500;
+  color: rgba(33,32,41,1);
+  line-height: 28px;
+}
+#id_battery_desc{
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(138,139,153,1);
+  line-height: 20px;
+}
+.nav-item{
+  height: 42px;
+  line-height: 42px;
+  font-size: 15px;
+
+}
+.ass_detail .bg-light{
+  background-color: transparent !important;
+  display: grid;
+  grid-template-rows: 15px 72px 6px;
+  color: #A4A5B3;
+  font-size: 15px;
+}
+.health-info{
+  padding: 13px 0 17px 0;
+  color: #212029;
+  font-size: 19px;
+}
+.healthchart{
+  position: relative;
+}
+.fraction{
+  position: absolute;
+  top: 0;
+  width: 150px;
+  text-align: center;
+  font-size: 12px;
+  height: 150px;
+  line-height: 150px;
+}
+#fraction_per{
+  font-size: 40px;
+}
+.healthchart-title{
+    width: 150px;
+    text-align: center;
+    height: 20px;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(95,95,107,1);
+    line-height: 20px;
+}
+.powerPer{
+  font-size: 25px;
+}
+.nav-link{
+  padding: 0 0 0 17px;
+  color: #757685;
+  border-left: 4px solid #fff;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #101015;
+    background: rgba(10, 110, 250, 0.08);
+    border-left: 4px solid #0A6EFA;
+    border-radius: 0px;
+}
+.progress{
+    width: 105px;
+    height: 6px;
+    background: rgba(245,245,250,1);
+    border-radius: 3px;
+}
+.tsdbchart{
+  width: 100%;
+  height: 300px;
+  display: block;
+  float: left;
+  clear: both;
+}
+.alarm_info{
+  width:100%;
+  float: left;
+  display: block;
+}
+#id_alerts_table thead tr {
+  height: 42px;
+  background: rgba(245,245,250,1);
+  opacity: 0.8;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(138,139,153,1);
+  line-height: 42px;
+}
+#id_alerts_table tbody tr {
+  height: 46px;
+  line-height: 46px;
+  border-bottom: 1px solid #D7D8E0;
+  font-size:13px;
+  font-weight:500;
+  color:rgba(33,32,41,1);
+  line-height:46px;
+}
+.table thead th, .table tbody td{
+  border:none;
+  padding:0 13px;
+}
+.table thead th:last-of-type, .table tbody td:last-of-type{
+  text-align: right;
+}
+#id_alerts_table tbody tr:hover{
+  background:rgba(245,245,250,1);
+  border-radius:4px;
+  opacity:0.8;
+  cursor: pointer;
+}
+#id_alerts_table tbody tr td{
+  border: none;
+}
+.bg-success{
+  background-color: #00BEBA !important;
+}
+.bg-warning{
+  background-color: #FAAE0A !important;
+}
+.bg-danger{
+  background-color: #F74C60 !important;
+}
+.dropdown-menu{
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  border: none;
+  padding: 0;
+}
+.select-option{
+  padding-left: 12px;
+  height: 32px;
+  line-height: 32px;
+}
+.select-option:hover{
+  cursor: pointer;
+  background-color: #e6f7ff;
+}
+.alarm_info_title{
+  font-size: 18px;
+  font-weight: 500;
+  color: rgba(33,32,41,1);
+  line-height: 20px;
+  padding :43px 0 21px 0;
+  width: 100%;
+  height: 83px;
+  display: block;
+}
+.alerts_grade{
+  display: flex;
+  justify-content: start;
+}
+.danger{
+  width:6px;
+  height:6px;
+  display: block;
+  border-radius: 50%;
+  background:#F74C60;
+  margin: 20px 13px 0 0;
+}
+.warning{
+  width:6px;
+  height:6px;
+  display: block;
+  border-radius: 50%;
+  background:rgba(250,174,10,1);
+  margin: 20px 13px 0 0;
+}
+.success{
+  width:6px;
+  height:6px;
+  display: block;
+  border-radius: 50%;
+  background:#00BEBA;
+  margin: 20px 13px 0 0;
+}
