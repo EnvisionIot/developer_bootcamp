@@ -18,8 +18,8 @@ In this training, you’ll:
 
 ## Demo Application
 
-- [Python](App/Python/)
-- [Java](App/Java/)
+- [Python](Full_Demo_App/battery-app-python/)
+- [Java](Full_Demo_App/battery-app-java/)
 
 
 
