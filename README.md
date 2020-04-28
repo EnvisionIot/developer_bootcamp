@@ -20,6 +20,7 @@ In this training, you’ll:
 
 - [Python](Full_Demo_App/battery-app-python/)
 - [Java](Full_Demo_App/battery-app-java/)
+- [battery-simulator](Full_Demo_App/battery-simulator)
 
 
 
