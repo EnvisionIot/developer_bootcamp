@@ -9,9 +9,9 @@ from enos.message.downstream.tsl.ServiceInvocationCommand import ServiceInvocati
 from enos.message.downstream.tsl.ServiceInvocationReply import ServiceInvocationReply
 
 TCP_SERVER_URL = "tcp://mqtt-ppe1.envisioniot.com:21883"
-PRODUCT_KEY="<PK>"
-DEVICE_KEY="<DK>"
-DEVICE_SECRET="<DS>"
+PRODUCT_KEY="tLtF7bCb"
+DEVICE_KEY="demo-python"
+DEVICE_SECRET="sMMy5HqnCuO5Ey8H9kEvx"
 
 # 
 VOL_MAX = 4.5;
@@ -46,7 +46,7 @@ def simulate_measure_points(number):
     if (number%SIMULATE_PERIOD==0):
         discharge_energy = 0
     discharge_energy = discharge_energy + data["voltage"] * data["current"]
-    data["accumulating_power"] = discharge_energy
+    data["discharge_energy"] = discharge_energy
 
     return data
 
