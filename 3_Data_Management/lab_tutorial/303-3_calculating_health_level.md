@@ -16,53 +16,68 @@ To meet the requirement of the above business scenario, we need to use the follo
 
 | Operator                       | Description                                                  |
 | ------------------------------ | ------------------------------------------------------------ |
-| Data Source                    | Getting complete data records from Kafka                     |
+| EDH Kafka Consumer             | Getting complete data records from Kafka                     |
 | Point Selector                 | Specifying data records of the `SmartBattery_Demo::temp` measuring point as the input data |
 | Sliding Time Window Aggregator | Aggregating the temperature data in every 2 minutes to calculate the average temperature |
 | TSL Asset Lookup               | Getting the `UpperLimitTemp` attribute information of the battery model |
 | Python Evaluator               | Calculating the health level of the battery by customized Python script |
-| Data Destination               | Sending the output results to Kafka                          |
+| EDH Kafka Producer             | Sending the output results to Kafka                          |
 
 The business scenario is as depicted in the following figure:
 
 ![](media/streamsets_scenario.png)
 
+
+
+## Installing StreamSets Libraries
+
+Before developing stream processing jobs, you need to install the corresponding StreamSets calculator library.
+
+1. Log in the **EnOS Management Console** and click **Stream Processing > Streamsets Libs**.
+2. Under the **Calculator Library** tab, view the StreamSets calculator libraries that can be installed.
+3. Find the library to be installed and click **Install**. The system will start the installation immediately.
+
+![](media/installing_streamsets_lib.png)
+
+
+
 ## Creating a StreamSets pipeline
 
 Take the following steps to create a StreamSets pipeline:
 
-1. Download the StreamSets pipeline configuration template from https://support.envisioniot.com/docs/data-asset/en/latest/_static/streamsets_pipeline_demo.json (right click the link and save the `streamsets_pipeline_demo.json` file to a local directory).
+1. Log in to the **EnOS Management Console**, select **Stream Processing > Stream Development**, and click the **+** icon above the list of stream processing jobs.
 
-2. Log in EnOS Console, select **Stream Data Processing > StreamSets**, click the triangle beside the **Create New Pipeline** button, and select **Import Pipeline**.
+2. On the **New Stream** window, select **New** to create the stream processing job. You can also choose to import a configuration file to create the job quickly.
 
-3. On the **Import Pipeline** window, enter a pipeline title and optional description, click **Browse ...**, navigate and select the configuration template file, and click **Import**.
+3. Enter the name and description of the stream processing job.
 
-   ![](media/streamsets_importing_pipeline.png)
+4. From the **Template** drop-down list, select **Origin Pipeline**.
 
-4. Set the yarn queue for the new pipeline. Click the **Cluster** tab, set the value of the `spark.yarn.queue` field as `root.streaming_{orgId}`, in which `orgId`  is the organization ID (can be retrieved on the **IAM > Organization Profile** page of EnOS Console).
+5. From the **Operator Version** drop-down list, select the installed StreamSets calculator library version.
 
-   ![](media/streamsets_yarn_queue.png)
+6. For **Message Channel**, select *Real-Time*.
 
-5. Set the Kafka Consumer Group. Select the **Data Source** stage, click the **Kafka** tab, and set the value of the **Consumer Group** parameter (which must be unique within the organization). It is recommended to use the pipeline ID as the consumer group.
+7. Click **OK** to create the stream processing job with the basic settings above.
 
-   ![](media/streamsets_kafka_consumer.png)
+   <img src="media/creating_streamsets_pipeline.PNG" style="zoom:80%;" />
+
 
 
 ## Adding operators to the pipeline
 
 Now we can add the needed operators to the pipeline and connect the operators with arrows to form the pipeline.
 
-1. Select the arrow between the **Data Source** and **Data Destination** operators and click the **Delete** icon to remove the connection.
+1. Select the arrow between the **Kafka Data Source** and **Kafka Data Producer** operators and click the **Delete** icon to remove the connection.
 
    ![](media/disconnecting_source_destination.png)
 
-2. Click the **Stage Library** icon in the upper right corner of the page and select **EDH Streaming Calculator Library 0.0.4**.
+2. Click the **Stage Library** icon in the upper right corner of the page and select **EDH Streaming Calculator Library 0.1.0**.
 
    ![](media/selecting_stage_library.png)
 
 3. From the list of operators, click the **Point Selector** operator to add it to the pipeline canvas.
 
-4. Connect the output point of the **Data Source** operator to the input point of the **Point Selector** operator.
+4. Connect the output point of the **EDH Kafka Consumer** operator to the input point of the **Point Selector** operator.
 
    ![](media/connecting_source_selector.png)
 
@@ -181,9 +196,9 @@ for record in records:
 
 
 
-## Validating and running the pipeline
+## Validating and Publish the pipeline
 
-When the configuration of the operators is completed, we can now validate the configuration and start running the pipeline.
+When the configuration of the operators is completed, we can now validate the configuration and publish the pipeline.
 
 1. Click the **Validate** icon ![](media/validate_icon.png) in the tool bar to verify the configuration of all the operators.
 
@@ -191,19 +206,45 @@ When the configuration of the operators is completed, we can now validate the co
 
 2. If the validation fails, update the configuration of the operators accordingly.
 
-3. If the validation is successful, click the **Start** icon ![](media/start_icon.png) in the tool bar to start running the pipeline. It may take about 5 minutes for the pipeline to start up.
+3. Click Save to save the configuration of the stream data processing job.
 
-   ![](media/starting_pipeline.png)
+4. Click Release to publish the job online.
 
-4. When the pipeline is running, you can check the data processing result in the **Monitoring** section.
+   ![](media/streamset_pipeline_publish.png)
 
-5. Select any stage in the pipeline to check the input data and output data of the stage.
+   
 
-   ![](media/streamsets_result.png)
+## Starting the StreamSets pipeline
+
+Before starting the stream processing job, make sure that the corresponding system pipelines are started and running. The real-time and offline message channels have 2 system pipelines (data writer and data reader) separately.
+
+Follow the steps below to start the stream processing job.
+
+1. Open the **Stream Operation** page, and check the status of the system pipelines under the **System Pipeline** tab.
+
+2. In the list of system pipelines, click the **Start** icon ![start_icon](https://support.envisioniot.com/docs/data-asset/en/latest/_images/start_icon1.png) to start the required system pipeline. 
+
+   ![](media/starting_system_pipeline.png)
+
+3. Now you can start your stream processing job. On the **Stream Operation** page, find the StreamSets pipelin you have published under **User Pipeline** tab, and then click the **Start** icon ![](media/start_icon.png) to start the job.  It may take about 5 minutes for the pipeline to start up.
+
+   ![](media/start_streamset_pipeline.png)
 
 
 
-## Viewing the health level results
+## Viewing the job running results
+
+On the **Stream Operation** page, find the running stream data processing job under the **User Pipeline** tab, and click the job name to open the **Stream Details** page. You can view the following information about the job:
+
+- **Summary**: View the summary of the running stream, such as the count of processed data records and the record throughput.
+
+  ![](media/streamset_result_summary.PNG)
+
+- **Log**: Click the **View Logs** icon on the upper right corner to check the running log of the job.
+
+- **Results**: The processed data will be stored in TSDB according to the configured storage policy.
+
+
 
 After the stream data processing pipeline keeps running for a while, you can go to the **Data Insights** page to view the calculated health level results of the battery.
 
@@ -215,6 +256,7 @@ After the stream data processing pipeline keeps running for a while, you can go 
 See the following example of the queried data:
 
 ![](media/queried_health_level.png)
+
 
 
 ## Next Lab

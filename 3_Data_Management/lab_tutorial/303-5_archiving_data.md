@@ -8,16 +8,15 @@ In this lab, configure a data archiving job to store all the uploaded data of th
 
 Take the following steps to create a data archiving job:
 
-1. Log in the EnOS Console, and select **Data Archiving** under the **Common Resource** section.
+1. Log in the EnOS Console, and select **Data Archiving** under the **Enterprise Data Platform** section.
 
 2. Click **New Job** and provide the following information on the pop-up window:
 
    - **Data Source**: Select **Real-Time Message Channel** from the drop-down list for archiving real-time data uploaded from the battery.
-   - **Name**: Enter a name for the data archiving job.
-   - **Description**: Enter short description of the data archiving job.
-
-   <img src="media/creating_archiving_job.png" style="zoom:60%;" />
-
+   - **Job Type**: *Real-Time*.
+   
+<img src="media/creating_archiving_job.png" style="zoom: 80%;" />
+   
 3. Click **OK** to create the data archiving job and open the detailed configuration page.
 
 
@@ -25,6 +24,12 @@ Take the following steps to create a data archiving job:
 ## Configuring the data archiving job
 
 Follow the instructions in the sections below to complete the configuration of the data archiving job.
+
+### Basic Information
+
+Complete the basic information configuration, including  the name and description,  see the following example:
+
+<img src="media/archiving_basic_config.PNG" style="zoom:80%;" />
 
 ### Storage Configuration
 
@@ -48,19 +53,21 @@ Complete the data storage configuration, including configuration of the storage 
 
 ### Archive Configuration
 
-Currently, data archiving by every 1 hour is supported. If the archived data falls in the same archiving cycle, the data will be saved in 1 file and sliced by the specified file size.
+Currently, data archiving by every 1 hour, 12 hours, or 24 hours is supported. If the archived data falls in the same archiving cycle, the data will be saved in 1 file and sliced by the specified file size.
 
 ### Data Configuration
 
 In the **Model** field, search and select the **SmartBattry_Demo** model, so that the uploaded data of all assets belonging to the model will be archived.
 
-<img src="media/archiving_data_config.png" style="zoom:67%;" />
+<img src="media/archiving_data_config.png" style="zoom: 50%;" />
 
 
 
 ## Starting the data archiving Job
 
 After completing the above configuration, click **OK** to submit the data archiving job. The job configuration will take effect immediately once it is submitted, and the system starts reading and archiving data from the specified message channel.
+
+
 
 ## Next Lab
 

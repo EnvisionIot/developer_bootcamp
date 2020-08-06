@@ -28,6 +28,8 @@ See the following example of the created alert severity levels:
 
 ![](media/alert_severity_all.png)
 
+
+
 ## Creating alert type
 
 Alert types are defined to distinguish status of assets and possible causes of alerts, so that we can better monitor the status of assets.
@@ -41,6 +43,8 @@ Take the following steps to create an alert type for monitoring the battery heal
    <img src="media/alert_type.png" style="zoom:60%;" />
 
 3. Click **Confirm** to save the alert type.
+
+
 
 ## Creating alert content
 
@@ -71,6 +75,8 @@ Take the following steps to create alert type for monitoring the battery health 
    <img src="media/alert_content.png" style="zoom:60%;" />
 
 3. Click **Confirm** to save the alert content.
+
+
 
 ## Creating alert rule
 
@@ -164,6 +170,8 @@ Verify the created alert rules. See the following example:
 
 ![](media/alert_rules.png)
 
+
+
 ## Viewing alert records
 
 After the alert rules are enabled, the alert service will start monitoring the health level of the battery and report alerts if the health level meets the triggering conditions.
@@ -187,6 +195,8 @@ Take the following steps to view the alert records for the battery health level:
    ![](media/alert_records.png)
 
 4. Click the **History Alerts** tab and take the same steps to query history alert records of your battery device.
+
+
 
 ## Next Lab
 

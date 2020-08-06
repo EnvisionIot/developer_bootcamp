@@ -24,12 +24,12 @@ Storage policy groups enable you to manage the time-series data for different pr
 
 However, note that each model can be associated to only one storage policy group.
 
-1. Log into the EnOS Console and select **Time Series Data > Storage Policy** from the left navigation tree.
+1. Log into the EnOS Console and select **Time Series Data Management > Storage Policy** from the left navigation tree.
 
 2. Click **Create Group** or the **+** icon to create a storage policy group. Then, complete the configuration of the storage policy group.
 
    - **Group Name**: Enter a name for the storage policy group.
-   - **Group Model**: Search and select the **SmartBattery_Demo** model to be associated with the storage policy group.
+   - **Group Model**: Search and select the **SmartBattery_Demo** model (or the model you created yourself) to be associated with the storage policy group.
 
 3. Click **OK** to save the storage policy group configuration.
 
@@ -46,7 +46,7 @@ Taking the **AI Raw Data** storage type as example:
 
 1. Move the cursor on the **AI Raw Data** storage type and click the **Edit** icon to open the **Edit Storage Policy** page.
 
-2. From the **Storage Time** drop down list, select the storage time for the data. In this lab, we'll save the data in TSDB for 3 months.
+2. From the **Storage Time** drop down list, select the storage time for the data. In this lab, we'll save the data in TSDB for 1 months.
 
 3. Select the **SmartBattery_Demo** model and the listed measuring points.
 
@@ -76,5 +76,5 @@ For **Generic Data** storage policy, configure as follows:
 
 ## Next Lab
 
-[Calculating the Discharge Energy of the Battery](303-2_calculating_discharge_energy.md)
+[Calculating the Running-Average of the Battery Voltage](303-2_calculating_average_voltage.md)
 

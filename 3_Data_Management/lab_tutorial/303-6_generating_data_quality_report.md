@@ -9,7 +9,7 @@ As we know, the voltage of the battery will stay in a certain range without big 
 
 Take the following steps to update the StreamSets pipeline created in [Lab 3](303-3_calculating_health_level.md) to add the **Off Limit Tagger** operator:
 
-1. Select **Stream Data Processing > StreamSets** from the left navigation panel of EnOS Console.
+1. Select **Stream Data Processing > Stream Development** from the left navigation panel of EnOS Console.
 
 2. Find the **battery_health_level** pipeline and click the pipeline name to open the editing page.
 
@@ -19,7 +19,7 @@ Take the following steps to update the StreamSets pipeline created in [Lab 3](30
 
 4. From the list of operators, click the **Off Limit Tagger** operator to add it to the pipeline canvas.
 
-5. Connect the output point of the **Point Selector** operator to the input point of the **Off Limit Tagger** operator; and connect the output point of the **Off Limit Tagger** operator to the input point of the **Data Destination** operator.
+5. Connect the output point of the **Point Selector** operator to the input point of the **Off Limit Tagger** operator; and connect the output point of the **Off Limit Tagger** operator to the input point of the **EDH Kafka Producer** operator.
 
    ![](media/updated_pipeline.png)
 
@@ -62,7 +62,7 @@ See the following example:
 
 When the configuration of the operators is completed, we can now validate the configuration and start running the pipeline.
 
-For detailed steps, refer to the *Validating and running the pipeline* section in [Lab 3](303-3_calculating_health_level.md).
+For detailed steps, refer to the *Validating and Publish the pipeline* section and *Starting the StreamSets pipeline* section in [Lab 3](303-3_calculating_health_level.md).
 
 ## Generating data quality report
 

@@ -22,7 +22,7 @@ This tutorial includes the following units:
 
 10 minutes
 
-[Lab 2. Calculating the Discharge Energy of the Battery](303-2_calculating_discharge_energy.md)
+[Lab 2. Calculating the Running-Average of the Battery Voltage](303-2_calculating_average_voltage.md)
 
 20 minutes
 
