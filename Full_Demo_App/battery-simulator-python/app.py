@@ -24,10 +24,10 @@ SIMULATE_PERIOD = 10
 
 # 
 interval = 1
-discharge_energy = 0
+accumulating_power = 0
 
 def simulate_measure_points(number):
-    global discharge_energy
+    global accumulating_power
     data = {}
     
     # 充电周期累加
@@ -44,9 +44,9 @@ def simulate_measure_points(number):
 
     # 放电量
     if (number%SIMULATE_PERIOD==0):
-        discharge_energy = 0
-    discharge_energy = discharge_energy + data["voltage"] * data["current"]
-    data["discharge_energy"] = discharge_energy
+        accumulating_power = 0
+    accumulating_power = accumulating_power + data["voltage"] * data["current"]
+    data["accumulating_power"] = accumulating_power
 
     return data
 
