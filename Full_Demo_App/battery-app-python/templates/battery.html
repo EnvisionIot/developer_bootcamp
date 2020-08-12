@@ -200,6 +200,42 @@
     });
   }
 
+  function alertListenerHandler (data) {
+    if($('#id_alerts_table tr:last').index() + 1 == 5) {
+      $('#id_alerts_table tr:last').remove();
+    }
+
+    var str = '';
+    var lowstr = data.severityDesc.defaultValue.toLowerCase();
+    if(lowstr.indexOf('fatal')!==-1){
+      str = 'danger'
+    }else if(lowstr.indexOf('warning')!==-1){
+      str = 'warning'
+    }else{
+      str = 'success'
+    }
+
+    var table_row_html = "<tr><td>" + data.assetId + "</td><td>" + data.assetId +
+            "</td><td>" + data.eventId.slice(0, 15) + "</td><td class='alerts_grade'><i class="+str+"></i>" + data.severityDesc.defaultValue +
+            "</td><td>" + data.contentDesc.defaultValue +
+            "</td><td>" + data.localOccurTime + "</td></tr>"
+
+    $('#id_alerts_table tbody').prepend(table_row_html)
+  }
+
+  function dataSubscriber () {
+    var ws = new WebSocket('ws://127.0.0.1:8765');
+      ws.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        switch (data.type) {
+          case 'alert':
+            this.alertListenerHandler(data);
+            break;
+          default:
+        }
+      };
+  }
+
   $(document).ready(function () {
     // 初始化tsdb_chart
     tsdb_chart_initialize('id_tsdbchart');
@@ -252,10 +288,11 @@
           clearInterval(interval_tsdb);
           interval_tsdb = setInterval(refresh_tsdb_data, 3000);
 
-          var interval_alert;
-          refresh_alert_data();
-          clearInterval(interval_alert);
-          interval_alert = setInterval(refresh_alert_data, 10000);
+          // var interval_alert;
+          // refresh_alert_data();
+          // clearInterval(interval_alert);
+          // interval_alert = setInterval(refresh_alert_data, 10000);
+          dataSubscriber();
         }
       }
       else {
