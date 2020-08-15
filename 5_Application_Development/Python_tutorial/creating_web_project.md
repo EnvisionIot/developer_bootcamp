@@ -146,7 +146,8 @@ We will use PyCharm for developing the application.
        if req is not None:
            for item in req['data']:
                result = get_asset_info(item['assetId'])
-               item['assetName'] = result['data']['name']['defaultValue']
+               if result['data'] is not None:
+                    item['assetName'] = result['data']['name']['defaultValue']
    
        return req
    
@@ -171,7 +172,11 @@ We will use PyCharm for developing the application.
        app.debug = True
        app.run()
    ```
-
+    tips:
+    1) if you encountered static content (images, stylesheet) 404, you can add **static_url_path=""** this line:
+    ```
+        app = Flask(__name__, template_folder='./templates/', static_url_path="", static_folder='./static/')
+    ```
 4. In the project, select **File > New > Python File** from the menu and create a python file named `services.py`.
 
    ![create_python_file2](media/create_python_file2.png)
