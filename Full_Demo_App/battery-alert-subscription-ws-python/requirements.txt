@@ -1,0 +1,2 @@
+enos_subscribe==2.5.0
+websocket_client==0.57.0
