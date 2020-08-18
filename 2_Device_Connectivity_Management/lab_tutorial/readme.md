@@ -10,7 +10,7 @@ is an important indicator of the battery status and safety. By connecting the sm
 
 The scenario is depicted in the following chart:
 
-![](media/scenario.png)
+![](media/scenario2.png)
 
 This tutorial walks you through a typical path of smart battery management, that is:
 

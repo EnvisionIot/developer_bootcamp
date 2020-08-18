@@ -9,8 +9,8 @@ The alert management message flow and the key concepts are illustrated in the fo
 
 To monitor the health and performance of your smart battery, you can use the alert severities, alert types which we have defined, so that you'll just need to define a new alert content, and alert rules against any anomaly of the device. The alert rules are as follows:
 
-- Fatal alert: Temp<5 °C or Temp > 70°C
-- Warning alert: 5 °C <Temp<10 °C, or 60 °C <Temp<70 °C
+- Fatal alert: Temp > 70°C
+- Warning alert: 60 °C <Temp<70 °C
 
 
 ## Step 1: Defining alert configuration and triggering rules
@@ -27,7 +27,7 @@ To monitor the health and performance of your smart battery, you can use the ale
     ![](media/alert_type.png)
 
 3. In this tutorial, we will define 4 alert content as follows:
-    ![](media/alert_define.png)
+    ![](media/alert_define2.png)
     
     Click **Alert Content > New Content** to define the alert content, which can contain the cause of the alert and actions 
     needed from the device owner. Then, associate the battery model and the defined alert type, for example: Temperature 
