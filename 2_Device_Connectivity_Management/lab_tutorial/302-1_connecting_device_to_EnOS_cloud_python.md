@@ -225,8 +225,6 @@ snippet.
 1. Compile and run the program for device connection and data ingestion. See the follow example of the program code:
 
     ```python
-    #!/usr/bin/env python3
-
     import time
     import random
 
