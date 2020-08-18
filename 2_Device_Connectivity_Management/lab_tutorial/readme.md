@@ -27,7 +27,8 @@ This tutorial walks you through a typical path of smart battery management, that
 
 This tutorial includes the following units:
 
-[Lab 1. Connecting the Smart Battery into EnOS](302-1_connecting_device_to_EnOS_cloud.md)
+[Lab 1. Connecting the Smart Battery into EnOS (java)](302-1_connecting_device_to_EnOS_cloud.md)
+[Lab 1. Connecting the Smart Battery into EnOS (python)](302-1_connecting_device_to_EnOS_cloud_python.md)
 
 40 minutes
 
