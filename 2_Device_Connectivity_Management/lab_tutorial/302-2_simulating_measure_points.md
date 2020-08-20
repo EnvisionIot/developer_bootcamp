@@ -4,14 +4,14 @@
 To get started without any programing (device-end development) to verify features that require data ingestion as the prerequisite, or to troubleshoot issues, you can use the device simulator that EnOS provides. The device simulator also helps with the below.
 
 - Getting started with EnOS: You can use this function to simulate a device to transmit data to understand how to use the capabilities of EnOS.
-- Testing and debugging: During application development, you might sometimes need to simulate a device to send a specific value to verify a device function. Real devices rarely sends that specific value. In this case you can use the device simulator to facilitate application development.
+- Testing and debugging: During application development, you might sometimes need to simulate a device to send a specific value to verify a device function. Real devices rarely send that specific value. In this case you can use the device simulator to facilitate application development.
 
-In this tutorial, we will simulate a smart battery that sends data to EnOS. We will insert some abnormal data into the data sample so that we can leverage the data to trigger alerts, and configure a storage policy to store the data sample in the TSDB and view the data in line chart in **Time Series Data Management > Data Insights**.
+In this tutorial, we will simulate a smart battery that sends data to EnOS. We will insert some abnormal data into the data sample so that we can leverage the data to trigger alerts, and view the data in line chart in **Time Series Data Management > Data Insights**.
 
 ## Before You Start
 
-- You have registered the device to simulate. 
-- You have access to device management. If not, contact your OU administrator to grant you the following permissions:
+- Ensure that you have registered the device to simulate and configured the TSDB storage policy for it.
+- Ensure that you have access to device management. If not, contact your OU administrator to grant you the following permissions:
     - Model
     - Device Management
     - Alert
@@ -71,40 +71,7 @@ You can actually set your preferred end time, but setting it to a later time lea
 
 ![](media/simulator_start.png)
 
-## Step 4: Configure TSDB Storage Policy
-
-EnOS Time Series Database (TSDB) provides a variety of storage options for you to store important and frequently-accessed business data. Through configuring storage policies, time-series data can be routed to different datastores based on data types and storage time, thus reducing data storage costs and enhancing data access efficiency.
-
-**Note**: 
- - By default, the uploaded data will is not stored in TSDB. You must configure data storage policy before the data is uploaded to EnOS Cloud.
- - Each model can be associated to only one storage policy group.
-
-In this step, configure a storage policy for the measurement points that are defined in the `SmartBattery_Model_a01` model.
-
-1. Select **Time Series Data Management > Storage Policy** from the left navigation menu.
-
-2. Click **+** icon and **Create Group** to create a storage policy group.
-
-   - **Group Name**: Enter a name for the storage policy group.
-   - **Group Model**: Search and select the `SmartBattery_Model_a01` model to be associated with the storage policy group.
-
-3. Click **OK** to save the storage policy group configuration.
-
-After the storage group is created, you can see all the TSDB storage policy options listed under the storage group tab. Configure storage policies separately for the above listed measurement points.
-
-Using the **AI Raw Data** storage type as example:
-
-1. Move the cursor on the **AI Raw Data** storage type and click the **Edit** icon to open the **Edit Storage Policy** page.
-
-2. From the **Storage Time** drop down list, select the storage time for the data. For this example, we shall save the data in TSDB for 1 month.
-
-3. Select the `SmartBattery_Model_a01` model and the listed measurement points.
-
-4. Click **OK** to save the storage policy.
-
-![](media/storage_policy.png)
-
-## Step 5: Check the Data Insight of the Device
+## Step 4: Check the Data Insight of the Device
 
 Go to **Time Series Data Management > Data Insights** and select the `SmartBattery_Device_a01` device to view the real-time current data report in minutes.
 

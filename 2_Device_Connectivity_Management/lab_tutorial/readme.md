@@ -10,7 +10,7 @@ The scenario is depicted in the following chart:
 
 ![](media/scenario2.png)
 
-This tutorial walks you through a typical path of smart battery management, as per the below.
+This tutorial will walk you through a typical path for smart battery management, as per the below.
 
 - Registering & connecting a Smart Battery to EnOS.
 - Simulating the battery to post measurement points data using a Java program developed through Java SDK.
@@ -31,11 +31,11 @@ This tutorial includes the following units:
 
 40 minutes
 
-[Lab 2. Simulating the Posting of the Measurement Point of the Device](302-2_simulating_measure_points.md)
+[Lab 2. Simulating Measurement Points](302-2_simulating_measure_points.md)
 
 30 minutes
 
-[Lab 3. Monitoring the Alerts of the Smart Battery](302-3_monitoring_alerts_of_device.md)
+[Lab 3. Monitoring the Alerts of a Smart Battery](302-3_monitoring_alerts_of_device.md)
 
 30 minutes
 
