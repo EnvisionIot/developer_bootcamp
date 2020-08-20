@@ -1,11 +1,11 @@
-# Lab 1: Connecting the Smart Battery into EnOS
+# Lab 1: Connecting a Smart Battery to EnOS
 
-Before connecting devices to EnOS IoT hub, you need to register the devices on the EnOS Console.
+Before connecting devices to EnOS IoT Hub, you need to register the devices in the EnOS Management Console.
 
-This tutorial takes a smart battery device as an example, focusing on how to register a smart device that connects 
+This tutorial will use a smart battery device as an example, and focus on how to register a smart device that connects 
 directly to the EnOS Cloud.
 
-> **Note** that you'll need to replace the configuration name with your own by following the naming pattern: `xxx_studentId`.
+> **Note**: You will need to replace the configuration name with your own by following the naming pattern: `xxx_studentId`.
 
 ## Procedure Overview
 
@@ -13,11 +13,11 @@ directly to the EnOS Cloud.
 
 ## Step 1: Defining a Model
 
-A model is the abstraction of the features of an object that is connected to IoT hub. The device model defines the features of a device, including attributes, measuring points, services, and events. 
+A model is the abstraction of the features of an object that is connected to the IoT Hub. The device model defines the features of a device, including its attributes, measurement points, services, and events. 
 
-1. In the EnOS Console, click **Model** from the left navigation panel.
+1. In the EnOS Management Console, click **Model** from the left navigation menu.
 
-2. Click **New Model**, and provide the following settings in the **New Model** window:
+2. Click **New Model**, enter the following in the **New Model** window, and click **OK**.
     - Identifier: SmartBattery_Model_a01
     - Model Name: SmartBattery_Model_a01
     - Category: NA
@@ -27,75 +27,114 @@ A model is the abstraction of the features of an object that is connected to IoT
 
     ![](media/model_create.png)
 
-3. From the list of created model, click **Edit**, and then click the **Feature Definition** tab of the **Model Details** screen.
+3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab in the **Model Details** screen.
 
-4. Click **Add** and create the following features in the **Add Feature** window:
+4. Click **Edit**, **Add**, and create the following custom features in the **Add Feature** window.
     ![](media/feature_add.png)
+
+    Use the following **Point Types** for the corresponding **Measurement Points**.
+
+    | Measuring Point    | Storage Type |
+    | ----------------   | ------------ |
+    | accumulating_power | AI Raw Data  |
+    | voltage_dq         | AI Raw Data  |
+    | cycle_number       | Generic Data |    
+    | discharge_energy   | AI Raw Data  |
+    | health_level       | DI Data      |
+    | voltage            | AI Raw Data  |
+    | temp               | AI Raw Data  | 
+    | current            | AI Raw Data  | 
     
 ## Step 2: Creating a Product
 
-A smart battery product is a collection of battery devices with the same features. On the basis of the device model, a product 
+A smart battery product is a collection of battery devices that have the same features. With the model as a base, a product 
 further defines the communication specifications for the device.
 
-In this step, create a product called `Battery_Product`. Assume that a device of this product model sends data in JSON format and that the CA certificate is not used (aka only secret-based authentication is enforced).
+In this step, create a product called `Battery_Product`. We shall assume that a device of this product model sends data in JSON format and that the CA certificate is not used (only secret-based authentication is enforced).
 
-1. In the EnOS Console, select **Device Management > Product**.
+1. In the EnOS Management Console, select **Asset Management > Product**.
 
-2. Click New Product, and provide the following settings in the New Product window:
+2. Click **New Product**, enter the following in the **New Product** window, and click **OK**.
 
-    - _Product Name: SmartBattery_Product_a01_
-    - _Asset Type: Device_
-    - _Model: SmartBattery_Model_a01_
-    - _Data Type: JSON_
-    - _Certificate-Based Authentication: Disabled_
-    - _Description: Computer Battery_
+    - Product Name: SmartBattery_Product_a01
+    - Asset Type: Device
+    - Model: SmartBattery_Model_a01
+    - Data Type: JSON
+    - Certificate-Based Authentication: Disabled
+    - Description: Computer Battery
     
-Click **OK** to save the configuration.
-
 ![](media/product_add.png)
 
-For details about the configuration of a product, see Creating a Device Collection (Product).
+For details about the configuration of a product, see [Creating a Device Collection (Product)](https://support.envisioniot.com/docs/device-connection/en/latest/howto/device/manage/creating_product.html).
 
 ## Step 3: Registering a Device
 
-A device is the instance of a product. A device is created from a product so that it inherits not only the basic features of the model, but also the communication features of the product (the device key-secret pair, and if enabled, device certificate used for secure communication).
+A device is the instance of a model and belongs to a certain product. It inherits not only the basic features of the product, but also its communication features (the device key-secret pair, and if enabled, device certificate used for secure communication).
 
 In this step, create a device named `SmartBattery_Device_a01`, which belongs to the `SmartBattery_Product_a01` created in 
 the previous step.
 
-1. In the EnOS Console, select **Device Management > Device Asset**.
+1. In the EnOS Management Console, select **Asset Management > Device Asset**.
 
-2. Click **New Device**, and provide the following settings in the **New Device** window:
+2. Click **New Device**, enter the following in the **New Device** window, and click **OK**.
 
     - Product: SmartBattery_Product_a01
     - Device Name: SmartBattery_Device_a01
     - Timezone/City: UTC+08:00
     - Use DST: No
     - Device Key: Optional (it can be generated automatically by the system)
-    - brand: Enter the brand information of the battery (an attribute defined for the model)
-    
- 3. Click **OK** to save the configuration.
+    <!-- - brand: Enter the brand information of the battery (an attribute defined for the model) -->
 
 ![](media/device_register.png)
 
-## Step 4: Setting up Development Environment
+## Step 4: Configure the TSDB Storage Policy
 
-After the device modeling, device registration, and data storage policy configuration of the Smart Battery are 
-completed on EnOS Console, you can now program with the EnOS Java SDK for MQTT to connect the Smart Battery into EnOS and start transmitting data.
+EnOS Time Series Database (TSDB) provides a variety of storage options for you to store important and frequently-accessed business data. Through configuring storage policies, time-series data can be routed to different datastores based on data types and storage time, thus reducing data storage costs and enhancing data access efficiency.
+
+**Note**: 
+ - By default, the uploaded data will is not stored in TSDB. You must configure data storage policy before the data is uploaded to EnOS Cloud.
+ - Each model can be associated to only one storage policy group.
+
+In this step, configure a storage policy for the measurement points that are defined in the `SmartBattery_Model_a01` model.
+
+1. Select **Time Series Data Management > Storage Policy** from the left navigation menu.
+
+2. Click **+** icon and **Create Group** to create a storage policy group.
+
+   - **Group Name**: Enter a name for the storage policy group.
+   - **Group Model**: Search and select the `SmartBattery_Model_a01` model to be associated with the storage policy group.
+
+3. Click **OK** to save the storage policy group configuration.
+
+After the storage group is created, you can see all the TSDB storage policy options listed under the storage group tab. Configure storage policies separately for the above listed measurement points.
+
+Using the **AI Raw Data** storage type as example:
+
+1. Move the cursor on the **AI Raw Data** storage type and click the **Edit** icon to open the **Edit Storage Policy** page.
+
+2. From the **Storage Time** drop down list, select the storage time for the data. For this example, we shall save the data in TSDB for 1 month.
+
+3. Select the `SmartBattery_Model_a01` model and the listed measurement points.
+
+4. Click **OK** to save the storage policy.
+
+![](media/storage_policy.png)
+
+## Step 5: Setting Up the Development Environment
+
+After the device modeling, device registration, and data storage policy configuration of the Smart Battery are completed in the EnOS Management Console, you can now use the EnOS Java SDK for MQTT to connect the Smart Battery to EnOS and start transmitting data.
 
 For detailed information about the EnOS Java SDK for MQTT, refer to the readme file on [GitHub](https://github.com/EnvisionIot/enos-mqtt-sdk-java).
 
-EnOS Java SDK for MQTT requires Java SE 8 and Maven 3. Complete the following steps to set up your development environment:
+EnOS Java SDK for MQTT requires Java SE 8 and Maven 3. Follow the steps below to set up your development environment.
 
-1. Install JDK, which can be downloaded at https://www.oracle
-.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html.
+1. Install JDK, which can be downloaded at https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html.
 
 2. Install Maven, which can be downloaded at http://maven.apache.org/download.cgi.
 
-3. Install a development environment, such as IntelliJ IDEA, which can be downloaded at https://www.jetbrains
-.com/idea/download/.
+3. Install a development environment, such as IntelliJ IDEA, which can be downloaded at https://www.jetbrains.com/idea/download/.
 
-4. In the main `pom.xml` file of your development project, add the EnOS Java SDK for MQTT as a dependency as follows:
+4. In the main `pom.xml` file of your development project, add the EnOS Java SDK for MQTT as a dependency as per the following.
 
     ```java
     <dependencies>
@@ -124,12 +163,12 @@ EnOS Java SDK for MQTT requires Java SE 8 and Maven 3. Complete the following st
         </dependency>
     </dependencies>
     ```
-## Step 5. Programming for Device Connection
 
-After the development environment is set up, take the following steps to connect the Smart Battery into EnOS Cloud:
+## Step 6. Programming the Device Connection
 
+After the development environment is set up, follow the steps below to connect the Smart Battery to EnOS Cloud.
 
-1. Declare the variables that will be used in the program, see the following example:
+1. Declare the variables that will be used in the program. Example:
 
     ```java
     private final static String PLAIN_SERVER_URL = "tcp://mqtt-ppe1.envisioniot.com:21883"; // Obtain the MQTT Broker address from EnOS Console > Help > Environment Information
@@ -138,9 +177,9 @@ After the development environment is set up, take the following steps to connect
     private final static String DEVICE_SECRET = "yourdevicesecret";
 
     ```
-    The productKey, deviceKey, and deviceSecret are the device properties generated when you register the Smart 
-    Battery.
-2. Declare the main function connect() for initializing device connection. See the following example:
+    The productKey, deviceKey, and deviceSecret are the device properties generated when you register the Smart Battery.
+
+2. Declare the main function connect() for initializing device connection. Example:
     ```java
     public static void main(String[] args) {
         LoginInput input = new NormalDeviceLoginInput(PLAIN_SERVER_URL, PRODUCT_KEY, DEVICE_KEY, DEVICE_SECRET);
@@ -149,7 +188,7 @@ After the development environment is set up, take the following steps to connect
         client.connect();
     }
     ```
-3. Use the connect function to connect the Smart Battery into EnOS Cloud. See the following code snippet:
+3. Use the connect function to connect the Smart Battery to EnOS Cloud. Example:
 
     ```java
     public static void main(String[] args) {
@@ -191,12 +230,11 @@ After the development environment is set up, take the following steps to connect
         });
     }
     ```
-## Step 6. Programming to Uploading Data into EnOS Cloud
-After the Smart Battery is connected into EnOS, take the following steps to simulate the voltage, temperature and 
-currents of the Smart Battery and upload the data into EnOS Cloud:
+## Step 7. Uploading Data to EnOS Cloud
 
-1. Use the `simulateMeasurePoints()` function to simulate the voltage, temperature and current of the Smart Battery. all 
-the thresholds have been defined at the beginning as below:
+After the Smart Battery is connected to EnOS, follow the steps below to simulate the voltage, temperature and currents of the Smart Battery and upload the data to EnOS Cloud.
+
+1. Use the `simulateMeasurePoints()` function to simulate the voltage, temperature, and current of the Smart Battery. Define all the thresholds at the beginning:
     ```java
     private static final double VOL_MAX = 26;
     private static final double VOL_MIN = 22;
@@ -209,7 +247,7 @@ the thresholds have been defined at the beginning as below:
     private static final int CUR_PERIOD = 60*60;
     private static final int TEMP_PERIOD = 20*60;
     ```
-2. See the following code snippet:
+2. Code snippet:
 
     ```java
     // Simulate the measure points of devices
@@ -224,8 +262,8 @@ the thresholds have been defined at the beginning as below:
         return data;
     }
     ```
-3. Use the `monitor()` function to upload the measure points of smart battery to EnOS Cloud. See the following code 
-snippet, and it's implemented in the multi-thread mode to post voltage, temperature and current respectively:
+3. Use the `monitor()` function to upload the measurement points of the Smart Battery to EnOS Cloud. The following code 
+snippet is implemented in the multi-thread mode to post the voltage, temperature, and current respectively.
 
 ```java
     // Monitoring the voltage, temperature and current of device
@@ -278,9 +316,9 @@ snippet, and it's implemented in the multi-thread mode to post voltage, temperat
     }
 
 ```
-## Step 7. Running the Program and Checking the Results
+## Step 8. Running the Program and Checking the Results
 
-1. Compile and run the program for device connection and data ingestion. See the follow example of the program code:
+1. Compile and run the program for device connection and data ingestion. Program code example:
 
     ```java
     package com.example;
@@ -570,7 +608,7 @@ snippet, and it's implemented in the multi-thread mode to post voltage, temperat
     }
 
     ```
-2. Check the running result of the program. The program will return the following sample result if the device 
+2. Check the running results of the program. The program will return the following sample results. 
 
     ```
     onConnectSuccess
@@ -585,7 +623,7 @@ snippet, and it's implemented in the multi-thread mode to post voltage, temperat
     2019-12-08 13:00:40 INFO  SmartBatterySample:57 - Waiting commands from cloud
     ```
 
-3. Check the ruuning results of program when it post measure points to cloud:
+3. Check the running results of program when it posts the measurement points to the cloud:
     ```$xslt
     2019-12-08 13:00:40 INFO  SmartBatterySample:209 - measure points(current) are published successfully
     2019-12-08 13:00:40 INFO  SmartBatterySample:236 - measure points(Temp) are published successfully
@@ -597,41 +635,27 @@ snippet, and it's implemented in the multi-thread mode to post voltage, temperat
     2019-12-08 13:00:46 DEBUG DefaultProcessor:75 - /sys/tLtF7bCb/chengloy001/thing/measurepoint/post_reply , {"code":200,"data":"","id":"5"}
     2019-12-08 13:00:46 DEBUG DefaultProcessor:75 - /sys/tLtF7bCb/chengloy001/thing/measurepoint/post_reply , {"code":200,"data":"","id":"6"}
     ```
-4. Check the status change of the Smart Battery device in the Device List on the EnOS Console. The status of the 
-device will change from Inactive to Online.
+4. Check the status change of the Smart Battery device in the Device List on the EnOS Management Console. The status of the device will change from Inactive to Online.
 
     ![](media/device_online.png)
 
-5. Check the attributes of the Smart Battery device that have been updated under the Attributes tab on the Device 
-    Details page.
+5. Check the attributes of the Smart Battery device that have been updated under the **Attributes** tab on the **Device Details** page.
 
     ![](media/atrributes.png)
 
-6. Check the measuring points which are posted to the Cloud under the Measuring 
-Points tab on the Device Details page.
+6. Check the measurement points which are posted to the cloud under the **Measurement Points** tab on the **Device Details** page.
 
     ![](media/feature_details.png)
     
-## Step 8: Configure TSDB Stroage Policy
-In **Time Series Data > Storage Policy**, configure storage policy for the simulated smart battery.
 
-1. Select an existing group or create a new group. Click **Edit Group** . Select **test.smart** battery and click **OK** to include the 
-smart battery model into the policy group.
+## Step 9: Check the Data Insight of the Device
 
-2. Click the **Edit** icon for the AI Raw Data bucket. Select **test.smart** battery to include all its measurement points into this policy.
-
-As we defined Real-time Current as the AI type of data when creating the model and this tutorial doesn’t require normalized data, so we store the Real-time Current data into the AI Raw Data bucket.
-
-![](media/storage_policy.png)
-
-## Step 9: Check data insight of the device
-
-Wait until enough time later and go to **Time Series Data > Data Insights** . Select device Simulated smart battery Device . View the Real-time Current data report in minute.
+Go to **Time Series Data Management > Data Insights** and select the `SmartBattery_Device_a01` device to view the real-time current data report in minutes.
 
 ![](media/data_insight.png)
 
 
 ## Next Lab
 
-[Simulating Measure Points](302-2_simulating_measure_points.md)
+[Simulating Measurement Points](302-2_simulating_measure_points.md)
 
