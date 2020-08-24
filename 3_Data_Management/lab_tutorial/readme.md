@@ -1,18 +1,17 @@
 # Data Asset Management Workshop
 
-With your devices connected, your data starts to accumulate on EnOS. It could be quite a challenge to manage the vast amount of IoT data. Data Asset Management offering provides services that help you reduce your cost on data storage, lowers development barrier of stream analytics, and increases data access efficiency.
+With your devices connected, your data will start to accumulate in EnOS. As it could be quite a challenge to manage the vast amount of IoT data, you can use the Data Asset Management to help you manage and reduce your cost on data storage, lower the development barrier of stream analytics, and increase data access efficiency.
 
-Before you dive into the offering, you’ll want to get yourself familiar with the key concepts about stream data processing and data storage.
 
 ## Scenario
 
-This workshop will walk you through the different paths of data flows on EnOS. Before you start, review the [real-time data flow](https://support.envisioniot.com/docs/data-asset/en/latest/learn/data_flow.html) after data is ingested through IoT Hub.
+This workshop will walk you through the steps on how to create stream data processing jobs with a template and StreamSets operators to calculate the discharge energy and health level of the battery.
 
-## Prerequisites
+## Before You Start
 
-- You have signed up to EnOS for an individual account or an enterprise account to access the EnOS Console.
-- Your account must been assigned full access to the model service, device connectivity & management service, and 
-asset tree service.
+- Ensure that you have signed up for an individual account or an enterprise account to access the **EnOS Management Console**.
+- Ensure that your account have been assigned full access to the model service, device connectivity & management service, and asset tree service.
+- Read through the [Real-time Data Flow](https://support.envisioniot.com/docs/data-asset/en/latest/learn/data_flow.html) document to get an overview of data flows in EnOS.
 
 ## Labs
 

@@ -73,7 +73,7 @@ You can actually set your preferred end time, but setting it to a later time lea
 
 ## Step 4: Check the Data Insight of the Device
 
-Go to **Time Series Data Management > Data Insights** and select the `SmartBattery_Device_a01` device to view the real-time current data report in minutes.
+Go to **Time Series Data Management > Data Insights** and select the **SmartBattery_Device_a01** device to view the real-time current data report in minutes.
 
 ![](media/data_insight.png)
 

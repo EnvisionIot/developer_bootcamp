@@ -16,10 +16,10 @@ This tutorial will walk you through a typical path for smart battery management,
 - Simulating the battery to post measurement points data using a Java program developed through Java SDK.
 - Monitoring the alerts of the Smart Battery.
 
-## Prerequisites
+## Before You Start
 
-1. You have signed up for an individual account or an enterprise account to access the **EnOS Management Console**.
-2. Your account must have been assigned full access to the model service, device connectivity & management services, and data management services (in the training, this is already done by the trainer).
+- Ensure that you have signed up for an individual account or an enterprise account to access the **EnOS Management Console**.
+- Ensure that your account have been assigned full access to the model service, device connectivity & management services, and data management services (in the training, this is already done by the trainer).
 
 ## Labs
 

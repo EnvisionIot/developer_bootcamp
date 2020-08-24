@@ -1,9 +1,9 @@
 ﻿Tutorial: Stream Data Processing
 ================================
 
-EnOS Stream Analysis service is featured by high scalability, high throughput, and high fault tolerance. Based on the accumulated industry domain knowledge and algorithms for stream processing in the IoT domain, EnOS Stream Analysis provides a couple of templates for you to quickly create stream processing jobs. In addition, EnOS Stream Analysis provides a complete set of packaged StreamSets operators for you to develop customized stream data processing pipelines to meet complex business needs.
+The features of the EnOS Stream Analysis service include high scalability, high throughput, and high fault tolerance. Not only does the service provide templates for you to quickly create stream processing jobs that are based on the accumulated industry domain knowledge and algorithms for stream processing in the IoT domain, it also provides a complete set of packaged StreamSets operators for you to develop customized stream data processing pipelines to meet complex business needs.
 
-This tutorial will guide you through creating stream data processing jobs with a template and with StreamSets operators to calculate the discharge energy and health level of the battery.
+This tutorial will guide you through the steps on how to create stream data processing jobs with a template and StreamSets operators to calculate the discharge energy and health level of the battery.
 
 .. toctree::
    :maxdepth: 1

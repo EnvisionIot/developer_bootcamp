@@ -50,7 +50,7 @@ A model is the abstraction of the features of an object that is connected to the
 A smart battery product is a collection of battery devices that have the same features. With the model as a base, a product 
 further defines the communication specifications for the device.
 
-In this step, create a product called `SmartBattery_Product_a01`. We shall assume that a device of this product model sends data in JSON format and that the CA certificate is not used (only secret-based authentication is enforced).
+In this step, create a product called **SmartBattery_Product_a01**. We shall assume that a device of this product model sends data in JSON format and that the CA certificate is not used (only secret-based authentication is enforced).
 
 1. In the EnOS Management Console, select **Asset Management > Product**.
 
@@ -71,7 +71,7 @@ For details about the configuration of a product, see [Creating a Device Collect
 
 A device is the instance of a model and belongs to a certain product. It inherits not only the basic features of the product, but also its communication features (the device key-secret pair, and if enabled, device certificate used for secure communication).
 
-In this step, create a device named `SmartBattery_Device_a01`, which belongs to the `SmartBattery_Product_a01` created in 
+In this step, create a device named **SmartBattery_Device_a01**, which belongs to the **SmartBattery_Product_a01** created in 
 the previous step.
 
 1. In the EnOS Management Console, select **Asset Management > Device Asset**.
@@ -89,20 +89,20 @@ the previous step.
 
 ## Step 4: Configure the TSDB Storage Policy
 
-EnOS Time Series Database (TSDB) provides a variety of storage options for you to store important and frequently-accessed business data. Through configuring storage policies, time-series data can be routed to different datastores based on data types and storage time, thus reducing data storage costs and enhancing data access efficiency.
+The EnOS Time Series Database (TSDB) provides a variety of storage options for you to store important and frequently-accessed business data. Through configuring storage policies, time-series data can be routed to different datastores based on data types and storage time, thus reducing data storage costs and enhancing data access efficiency.
 
 **Note**: 
- - By default, the uploaded data will is not stored in TSDB. You must configure data storage policy before the data is uploaded to EnOS Cloud.
+ - By default, the uploaded data is not stored in TSDB. You must configure data storage policy before the data is uploaded to EnOS Cloud.
  - Each model can be associated to only one storage policy group.
 
-In this step, configure a storage policy for the measurement points that are defined in the `SmartBattery_Model_a01` model.
+In this step, configure a storage policy for the measurement points that are defined in the **SmartBattery_Model_a01** model.
 
 1. Select **Time Series Data Management > Storage Policy** from the left navigation menu.
 
 2. Click the **+** icon and **Create Group** to create a storage policy group.
 
    - **Group Name**: Enter a name for the storage policy group.
-   - **Group Model**: Search and select the `SmartBattery_Model_a01` model to be associated with the storage policy group.
+   - **Group Model**: Search and select the **SmartBattery_Model_a01** model to be associated with the storage policy group.
 
 3. Click **OK** to save the storage policy group configuration.
 
@@ -114,7 +114,7 @@ Using the **AI Raw Data** storage type as example:
 
 2. From the **Storage Time** drop down list, select the storage time for the data. For this example, we shall save the data in TSDB for 3 months.
 
-3. Select the `SmartBattery_Model_a01` model and the listed measurement points.
+3. Select the **SmartBattery_Model_a01** model and the listed measurement points.
 
 4. Click **OK** to save the storage policy.
 
@@ -134,7 +134,7 @@ EnOS Java SDK for MQTT requires Java SE 8 and Maven 3. Follow the steps below to
 
 3. Install a development environment, such as IntelliJ IDEA, which can be downloaded at https://www.jetbrains.com/idea/download/.
 
-4. In the main `pom.xml` file of your development project, add the EnOS Java SDK for MQTT as a dependency as per the following.
+4. In the main **pom.xml** file of your development project, add the EnOS Java SDK for MQTT as a dependency as per the following.
 
     ```java
     <dependencies>
@@ -179,7 +179,7 @@ After the development environment is set up, follow the steps below to connect t
     ```
     The productKey, deviceKey, and deviceSecret are the device properties generated when you register the Smart Battery.
 
-2. Declare the main function `connect()` for initializing device connection. Example:
+2. Declare the main function **connect()** for initializing device connection. Example:
     ```java
     public static void main(String[] args) {
         LoginInput input = new NormalDeviceLoginInput(PLAIN_SERVER_URL, PRODUCT_KEY, DEVICE_KEY, DEVICE_SECRET);
@@ -234,7 +234,7 @@ After the development environment is set up, follow the steps below to connect t
 
 After the Smart Battery is connected to EnOS, follow the steps below to simulate the voltage, temperature and currents of the Smart Battery and upload the data to EnOS Cloud.
 
-1. Use the `simulateMeasurePoints()` function to simulate the voltage, temperature, and current of the Smart Battery. Define all the thresholds at the beginning:
+1. Use the **simulateMeasurePoints()** function to simulate the voltage, temperature, and current of the Smart Battery. Define all the thresholds at the beginning:
     ```java
     private static final double VOL_MAX = 26;
     private static final double VOL_MIN = 22;
@@ -262,7 +262,7 @@ After the Smart Battery is connected to EnOS, follow the steps below to simulate
         return data;
     }
     ```
-3. Use the `monitor()` function to upload the measurement points of the Smart Battery to EnOS Cloud. The following code 
+3. Use the **monitor()** function to upload the measurement points of the Smart Battery to EnOS Cloud. The following code 
 snippet is implemented in the multi-thread mode to post the voltage, temperature, and current respectively.
 
 ```java
@@ -650,7 +650,7 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
 
 ## Step 9: Check the Data Insight of the Device
 
-Go to **Time Series Data Management > Data Insights** and select the `SmartBattery_Device_a01` device to view the real-time current data report in minutes.
+Go to **Time Series Data Management > Data Insights** and select the **SmartBattery_Device_a01** device to view the real-time current data report in minutes.
 
 ![](media/data_insight.png)
 
