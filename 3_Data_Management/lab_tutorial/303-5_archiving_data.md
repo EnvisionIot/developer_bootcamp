@@ -55,7 +55,7 @@ Currently, data archiving by every 1 hour, 12 hours, or 24 hours is supported. I
 
 In the **Model** field, search and select the **SmartBattry_Demo** model, so that the uploaded data of all assets belonging to the model will be archived.
 
-<img src="media/archiving_data_config.png" style="zoom: 80%;" />
+<img src="media/archiving_data_config.png" width="500px" />
 
 
 

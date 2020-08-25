@@ -18,7 +18,7 @@ In [Lab 3](303-3 calculating_health_level.md), we defined 3 battery health level
 
 2. Click **New Severity** and type the ID, description, and tag (optional) for the corresponding severity level.
 
-   ![](media/alert_severity.png)
+   <img src="media/alert_severity.png" width="450px" />
 
 3. Click **Confirm** to save the alert severity.
 
@@ -36,7 +36,7 @@ Alert types are defined to distinguish status of assets and possible causes of a
 
 2. Click **New Type** and provide an ID, description, and tag (optional) for the alert type.
 
-   ![](media/alert_type.png)
+   <img src="media/alert_type.png" width="450px" />
 
 3. Click **Confirm** to save the alert type.
 
@@ -58,7 +58,7 @@ Alert content describes the status of assets and possible causes of alerts.
 
    - **Type**: Select the **Health Level** alert type from the list of defined alert types.
 
-   ![](media/alert_content.png)
+   <img src="media/alert_content.png" width="450px" />
 
 3. Click **Confirm** to save the alert content.
 

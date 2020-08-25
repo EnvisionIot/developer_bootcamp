@@ -22,10 +22,10 @@ If your OU has not installed the Data Calculation Templates, you need first inst
 
 2. Click the **Template** tab to view the data calculation templates that can be installed. Currently, the following templates are available.
 
-   - Time Window Aggregation: Aggregates numeric data for a single measurement point of a single device.
-   - Electric Energy Cal by Meter Reading: Calculates the daily electric energy by meter reading data.
-   - Electric Energy Cal by Instant Power: Calculates the daily electric energy by instant power data.
-   - Electric Energy Cal by Average Power: Calculates the daily electric energy by average power data.
+   - **Time Window Aggregation**: Aggregates numeric data for a single measurement point of a single device.
+   - **Electric Energy Cal by Meter Reading**: Calculates the daily electric energy by meter reading data.
+   - **Electric Energy Cal by Instant Power**: Calculates the daily electric energy by instant power data.
+   - **Electric Energy Cal by Average Power**: Calculates the daily electric energy by average power data.
 
 3. Find the template to be installed and click **Install**. The system will start the installation immediately.
 
