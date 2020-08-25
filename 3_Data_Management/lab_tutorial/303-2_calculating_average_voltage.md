@@ -14,7 +14,7 @@ The input data, output data, and the template to use for the stream data process
 
 
 
-## Step 1: Install the Data Calculation Templates
+## Step 1: Installing the Data Calculation Templates
 
 If your OU has not installed the Data Calculation Templates, you need first install the templates before you can start.
 
@@ -34,7 +34,7 @@ If your OU has not installed the Data Calculation Templates, you need first inst
  
 
 
-## Step 2: Create a Stream Data Processing Job
+## Step 2: Creating a Stream Data Processing Job
 
 1. Log in to the EnOS Management Console and click **Stream Data Processing > Stream Development**.
 2. Click the **+** icon above the stream processing job list to open the **New Stream** window.
@@ -48,7 +48,7 @@ If your OU has not installed the Data Calculation Templates, you need first inst
 
 
 
-## Step 3: Configure the Stream Data Processing Job
+## Step 3: Configuring the Stream Data Processing Job
 
 In the **Window Strategy** section, provide the following.
 
@@ -79,7 +79,7 @@ For more information about the *Time Window Aggregation* template, see [Configur
 
 
 
-## Step 4: Publish the Stream Data Processing Job
+## Step 4: Publishing the Stream Data Processing Job
 
 After the stream data processing job configuration is completed, you can publish it online.
 
@@ -91,7 +91,7 @@ After the stream data processing job configuration is completed, you can publish
 
 
 
-## Step 5: Start the Stream Data Processing Job
+## Step 5: Starting the Stream Data Processing Job
 
 Before starting the stream processing job, make sure that the corresponding system pipelines are started and running. The real-time and offline message channels have 2 system pipelines (data writer and data reader).
 
@@ -113,7 +113,7 @@ The data processing job will start running if there is no error.
 
 
 
-## Step 6: View the Job Running Results
+## Step 6: Viewing the Job Running Results
 
 On the **Stream Operation** page, find the running stream data processing job under the **User Pipeline** tab, and click the job name to open the **Stream Details** page. You can view the following information about the job.
 

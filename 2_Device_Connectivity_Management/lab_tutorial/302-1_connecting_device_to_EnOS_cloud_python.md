@@ -11,7 +11,7 @@ directly to the EnOS Cloud.
 
 ![](media/procedure.png)
 
-## Step 1: Define a Model
+## Step 1: Defining a Model
 
 A model is the abstraction of the features of an object that is connected to the IoT Hub. The device model defines the features of a device, including its attributes, measurement points, services, and events. 
 
@@ -45,7 +45,7 @@ A model is the abstraction of the features of an object that is connected to the
     | temp               | AI Raw Data  | 
     | current            | AI Raw Data  | 
     
-## Step 2: Create a Product
+## Step 2: Creating a Product
 
 A smart battery product is a collection of battery devices that have the same features. With the model as a base, a product 
 further defines the communication specifications for the device.
@@ -67,7 +67,7 @@ In this step, create a product called **SmartBattery_Product_a01**. We shall ass
 
 For details about the configuration of a product, see [Creating a Device Collection (Product)](https://support.envisioniot.com/docs/device-connection/en/latest/howto/device/manage/creating_product.html).
 
-## Step 3: Register a Device
+## Step 3: Registering a Device
 
 A device is the instance of a model and belongs to a certain product. It inherits not only the basic features of the product, but also its communication features (the device key-secret pair, and if enabled, device certificate used for secure communication).
 
@@ -87,7 +87,7 @@ the previous step.
 
 ![](media/device_register.png)
 
-## Step 4: Configure the TSDB Storage Policy
+## Step 4: Configuring the TSDB Storage Policy
 
 EnOS Time Series Database (TSDB) provides a variety of storage options for you to store important and frequently-accessed business data. Through configuring storage policies, time-series data can be routed to different datastores based on data types and storage time, thus reducing data storage costs and enhancing data access efficiency.
 
@@ -120,7 +120,7 @@ Using the **AI Raw Data** storage type as example:
 
 ![](media/storage_policy.png)
 
-## Step 5: Set Up the Development Environment
+## Step 5: Setting Up the Development Environment
 
 After the device modeling, device registration, and data storage policy configuration of the Smart Battery are completed in the EnOS Management Console, you can now use the EnOS Python SDK for MQTT to connect the Smart Battery to EnOS and start transmitting data.
 
@@ -137,7 +137,7 @@ EnOS Python SDK for MQTT requires Python3.5.3 or later and pip3. Follow the step
     ```python
     pip3 install enos-mqtt-sdk-python
     ```
-## Step 6. Program the Device Connection
+## Step 6. Programming the Device Connection
 
 After the development environment is set up, follow the steps below to connect the Smart Battery to EnOS Cloud.
 
@@ -194,7 +194,7 @@ After the development environment is set up, follow the steps below to connect t
         monitor()
     ```
 
-## Step 7. Upload Data to EnOS Cloud
+## Step 7. Uploading Data to EnOS Cloud
 
 After the Smart Battery is connected to EnOS, follow the steps below to simulate the voltage, temperature and currents of the Smart Battery and upload the data to EnOS Cloud.
 
@@ -257,7 +257,7 @@ snippet.
             post_measure_points(data)
             time.sleep(interval)
     ```
-## Step 8. Run the Program and Check the Results
+## Step 8. Running the Program and Checking the Results
 
 1. Compile and run the program for device connection and data ingestion. Program code example:
 
@@ -401,7 +401,7 @@ snippet.
 
     ![](media/feature_details.png)
     
-## Step 9: Check the Data Insight of the Device
+## Step 9: Checking the Data Insight of the Device
 
 Go to **Time Series Data Management > Data Insights** and select the **SmartBattery_Device_a01** device to view the real-time current data report in minutes.
 

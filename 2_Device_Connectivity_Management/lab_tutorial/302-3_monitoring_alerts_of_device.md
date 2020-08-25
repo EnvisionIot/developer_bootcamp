@@ -14,7 +14,7 @@ To monitor the health and performance of your smart battery, you can use the ale
 - Warning alert: 60 °C <Temp<70 °C
 
 
-## Step 1: Define the Alert Configuration and Triggering Rules
+## Step 1: Defining the Alert Configuration and Triggering Rules
  
  In this lab, we will use alerts to monitor the temperature of the smart battery.
 
@@ -40,7 +40,7 @@ active alerts and history alerts that are reported for the device at the **Alert
     ![](media/alert_record.png)
     
 
- ## Step 2: Monitor Alerts from the EnOS Management Console
+ ## Step 2: Monitoring Alerts from the EnOS Management Console
 
 In **Alert > Alert Records**, select your smart battery model and view the historical alerts. You can see that several alerts have been triggered by the anormal data.
 
@@ -48,7 +48,7 @@ For how to define data sample to trigger alerts, see [Lab 2. Simulating Measurem
 
 ![](media/alert_active.png)
    
-## Step 3: Obtain Alert Data for Application Use
+## Step 3: Obtaining Alert Data for Application Use
 
 You can also use the event service APIs to query alert records. For example, you can use the _Search Active Alerts_ API to query active alerts by organization ID and other filtering conditions. For more information about EnOS API, go to **EnOS API** in the EnOS Management Console.
 

@@ -18,7 +18,7 @@ In this lab, we will configure a storage policy for the following measurement po
 
 For a detailed description of the supported storage types, see [Configuring TSDB Storage](https://support.envisioniot.com/docs/data-asset/en/latest/configuring_tsdb_storage.html).
 
-## Step 1: Create a Storage Policy Group
+## Step 1: Creating a Storage Policy Group
 
 Storage policy groups enable you to manage the time-series data for different projects separately. Before configuring storage policies for the measurement points, you must create a storage policy group.
 
@@ -36,7 +36,7 @@ However, note that each model can be associated to only one storage policy group
    ![](media/storage_policy_group.png)
 
 
-## Step 2: Configure Storage Policies
+## Step 2: Configuring Storage Policies
 
 After the storage group is created, you can see all the TSDB storage policy options listed under the storage group tab. Configure storage policies separately for the above listed measurement points.
 

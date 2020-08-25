@@ -17,7 +17,7 @@ In this tutorial, we will simulate a smart battery that sends data to EnOS. We w
     - Alert
     - Times Series Data
 
-## Step 1: Add a Device Simulator
+## Step 1: Adding a Device Simulator
 
 In the EnOS Management Console, click **Asset Management > Simulator** from the left navigation menu.
 
@@ -37,7 +37,7 @@ Next, you need to define the simulation data sample for it.
 
 ![](media/simulator.png)
 
-## Step 2. Define and Upload the Simulation Data Sample
+## Step 2. Defining and Uploading the Simulation Data Sample
 
 1. In the list of simulators, click **... > Define Sample** for the simulator you just created.
 
@@ -63,7 +63,7 @@ The best practice is setting some values above 60 at earlier moments so that you
 
 ![](media/sim_data.png)
 
-## Step 3: Start the Device Simulator
+## Step 3: Starting the Device Simulator
 
 You can start simulators one by one or in batch. For this tutorial, we shall set the end time for 24 hours later.
 
@@ -71,7 +71,7 @@ You can actually set your preferred end time, but setting it to a later time lea
 
 ![](media/simulator_start.png)
 
-## Step 4: Check the Data Insight of the Device
+## Step 4: Checking the Data Insight of the Device
 
 Go to **Time Series Data Management > Data Insights** and select the **SmartBattery_Device_a01** device to view the real-time current data report in minutes.
 

@@ -1,51 +1,48 @@
 # Lab 3. Calculating the Health Level of the Battery
 
-EnOS Stream Analytics service also provides a user-friendly UI for designing stream data processing jobs (pipelines) with StreamSets operators. You can quickly configure a pipeline by adding operators (stages) to the pipeline, thus completing data ingestion, filtering, processing, and storage tasks without programming.
+The EnOS Stream Analytics service also provides a user-friendly UI for designing stream data processing jobs (pipelines) with StreamSets operators. You can quickly configure a pipeline by adding operators (stages) to the pipeline, completing data ingestion, filtering, processing, and storage tasks without programming.
 
-In this lab, we will develop a stream data processing job with StreamSets operators to calculate the health level of the battery based on its real-time temperature. Detailed scenario of this lab is as follows:
+In this lab, we will develop a stream data processing job with StreamSets operators to calculate the health level of the battery based on its real-time temperature. The detailed scenario of this lab is as per the below.
 
-1. Ingest and store the real-time temperature data of the battery.
-2. Calculate the average temperature of the battery in every 2 minutes.
-3. Compare the average temperature with the maximum temperature that the battery can work with (defined by the `UpperLimitTemp` attribute of the **SmartBattery_Demo** model).  
-4. Based on the result of the comparison, output the following health levels of the battery:
-  - **Level code 90**: Health (the average temperature is lower than the `UpperLimitTemp`)
+- Ingest and store the real-time temperature data of the battery.
+- Calculate the average temperature of the battery every 2 minutes.
+- Compare the average temperature with the maximum temperature that the battery can work with (defined by the `UpperLimitTemp` attribute of the **SmartBattery_Demo** model).  
+- Based on the comparison results, output the following health levels of the battery.
+  - **Level code 90**: Healthy (the average temperature is lower than the `UpperLimitTemp`)
   - **Level code 60**: Unhealthy (the average temperature is higher than the `UpperLimitTemp`, but not higher than 3%)
   - **Level code 30**: Extremely Unhealthy (the average temperature is higher than the `UpperLimitTemp`, and exceeding 3%)
 
-To meet the requirement of the above business scenario, we need to use the following StreamSets operators:
+To meet the requirement of the above scenario, we need to use the following StreamSets operators.
 
 | Operator                       | Description                                                  |
 | ------------------------------ | ------------------------------------------------------------ |
-| EDH Kafka Consumer             | Getting complete data records from Kafka                     |
-| Point Selector                 | Specifying data records of the `SmartBattery_Demo::temp` measuring point as the input data |
-| Sliding Time Window Aggregator | Aggregating the temperature data in every 2 minutes to calculate the average temperature |
-| TSL Asset Lookup               | Getting the `UpperLimitTemp` attribute information of the battery model |
-| Python Evaluator               | Calculating the health level of the battery by customized Python script |
-| EDH Kafka Producer             | Sending the output results to Kafka                          |
+| EDH Kafka Consumer             | Gets complete data records from Kafka                     |
+| Point Selector                 | Specifies data records of the `SmartBattery_Demo::temp` measurement point as the input data |
+| Sliding Time Window Aggregator | Aggregates the temperature data every 2 minutes to calculate the average temperature |
+| TSL Asset Lookup               | Gets the `UpperLimitTemp` attribute information of the battery model |
+| Python Evaluator               | Calculates the health level of the battery by customized Python script |
+| EDH Kafka Producer             | Sends the output results to Kafka                          |
 
-The business scenario is as depicted in the following figure:
+The scenario is as depicted in the following figure.
 
 ![](media/streamsets_scenario.png)
 
 
 
-## Installing StreamSets Libraries
+## Step 1: Installing StreamSets Libraries
 
 Before developing stream processing jobs, you need to install the corresponding StreamSets calculator library.
 
-1. Log in the **EnOS Management Console** and click **Stream Processing > Streamsets Libs**.
+1. Log in to the EnOS Management Console and click **Stream Processing > Streamsets Libs**.
 2. Under the **Calculator Library** tab, view the StreamSets calculator libraries that can be installed.
 3. Find the library to be installed and click **Install**. The system will start the installation immediately.
 
 ![](media/installing_streamsets_lib.png)
 
 
+## Step 2: Creating a StreamSets Pipeline
 
-## Creating a StreamSets pipeline
-
-Take the following steps to create a StreamSets pipeline:
-
-1. Log in to the **EnOS Management Console**, select **Stream Processing > Stream Development**, and click the **+** icon above the list of stream processing jobs.
+1. Log in to the EnOS Management Console, select **Stream Processing > Stream Development**, and click the **+** icon above the list of stream processing jobs.
 
 2. On the **New Stream** window, select **New** to create the stream processing job. You can also choose to import a configuration file to create the job quickly.
 
@@ -55,7 +52,7 @@ Take the following steps to create a StreamSets pipeline:
 
 5. From the **Operator Version** drop-down list, select the installed StreamSets calculator library version.
 
-6. For **Message Channel**, select *Real-Time*.
+6. For **Message Channel**, select **Real-Time**.
 
 7. Click **OK** to create the stream processing job with the basic settings above.
 
@@ -63,11 +60,11 @@ Take the following steps to create a StreamSets pipeline:
 
 
 
-## Adding operators to the pipeline
+## Step 3: Adding Operators to the Pipeline
 
 Now we can add the needed operators to the pipeline and connect the operators with arrows to form the pipeline.
 
-1. Select the arrow between the **Kafka Data Source** and **Kafka Data Producer** operators and click the **Delete** icon to remove the connection.
+1. Select the arrow between the **EDH Kafka Consumer User 1** and **EDH Kafka Producer User 1** operators and click the **Delete** icon to remove the connection.
 
    ![](media/disconnecting_source_destination.png)
 
@@ -89,7 +86,7 @@ Now we can add the needed operators to the pipeline and connect the operators wi
 
 
 
-## Configuring operator parameter
+## Step 4: Configuring the Operator Parameter
 
 After the pipeline is created, we can now configure the parameters for the added operators. Select one of the operators and complete the configuration of each tab.
 
@@ -99,7 +96,7 @@ Complete the configuration of **Input/Output** with the following settings:
 
 | Field       | Value                   | Description                                           |
 | ----------- | ----------------------- | ----------------------------------------------------- |
-| Input Point | SmartBattery_Demo::temp | Getting the `temp` point data from Kafka as the input |
+| Input Point | SmartBattery_Demo::temp | Gets the `temp` point data from Kafka as the input |
 
 See the following example:
 
@@ -107,7 +104,7 @@ See the following example:
 
 ### Sliding Time Window Aggregator
 
-The **Sliding Time Window Aggregator** uses a sliding window for data aggregation. Opposed to a tumbling window, the sliding window slides over the incoming stream of data. Because of this, a sliding window can be overlapping and it gives a smoother aggregation over the incoming stream of data. The following figure illustrates the difference between a tumbling window and a sliding window:
+The **Sliding Time Window Aggregator** uses a sliding window for data aggregation. As opposed to a tumbling window, the sliding window slides over the incoming stream of data. Because of this, sliding windows can overlap, giving a smoother aggregation over the incoming stream of data. The following figure illustrates the difference between a tumbling window and a sliding window.
 
 ![](media/sliding_window.png)
 
@@ -115,13 +112,13 @@ Complete the configuration of **Input/Output** with the following settings:
 
 | Field               | Value                       | Description                                           |
 | ------------------- | --------------------------- | ----------------------------------------------------- |
-| Input Point         | SmartBattery_Demo::temp     | Specifying the `temp` point data as the input         |
-| Fixed Window Size   | 2                           | Specifying the duration of the time window            |
+| Input Point         | SmartBattery_Demo::temp     | Specifies the `temp` point data as the input         |
+| Fixed Window Size   | 2                           | Specifies the duration of the time window            |
 | Fixed Window Unit   | minute                      | Unit of the time window                               |
-| Sliding Window Size | 1                           | Specifying the step length of the time window         |
+| Sliding Window Size | 1                           | Specifies the step length of the time window         |
 | Sliding Window Unit | minute                      | Unit of the time window                               |
-| Aggregator Policy   | avg                         | Calculating average temperature value                 |
-| Output Point        | SmartBattery_Demo::temp_avg | Specifying the point that receives the output results |
+| Aggregator Policy   | avg                         | Calculates the average temperature value                 |
+| Output Point        | SmartBattery_Demo::temp_avg | Specifies the point that receives the output results |
 
 See the following example:
 
@@ -133,8 +130,8 @@ Complete the configuration of **Input/Output** with the following settings:
 
 | Field        | Value                           | Description                                     |
 | ------------ | ------------------------------- | ----------------------------------------------- |
-| Input Point  | SmartBattery_Demo::temp_avg     | Receiving the average temperature data as input |
-| Output Point | SmartBattery_Demo::temp_avg_out | Keeping the average temperature data as output  |
+| Input Point  | SmartBattery_Demo::temp_avg     | Receives the average temperature data as input |
+| Output Point | SmartBattery_Demo::temp_avg_out | Keeps the average temperature data as output  |
 
 See the following example:
 
@@ -144,7 +141,7 @@ Complete the configuration of **Criteria** with the following settings:
 
 | Field     | Value | Description                                                  |
 | --------- | ----- | ------------------------------------------------------------ |
-| Attribute | All   | Getting the `UpperLimitTemp` attribute information of the battery model and including it in the output results |
+| Attribute | All   | Gets the `UpperLimitTemp` attribute information of the battery model and includes it in the output results |
 
 See the following example:
 
@@ -156,14 +153,14 @@ Complete the configuration of **Input/Output** with the following settings:
 
 | Field        | Value                           | Description                                                  |
 | ------------ | ------------------------------- | ------------------------------------------------------------ |
-| Input Point  | SmartBattery_Demo::temp_avg_out | Specifying the average temperature data as input             |
-| Output Point | SmartBattery_Demo::health_level | Specifying the point that receives output results of the battery health level |
+| Input Point  | SmartBattery_Demo::temp_avg_out | Specifies the average temperature data as input             |
+| Output Point | SmartBattery_Demo::health_level | Specifies the point that receives output results of the battery health level |
 
 See the following example:
 
 ![](media/python_evaluator_config.png)
 
-Under the **Script** tab, enter the following script in the **Python Script** field:
+Under the **Script** tab, enter the following script in the **Python Script** field.
 
 ```
 # Comparing the average temperature with the specified temperature limit
@@ -196,7 +193,7 @@ for record in records:
 
 
 
-## Validating and Publish the pipeline
+## Step 5: Validating and Publishing the Pipeline
 
 When the configuration of the operators is completed, we can now validate the configuration and publish the pipeline.
 
@@ -214,7 +211,7 @@ When the configuration of the operators is completed, we can now validate the co
 
    
 
-## Starting the StreamSets pipeline
+## Step 6: Starting the StreamSets Pipeline
 
 Before starting the stream processing job, make sure that the corresponding system pipelines are started and running. The real-time and offline message channels have 2 system pipelines (data writer and data reader) separately.
 
@@ -226,19 +223,19 @@ Follow the steps below to start the stream processing job.
 
    ![](media/starting_system_pipeline.png)
 
-3. Now you can start your stream processing job. On the **Stream Operation** page, find the StreamSets pipelin you have published under **User Pipeline** tab, and then click the **Start** icon ![](media/start_icon.png) to start the job.  It may take about 5 minutes for the pipeline to start up.
+3. Once the system pipeline has started, you can start your stream processing job. On the **Stream Operation** page, find the StreamSets pipelin you have published under **User Pipeline** tab, and then click the **Start** icon ![](media/start_icon.png) to start the job.  It may take about 5 minutes for the pipeline to start up.
 
    ![](media/start_streamset_pipeline.png)
 
 
 
-## Viewing the job running results
+## Step 7: Viewing the Job Running Results
 
-On the **Stream Operation** page, find the running stream data processing job under the **User Pipeline** tab, and click the job name to open the **Stream Details** page. You can view the following information about the job:
+On the **Stream Operation** page, find the running stream data processing job under the **User Pipeline** tab, and click the job name to open the **Stream Details** page. You can view the following information about the job.
 
 - **Summary**: View the summary of the running stream, such as the count of processed data records and the record throughput.
 
-  ![](media/streamset_result_summary.PNG)
+  ![](media/streamset_result_summary.png)
 
 - **Log**: Click the **View Logs** icon on the upper right corner to check the running log of the job.
 
@@ -246,12 +243,12 @@ On the **Stream Operation** page, find the running stream data processing job un
 
 
 
-After the stream data processing pipeline keeps running for a while, you can go to the **Data Insights** page to view the calculated health level results of the battery.
+After the stream data processing pipeline has run for a while, you can go to the **Data Insights** page to view the calculated health level results of the battery.
 
-1. Select **Time Series Data > Data Insights** from the left navigation panel of EnOS Console to open the Data Insights page.
-2. In the **Select Time Range** section, select **1H**.
-3. Click the **Select Devices** input box, search for your battery device, and select it from the drop-down list. The selected device will be dynamically presented in the **Selected Measuring Points** column for selecting corresponding measuring points.  
-4. In the **Selected Measuring Points** column, click on the selected device name, expand the list of measuring points, and select the **health_level** point. The queried battery health level data will be displayed in the chart on the right.
+1. Select **Time Series Data Management > Data Insights** from the left navigation menu to open the **Data Insights** page.
+2. In the **Select Time Range** section, select **1h**.
+3. Click the **Select Devices** input box, search for your battery device, and select it from the drop-down list. The selected device will be dynamically presented in the **Selected Measuring Points** column for you to select the corresponding measurement points.  
+4. In the **Selected Measuring Points** column, click on the selected device name, expand the list of measurement points, and select the **health_level** point. The queried battery health level data will be displayed in the chart on the right.
 
 See the following example of the queried data:
 
