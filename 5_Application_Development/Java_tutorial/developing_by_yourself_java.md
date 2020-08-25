@@ -1,20 +1,18 @@
-# Developing by Yourself
+# Lab 4. Developing by Yourself
 
-In this unit, you will need to complete the most important part of the application development:
+In this lab, you will need to complete the most important part of the application development:
 
 <u>*Get the battery history data and display it in the front end.*</u>
 
 The time for you is **30 minutes**.
 
-## Getting the history data of a specific battery
+## Step 1: Getting the History Data of a Specific Battery
 
 > To get the battery history data, you can invoke the EnOS API *Get Asset AI Raw Data*. The request format is:
 >
 > https://{apigw-address}/tsdb-service/v2.0/ai?orgId={}&modelId={}&assetIds={}&measurepoints={}&startTime={}&endTime={}&pageSize={}&accessKey={}&localTimeAccuracy={}
 
-Take the following steps to invoke the EnOS API for getting the history data of a specific battery:
-
-1. Open the `DataService` class and add the following code for getting battery history data from EnOS Cloud:
+1. Open the `DataService` class and add the following code for getting battery history data from EnOS Cloud.
 
    ```
    public GetDataResponse getHistoryData(String assetId, String startTime, String endTime) {
@@ -38,7 +36,7 @@ Take the following steps to invoke the EnOS API for getting the history data of 
    }
    ```
    
-2. Open the `DataController` class and add the following code for returning the queried battery history data through HTTP:
+2. Open the `DataController` class and add the following code for returning the queried battery history data through HTTP.
 
    ```
    @RequestMapping("/battery/tsdb/{id}")
@@ -80,7 +78,7 @@ Take the following steps to invoke the EnOS API for getting the history data of 
    }
    ```
    
-3. **Waiting 30 minutes**
+3. **30 minutes starts now**
 
 4. After you have completed the code development, open the `BatteryWebApplication` class, and click **Run 'BatteryWebApplication'** to start the application.
 
@@ -88,11 +86,11 @@ Take the following steps to invoke the EnOS API for getting the history data of 
 
 <img src="media/application-6.png" style="zoom:75%;" />
 
-## Changing data uploading frequency
+## Step 2: Changing Data Uploading Frequency
 
-Now, we can check the result of the changed battery data uploading frequency.
+We can now check the results of the changed battery data uploading frequency.
 
-Change to use the high frequency mode (2s), and the data uploading frequency will be changed from 5s to 2s. See the following example:
+Change the high frequency mode to (2s), and the data uploading frequency will be changed from 5s to 2s. See the following example:
 
 ![application-7](media/application-7.png) 
 

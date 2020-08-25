@@ -1,4 +1,4 @@
-# Lab 1: Connecting a Smart Battery to EnOS (Python)
+# Lab 1. Connecting a Smart Battery to EnOS (Python)
 
 Before connecting devices to EnOS IoT Hub, you need to register the devices in the EnOS Management Console.
 

@@ -1,16 +1,14 @@
-# Invoking EnOS APIs
+# Lab 3. Invoking EnOS APIs
 
-In this unit, we can start to invoke EnOS APIs to get the asset information of batteries and the ingested history data of batteries stored in TSDB.
+In this lab, we can start to invoke EnOS APIs to get the asset information of batteries and the ingested history data of batteries stored in TSDB.
 
-## Getting battery asset list
+## Step 1: Getting the Battery Asset List
 
 > In this step, we will invoke the EnOS API *Search Related Asset Node*. The request format is:
 >
 > *https://{apigw-address}/asset-tree-service/v2.1/asset-nodes?action=searchRelatedAsset*
 
-Take the following steps to invoke the EnOS API to get the battery asset list from the asset tree:
-
-1. In the `services.py` file, find the `get_child_asset_list` stub function, and enter the following code for getting the list of battery assets under the specified asset tree node:
+1. In the `services.py` file, find the `get_child_asset_list` stub function, and enter the following code for getting the list of battery assets under the specified asset tree node.
 
    <img src="media/battery_asset_tree.png" alt="battery_asset_tree" style="zoom: 50%;" />
 
@@ -38,25 +36,22 @@ Take the following steps to invoke the EnOS API to get the battery asset list fr
        return req
    ```
 
-2. With the programming work completed, we can now test running the code. Click **Run > Run** to start the application.
+2. With the programming work completed, we can now test run the code. Click **Run > Run** to start the application.
 
    <img src="media/app_run.png" alt="app_run" style="zoom: 50%;" />
 
-3. Open a browser and enter `http://127.0.0.1:5000` in the address field. We can see the retrieved battery list. See the following example:
+3. Open a browser, enter `http://127.0.0.1:5000` in the address field, and we will be able to see the retrieved battery list. See the following example.
 
 <img src="media/application-1.png" style="zoom:75%;" />
 
 
-
-## Getting asset information of a specific battery
+## Step 2: Getting the Asset Information of a Specific Battery
 
 > In this step, we will invoke the EnOS API *Get Asset*. The request format is:
 >
 > *https://{apigw-address}/asset-service/v2.1/assets?action=get*
 
-Take the following step to invoke the EnOS API to get the specified battery asset information:
-
-1. In the `services.py` file, find the `get_asset_info` stub function, and enter the following code for getting the battery asset information:
+1. In the `services.py` file, find the `get_asset_info` stub function, and enter the following code for getting the battery asset information.
 
    ```
    def get_asset_info(assetId):
@@ -77,19 +72,19 @@ Take the following step to invoke the EnOS API to get the specified battery asse
 
 2. Click **Run > Run** to start the application.
 
-3. Open a browser and enter `http://127.0.0.1:5000` in the address field. We can see the retrieved battery asset information. See the following example:
+3. Open a browser, enter `http://127.0.0.1:5000` in the address field and we will be able to see the retrieved battery asset information. See the following example.
 
 <img src="media/application-2.png" style="zoom:75%;" />
 
-## Getting the status of a specific battery
+## Step 3: Getting the Status of a Specific Battery
 
 > In this step, we will invoke the EnOS API *Get Asset Latest Data*. The request format is:
 >
 > https://{apigw-address}/tsdb-service/v2.0/latest?orgId={}&assetIds={}&measurepoints={}&timeWindow={}&accessKey={}
 
-Take the following steps to invoke the EnOS API to get the status of a specific battery, including health level and remaining power:
+Follow the below to invoke the EnOS API to get the status of a specific battery, including the health level and remaining power.
 
-1. In the `services.py` file, find the `get_asset_latest_data` stub function, and enter the following code for getting the battery latest status information:
+1. In the `services.py` file, find the `get_asset_latest_data` stub function, and enter the following code for getting the battery latest status information.
 
    ```
    def get_asset_latest_data(assetIds, measurepoints):
@@ -111,19 +106,17 @@ Take the following steps to invoke the EnOS API to get the status of a specific 
 
 2. Click **Run > Run** to start the application.
 
-3. Open a browser and enter `http://127.0.0.1:5000` in the address field. We can see the retrieved battery health level and remaining power information. See the following example:
+3. Open a browser, enter `http://127.0.0.1:5000` in the address field, and we will be able to see the retrieved battery health level and remaining power information. See the following example.
 
 <img src="media/application-3.png" style="zoom:75%;" />
 
-## Getting the active alerts of a specific asset tree
+## Step 4: Getting the Active Alerts of a Specific Asset Tree
 
 > In this step, we will invoke the EnOS API *Search Active Alerts*. The request format is:
 >
 > https://{apigw-address}/event-service/v2.1/active-alerts?action=search
 
-Take the following steps to invoke the EnOS API to get the active alerts of a specific asset tree:
-
-1. In the `services.py` file, find the `get_active_alerts` stub function, and enter the following code for getting the asset tree active alerts:
+1. In the `services.py` file, find the `get_active_alerts` stub function, and enter the following code for getting the asset tree active alerts.
 
    ```
    def get_active_alerts():
@@ -152,19 +145,17 @@ Take the following steps to invoke the EnOS API to get the active alerts of a sp
 
 2. Click **Run > Run** to start the application.
 
-3. Open a browser and enter `http://127.0.0.1:5000` in the address field. We can see the retrieved active alert records. See the following example:
+3. Open a browser, enter `http://127.0.0.1:5000` in the address field, and we will be able to see the retrieved active alert records. See the following example.
 
 <img src="media/application-4.png" style="zoom:75%;" />
 
-## Setting data uploading frequency
+## Step 5: Setting the Data Uploading Frequency
 
 > In this step, we will invoke the EnOS API *Invoke Service*. The request format is:
 >
 > *https://{apigw-address}/connect-service/v2.1/commands?action=invokeService*
 
-Take the following steps to invoke the EnOS API to set the battery data upload frequency:
-
-1. In the `services.py` file, find the `set_battery_frequency` stub function, and enter the following code for setting the battery data uploading frequency:
+1. In the `services.py` file, find the `set_battery_frequency` stub function, and enter the following code for setting the battery data uploading frequency.
 
    ```
    def set_battery_frequency(assetId, frequency):
@@ -194,11 +185,11 @@ Take the following steps to invoke the EnOS API to set the battery data upload f
 
 2. Click **Run > Run** to start the application. In this step, we still cannot see the direct result of the changed data uploading frequency because we have not retrieved the dynamic battery data, including the voltage, current, and temperature.
 
-3. In the next unit, you will need to complete the remaining development work.
+3. In the next lab, you will need to complete the remaining development work.
 
 
 
-## Getting the battery history data
+## Step 6: Getting the Battery History Data
 
 <img src="media/application-5.png" style="zoom:75%;" />
 
@@ -206,7 +197,7 @@ Take the following steps to invoke the EnOS API to set the battery data upload f
 
 ## Reference
 
-For more information of EnOS APIs, go to **EnOS Console > EnOS API**.
+For more information about EnOS APIs, go to **EnOS API** in the EnOS Management Console.
 
 
 

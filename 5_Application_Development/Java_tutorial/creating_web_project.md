@@ -1,16 +1,16 @@
-# Creating a Web Project
+# Lab 2. Creating a Web Project
 
-In this unit, we will create a Java Springboot web project for developing the application and add maven dependencies for the EnOS Java Core SDK.
+In this lab, we will create a Java Springboot web project for developing the application and add maven dependencies for the EnOS Java Core SDK.
 
-## Creating a project
+## Step 1: Creating a Project
 
 To save the effort of creating a project from scratch, we can create a project by importing the project configuration package. 
 
-Take the following steps to create a Springboot web project:
+Follow the steps below to create a Springboot web project.
 
-1. Open the [Spring Initializr](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.2.2.RELEASE&packaging=jar&jvmVersion=1.8&groupId=com.example&artifactId=battery-web&name=battery-web&description=demo%20project%20for%20spring%20boot&packageName=com.example.battery-web&dependencies=devtools,lombok,web,freemarker) site with the configured `battery-web` project information.
+1. Open the [Spring Initializr](https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.2.9.RELEASE&packaging=jar&jvmVersion=1.8&groupId=com.example&artifactId=battery-web&name=battery-web&description=demo%20project%20for%20spring%20boot&packageName=com.example.battery-web&dependencies=devtools,lombok,web,freemarker) site with the configured `battery-web` project information.
 
-2. Click the **Generate** button to download the project configuration package `battery-web.zip`.
+2. Click the **Generate** button to download the `battery-web.zip` project configuration package.
 
    ![](media/spring_initializr.png)
 
@@ -30,15 +30,15 @@ Take the following steps to create a Springboot web project:
 
    ![](media/download_dependencies.png)
 
-8. When the dependencies are all downloaded, a Java Springboot web application project is created.
+8. When the dependencies are all downloaded, a Java Springboot web application project will be created.
 
    ![](media/created_project.png)
 
 
 
-## Adding Maven dependency of EnOS SDK
+## Step 2: Adding EnOS SDK Maven Dependency
 
-After the project is created, we need to add Maven dependency of EnOS Java Core SDK, which is required for invoking EnOS APIs.
+After the project is created, we need to add the Maven dependency for EnOS Java Core SDK, which is required for invoking EnOS APIs.
 
 1. From the left navigation bar of the project space, double click the `pom.xml` file to open it.
 
@@ -72,21 +72,21 @@ After the project is created, we need to add Maven dependency of EnOS Java Core 
            </dependency>
    ```
    
-3. In the lower-right corner, a hint of "Maven projects need to be imported" will be displayed. Click **Import Changes** to import the maven dependencies.
+3. In the lower-right corner, the hint "Maven projects need to be imported" will be displayed. Click **Import Changes** to import the maven dependencies.
 
    ![](media/import_changes.png)
 
 4. Wait for the dependencies to be downloaded. 
 
-When the synchronization is completed, the Maven dependency of EnOS SDK is added.
+When the synchronization is completed, the Maven dependency for EnOS SDK is added.
 
 
 
-## Configuring application properties
+## Step 3: Configuring the Application Properties
 
-In this step, configure the application properties file with the following values:
+In this step, configure the application properties file with the following values.
 
-1. Open the `src/main/resources/application.properties` file, and enter the following values:
+1. Open the `src/main/resources/application.properties` file, and enter the following values.
 
    ```
    spring.freemarker.suffix=.html
@@ -103,7 +103,7 @@ In this step, configure the application properties file with the following value
    enos.sub.id=sub-1574736106350
    ```
 
-   Description to the properties is as follows:
+   Description to the properties is as follows.
 
    | Properties                 | Description                                                  |
    | -------------------------- | ------------------------------------------------------------ |
@@ -112,7 +112,7 @@ In this step, configure the application properties file with the following value
    | enos.app.key               | Access Key of the application SA. For the **SmartBattery_Demo** application, keep the value in the above sample. |
    | enos.app.secret            | Secret Key of the application SA.                            |
    | enos.battery.assetTreeId   | ID of the asset tree for the battery devices. For the **Envision Smart Battery Provider** asset tree, keep the value in the above sample. |
-   | enos.battery.parentAssetId | Asset ID of the parent node of batteries on the asset tree, which is used for querying list of batteries under a specific asset tree node. Replace the value with the asset ID of a node on the created asset tree. |
+   | enos.battery.parentAssetId | Asset ID of the parent node of batteries on the asset tree, which is used for querying the list of batteries under a specific asset tree node. Replace the value with the asset ID of the node on the created asset tree. |
    | enos.sub.server            | Data subscription server address. For the **EnOS_Training_Center** OU, keep the value in the above sample. |
    | enos.sub.id                | ID of the data subscription job. Replace the value with the ID of your data subscription job. |
 
@@ -162,19 +162,17 @@ In this step, configure the application properties file with the following value
    }
    ```
 
-Now, the parameter configuration for the application development is completed. See the following screen capture. 
+The parameter configuration for the application development is now completed. See the following screen capture. 
 
 ![](media/completed_configuration.png)
 
 
 
-## Testing the configured parameters
-
-In this step, test the configured parameters with a unit test.
+## Step 4: Testing the Configured Parameters
 
 1. Open the `src/test/java/com.example.batteryweb` directory and create a class named `AppConfigTests`.
 
-2. In the created `AppConfigTests` class, enter the following code:
+2. In the created `AppConfigTests` class, enter the following code.
 
    ```java
    package com.example.batteryweb;
@@ -201,23 +199,23 @@ In this step, test the configured parameters with a unit test.
 
    ![](media/unit_test.png)
 
-4. Check the results of the unit test. See the following example.
+4. Check the results of the unit test.
 
    ![](media/unit_test_result.png)
 
-5. (Optional) Add more lines in `testAppConfig()` to test reading data of other configured parameters.
+5. (Optional) Add more lines in `testAppConfig()` to test read data of other configured parameters.
 
 
 
-## Adding the Front End
+## Step 5: Adding the Front End
 
 After we have completed the configuration of the web application, we can add the front end of the application for displaying the queried battery data.
 
-In this step, extract the provided front-end package into the Java web project by the following steps:
+In this step, extract the provided front-end package into the Java web project with the following.
 
 1. Download the front-end package `Front_End.zip` from https://github.com/EnvisionIot/developer_bootcamp/tree/master/App_Front_End.
 
-2. Extract the front-end package to the `resources` directory of the Java web project. Ensure that the `static` directory, `templates` directory, and the `application.properties` file are under the same directory. The directory structure is as follows:
+2. Extract the front-end package to the `resources` directory of the Java web project. Ensure that the `static` directory, `templates` directory, and the `application.properties` file are under the same directory. The directory structure is as per the following.
 
    ```shell
    ├── src
@@ -229,7 +227,7 @@ In this step, extract the provided front-end package into the Java web project b
    │   │       └── templates/
    ```
 
-3. Open the `controller` package, create a class named `BatteryController`, and enter the following code for developing a front-end page:
+3. Open the `controller` package, create a class named `BatteryController`, and enter the following code for developing a front-end page.
 
    ```
    package com.example.batteryweb.controller;
@@ -253,13 +251,13 @@ In this step, extract the provided front-end package into the Java web project b
 
 4. Run the `BatteryWebApplication` class to start the application.
 
-5. Open a browser and enter `http://127.0.0.1:8080` in the address field. View the displaying result of the application. See the following example:
+5. Open a browser and enter `http://127.0.0.1:8080` in the address field to view the application. See the following example.
 
    ![](media/application-0.png)
 
-Now, as shown in the above picture, no data is displayed.
+As shown in the above figure, no data is displayed.
 
-In the next step, we will try calling EnOS APIs to get the following battery data step by step:
+In the next step, we will try calling EnOS APIs for the following.
 
 - Get the battery asset list
 - Get battery asset information
@@ -268,6 +266,6 @@ In the next step, we will try calling EnOS APIs to get the following battery dat
 - Set battery data uploading frequency
 - Get the dynamic data of batteries: real-time voltage, current, and temperature
 
-## Next Unit
+## Next Lab
 
 [Invoking EnOS APIs](invoking_api_java.md)

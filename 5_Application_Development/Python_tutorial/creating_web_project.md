@@ -1,24 +1,24 @@
-# Creating a Web Project
+# Lab 2. Creating a Web Project
 
-In this unit, we will create a Python Flask web project for developing the application.
+In this lab, we will create a Python Flask web project for developing the application.
 
-## Installing Python dependency
+## Step 1: Installing the Python Dependency
 
-Ensure that have installed Python 3 and PyCharm on your workstation. If not, please refer to Day 1 part for environment setup.
+Ensure that you have installed Python 3 and PyCharm on your workstation. If not, please refer to Day 1 for the environment setup.
 
-1. Install Flask Web Framework:
+1. Install the Flask Web Framework.
 
    ```
    pip install flask
    ```
 
-2. Install EnOS Python Core SDK. We will use this SDK to access EnOS API：
+2. Install the EnOS Python Core SDK. We will use this SDK to access EnOS APIs.
 
    ```
    pip install aphrodite
    ```
 
-## Creating a project
+## Step 2: Creating a Project
 
 We will use PyCharm for developing the application. 
 
@@ -35,7 +35,7 @@ We will use PyCharm for developing the application.
 
    ![create_python_file](media/create_python_file.png)
 
-   Open the `run.py` file and add the following code:
+   Open the `run.py` file and add the following code.
 
    ```
    from flask import Flask, request, render_template  # Lightweight web framework
@@ -172,8 +172,8 @@ We will use PyCharm for developing the application.
        app.debug = True
        app.run()
    ```
-    tips:
-    1) if you encountered static content (images, stylesheet) 404, you can add **static_url_path=""** this line:
+    Tips:
+    - If you encountered static content (images, stylesheet) 404, you can add **static_url_path=""** at this line.
     ```
         app = Flask(__name__, template_folder='./templates/', static_url_path="", static_folder='./static/')
     ```
@@ -181,7 +181,7 @@ We will use PyCharm for developing the application.
 
    ![create_python_file2](media/create_python_file2.png)
 
-   Open the `services.py` file and add following code: 
+   Open the `services.py` file and add following code. 
 
    ```
    from poseidon import poseidon  # This is the python SDK for EnOS API.
@@ -251,17 +251,17 @@ We will use PyCharm for developing the application.
        pass
    ```
 
-5. The final Python project structure is as follows:
+5. The final Python project structure is as per the following.
 
 <img src="media/python_project_structure.png" alt="python_project_structure" style="zoom:50%;" />
 
-## Adding the Front End
+## Step 3: Adding the Front End
 
-In this step, we will extract the provided front-end package into the Python web project by the following steps:
+In this step, we will extract the provided front-end package to the Python web project with the below.
 
 1. Download the front-end package `Front_End.zip` from https://github.com/EnvisionIot/developer_bootcamp/tree/master/App_Front_End.
 
-2. Extract the front-end package to the `root` directory of the Python web project. Ensure that the `static` directory,  `templates` directory, the `run.py` and `services.py` file are under the same directory. The directory structure is as follows:
+2. Extract the front-end package to the `root` directory of the Python web project. Ensure that the `static` directory,  `templates` directory, the `run.py` and `services.py` file are under the same directory. The directory structure is as follows.
 
    ```shell
    ├── root
@@ -271,7 +271,7 @@ In this step, we will extract the provided front-end package into the Python web
    │   ├── services.py
    ```
 
-3. In the project root directory, run the following command to start the application:
+3. In the project root directory, run the following command to start the application.
 
    ```
    python run.py
@@ -279,13 +279,13 @@ In this step, we will extract the provided front-end package into the Python web
 
    ![start_app](media/start_app.png)
 
-4. Open a browser and enter `http://127.0.0.1:5000` in the address field. View the displaying result of the application. See the following example:
+4. Open a browser and enter `http://127.0.0.1:5000` in the address field to view the application. See the following example.
 
    ![application](media/application-0.png)
 
-Now, as shown in the above picture, no data is displayed. 
+As shown in the above figure, no data is displayed.
 
-In the next step, we will try calling EnOS APIs to get the following battery data step by step:
+In the next step, we will try calling EnOS APIs for the following.
 
 - Get the battery asset list
 - Get battery asset information
