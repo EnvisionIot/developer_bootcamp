@@ -10,11 +10,11 @@ In this training, you’ll:
 
 ## Table of Contents
 
-- [Day 1: Overviews & Environment Setup](Day1_Overview)
-- [Day 2: Device Connectivity & Management](Day2_Device_Connectivity_Management/lab_tutorial)
-- [Day 3: Data Management - Hot/Warm/Cold Path of data on EnOS](Day3_Data_Management/lab_tutorial)
-- [Day 4: Analytics & Application Development](Day4_Analytics_Application_Development)
-- [Day 5: EnOS Edge Connectivity & Intelligence](Day5_Edge_Connectivity_Intelligence/lab_tutorial)
+- [Day 1: Overviews & Environment Setup](1_Overview)
+- [Day 2: Device Connectivity & Management](2_Device_Connectivity_Management)
+- [Day 3: Data Management - Hot/Warm/Cold Path of data on EnOS](3_Data_Management)
+- [Day 5: Application Development](5_Application_Development)
+- [Day 6: EnOS Edge Connectivity & Intelligence]()
 
 ## Demo Application
 
