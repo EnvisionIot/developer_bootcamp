@@ -1,6 +1,6 @@
 ![Developer Bootcamp](media/Academy_Developer_Bootcamp.png)
 
-Welcome on board the 5-day EnOS Developer Bootcamp!
+Welcome on board to the EnOS Developer Bootcamp!
 
 In this training, you’ll:
 
@@ -10,10 +10,10 @@ In this training, you’ll:
 
 ## Table of Contents
 
-- [Day 1: Overviews & Environment Setup](1_Overview)
-- [Day 2: Device Connectivity & Management](2_Device_Connectivity_Management/lab_tutorial)
-- [Day 3: Data Management - Hot/Warm/Cold Path of data on EnOS](3_Data_Management/lab_tutorial)
-- [Day 5: Application Development](5_Application_Development/)
+- [1: Overviews & Environment Setup](1_Overview)
+- [2: Device Connectivity & Management](2_Device_Connectivity_Management/lab_tutorial)
+- [3: Data Management - Hot/Warm/Cold Path of data on EnOS](3_Data_Management/lab_tutorial)
+- [4: Application Development](5_Application_Development/)
 
 ## Demo Application
 
