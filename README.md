@@ -8,6 +8,8 @@ In this training, you’ll:
 - Learn how to select connectivity solutions, analyze your data, and develop an application with EnOS service capabilities
 - Build your 1st application on EnOS. No worries, step-by-step tutorials are provided to help you with all hands-on workshops.
 
+
+
 ## Table of Contents
 
 - [Day 1: Overviews & Environment Setup](Day1_Overview)
