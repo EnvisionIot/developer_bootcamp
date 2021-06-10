@@ -2,7 +2,7 @@
 
 Before connecting devices to EnOS IoT Hub, you need to register the devices in the EnOS Management Console.
 
-This tutorial will use a smart battery device as an example, and focus on how to register a smart device that connects 
+This tutorial will use a smart battery device as an example, and focus on how to register a smart device that connects
 directly to the EnOS Cloud.
 
 > **Note**: You will need to replace the configuration name with your own by following the naming pattern: `xxx_studentId`.
@@ -13,9 +13,9 @@ directly to the EnOS Cloud.
 
 ## Step 1: Defining a Model
 
-A model is the abstraction of the features of an object that is connected to the IoT Hub. The device model defines the features of a device, including its attributes, measurement points, services, and events. 
+A model is the abstraction of the features of an object that is connected to the IoT Hub. The device model defines the features of a device, including its attributes, measurement points, services, and events.
 
-1. In the EnOS Management Console, click **Model** from the left navigation menu.
+1. In the EnOS Management Console, click **Models** from the left navigation menu.
 
 2. Click **New Model**, enter the following in the **New Model** window, and click **OK**.
     - Identifier: SmartBattery_Model_a01
@@ -27,42 +27,41 @@ A model is the abstraction of the features of an object that is connected to the
 
     ![](media/model_create.png)
 
-3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab in the **Model Details** screen.
+3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab on the **Model Details** page.
 
-4. Click **Edit**, **Add**, and create the following custom features in the **Add Feature** window.
+4. Click **Edit > Add > Create Custom Feature**, and create the following custom features in the **Add Feature** window.
     ![](media/feature_add.png)
 
     Use the following **Point Types** for the corresponding **Measurement Points**.
 
     | Measurement Point  | Point Type   |
     | ----------------   | ------------ |
-    | accumulating_power | AI Raw Data  |
-    | voltage_dq         | AI Raw Data  |
-    | cycle_number       | Generic Data |    
-    | discharge_energy   | AI Raw Data  |
-    | health_level       | DI Data      |
-    | voltage            | AI Raw Data  |
-    | temp               | AI Raw Data  | 
-    | current            | AI Raw Data  | 
-    
+    | accumulating_power | AI           |
+    | voltage_dq         | AI           |
+    | cycle_number       | Generic      |    
+    | discharge_energy   | AI           |
+    | health_level       | DI           |
+    | voltage            | AI           |
+    | temp               | AI           |
+    | current            | AI           |
+
 ## Step 2: Creating a Product
 
-A smart battery product is a collection of battery devices that have the same features. With the model as a base, a product 
-further defines the communication specifications for the device.
+A smart battery product is a collection of battery devices that have the same features. With the model as a base, a product further defines the communication specifications for the device.
 
 In this step, create a product called **SmartBattery_Product_a01**. We shall assume that a device of this product model sends data in JSON format and that the CA certificate is not used (only secret-based authentication is enforced).
 
-1. In the EnOS Management Console, select **Asset Management > Product**.
+1. In the EnOS Management Console, select **Device Management > Products**.
 
 2. Click **New Product**, enter the following in the **New Product** window, and click **OK**.
 
     - Product Name: SmartBattery_Product_a01
     - Asset Type: Device
     - Model: SmartBattery_Model_a01
-    - Data Type: JSON
+    - Data Type: EnOS IoT
     - Certificate-Based Authentication: Disabled
     - Description: Computer Battery
-    
+
 ![](media/product_add.png)
 
 For details about the configuration of a product, see [Creating a Device Collection (Product)](https://support.envisioniot.com/docs/device-connection/en/latest/howto/device/manage/creating_product.html).
@@ -71,19 +70,18 @@ For details about the configuration of a product, see [Creating a Device Collect
 
 A device is the instance of a model and belongs to a certain product. It inherits not only the basic features of the product, but also its communication features (the device key-secret pair, and if enabled, device certificate used for secure communication).
 
-In this step, create a device named **SmartBattery_Device_a01**, which belongs to the **SmartBattery_Product_a01** created in 
+In this step, create a device named **SmartBattery_Device_a01**, which belongs to the **SmartBattery_Product_a01** created in
 the previous step.
 
-1. In the EnOS Management Console, select **Asset Management > Device Asset**.
+1. In the EnOS Management Console, select **Device Management > Device Assets**.
 
 2. Click **New Device**, enter the following in the **New Device** window, and click **OK**.
 
     - Product: SmartBattery_Product_a01
     - Device Name: SmartBattery_Device_a01
+    - Device Key: Enter the device key
     - Timezone/City: UTC+08:00
     - Use DST: No
-    - Device Key: Optional (it can be generated automatically by the system)
-    <!-- - brand: Enter the brand information of the battery (an attribute defined for the model) -->
 
 ![](media/device_register.png)
 
@@ -91,13 +89,13 @@ the previous step.
 
 The EnOS Time Series Database (TSDB) provides a variety of storage options for you to store important and frequently-accessed business data. Through configuring storage policies, time-series data can be routed to different datastores based on data types and storage time, thus reducing data storage costs and enhancing data access efficiency.
 
-**Note**: 
+**Note**:
  - By default, the uploaded data is not stored in TSDB. You must configure data storage policy before the data is uploaded to EnOS Cloud.
  - Each model can be associated to only one storage policy group.
 
 In this step, configure a storage policy for the measurement points that are defined in the **SmartBattery_Model_a01** model.
 
-1. Select **Time Series Data Management > Storage Policy** from the left navigation menu.
+1. Select **Time Series Data Management > Storage Policies** from the left navigation menu.
 
 2. Click the **+** icon and **Create Group** to create a storage policy group.
 
@@ -141,7 +139,7 @@ EnOS Java SDK for MQTT requires Java SE 8 and Maven 3. Follow the steps below to
         <dependency>
             <groupId>com.envisioniot</groupId>
             <artifactId>enos-mqtt</artifactId>
-            <version>2.1.7-SNAPSHOT</version>
+            <version>2.2.13</version>
         </dependency>
 
         <dependency>
@@ -171,7 +169,7 @@ After the development environment is set up, follow the steps below to connect t
 1. Declare the variables that will be used in the program. Example:
 
     ```java
-    private final static String PLAIN_SERVER_URL = "tcp://mqtt-ppe1.envisioniot.com:21883"; // Obtain the MQTT Broker address from EnOS Console > Help > Environment Information
+    private final static String PLAIN_SERVER_URL = "tcp://mqtt-ppe1.envisioniot.com:11883"; // Obtain the MQTT Broker address from EnOS Console > Help > Environment Information
     private final static String PRODUCT_KEY = "yourprodutkey";
     private final static String DEVICE_KEY = "yourdevicekey";
     private final static String DEVICE_SECRET = "yourdevicesecret";
@@ -188,7 +186,7 @@ After the development environment is set up, follow the steps below to connect t
         client.connect();
     }
     ```
-3. Use the connect function to connect the Smart Battery to EnOS Cloud. Example:
+3. Use the **connect()** function to connect the Smart Battery to EnOS Cloud. Example:
 
     ```java
     public static void main(String[] args) {
@@ -196,17 +194,17 @@ After the development environment is set up, follow the steps below to connect t
         final MqttClient client = new MqttClient(new DefaultProfile(input));
 
         client.connect(new IConnectCallback() {
-            
-            // On connect 
+
+            // On connect
             public void onConnectSuccess() {
                 LOG.info("Connect Success.");
 
                 // Set service handler to handle service command from cloud
                 client.setArrivedMsgHandler(ServiceInvocationCommand.class, createServiceCommandHandler(client));
-                
+
                 // Set atrributes handler to handle atrributes set command from cloud
                 client.setArrivedMsgHandler(MeasurepointSetCommand.class, createMeasurePointSetHandler(client));
-                
+
                 try {
                     // Just a simulator to post the measurepoints of devices
                     monitor(client);
@@ -262,7 +260,7 @@ After the Smart Battery is connected to EnOS, follow the steps below to simulate
         return data;
     }
     ```
-3. Use the **monitor()** function to upload the measurement points of the Smart Battery to EnOS Cloud. The following code 
+3. Use the **monitor()** function to upload the measurement points of the Smart Battery to EnOS Cloud. The following code
 snippet is implemented in the multi-thread mode to post the voltage, temperature, and current respectively.
 
 ```java
@@ -322,7 +320,7 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
 
     ```java
     package com.example;
-    
+
     import com.envisioniot.enos.iot_mqtt_sdk.core.IConnectCallback;
     import com.envisioniot.enos.iot_mqtt_sdk.core.MqttClient;
     import com.envisioniot.enos.iot_mqtt_sdk.core.login.LoginInput;
@@ -334,14 +332,14 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
     import org.slf4j.Logger;
     import org.slf4j.LoggerFactory;
     import java.util.Random;
-    
+
     import java.util.*;
-    
+
     public class SmartBatterySamples {
         private final static Logger LOG = LoggerFactory.getLogger(SmartBatterySamples.class);
-    
+
         private final static String PLAIN_SERVER_URL = "tcp://mqtt-ppe1.envisioniot.com:21883";
-    
+
         private final static String PRODUCT_KEY = "yourproductkey";
         private final static String DEVICE_KEY = "yourdevicekey";
         private final static String DEVICE_SECRET = "yourdevicesecret";
@@ -361,15 +359,15 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
         private static String change = "current";
         private static boolean flag = true;
         private static boolean temp_flag = true;
-    
+
         public static void main(String[] args) {
             LoginInput input = new NormalDeviceLoginInput(PLAIN_SERVER_URL, PRODUCT_KEY, DEVICE_KEY, DEVICE_SECRET);
             final MqttClient client = new MqttClient(new DefaultProfile(input));
-    
+
             client.connect(new IConnectCallback() {
                 public void onConnectSuccess() {
                     LOG.info(" Connect Success.");
-    
+
                     // Set service handler to handle service command from cloud
                     client.setArrivedMsgHandler(ServiceInvocationCommand.class, createServiceCommandHandler(client));
                     client.setArrivedMsgHandler(MeasurepointSetCommand.class, createMeasurePointSetHandler(client));
@@ -380,26 +378,26 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                     }
                     LOG.info("Waiting commands from cloud");
                 }
-    
+
                 public void onConnectLost() {
                     LOG.info("Connect Lost.");
                     client.close();
                 }
-    
+
                 public void onConnectFailed(int reason) {
                     LOG.info("Connect Failed.");
                     client.close();
                 }
             });
         }
-    
+
         private static IMessageHandler<MeasurepointSetCommand, MeasurepointSetReply> createMeasurePointSetHandler(final MqttClient client) {
             return (MeasurepointSetCommand arrivedMessage, List<String> argList) -> {
                 byte[] bytes = arrivedMessage.encode();
                 LOG.info("arrivedMessage: {}", new String(bytes));
                 LOG.info("len: {}", bytes.length);
                 LOG.info("argList: {}", argList);
-    
+
                 // argList: productKey, deviceKey, serviceName
                 // If the request is for sub-device, the productKey and deviceKey
                 // are used to identify the target sub-device.
@@ -408,15 +406,15 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                 //String serviceName = argList.get(2);
                 LOG.info("productKey: {}, deviceKey: {}",
                         productKey, deviceKey);
-    
+
                 return MeasurepointSetReply.builder().build();
             };
         }
-    
+
         private static IMessageHandler<ServiceInvocationCommand, ServiceInvocationReply> createServiceCommandHandler(final MqttClient client) {
             return (ServiceInvocationCommand request, List<String> argList) -> {
                 LOG.info("receive command: {}", request);
-    
+
                 // argList: productKey, deviceKey, serviceName
                 // If the request is for sub-device, the productKey and deviceKey
                 // are used to identify the target sub-device.
@@ -425,22 +423,22 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                 String serviceName = argList.get(2);
                 LOG.info("productKey: {}, deviceKey: {}, serviceName: {}, params: {}",
                         productKey, deviceKey, serviceName, request.getParams());
-    
+
                 LOG.info("<<<<< [service command] rcvn async serevice invocation command: " + request + " topic: " + argList);
-    
+
                 if (serviceName.equals("high_frequency_report_service")) {
                     Map<String, Object> params = request.getParams();
                     int n = (Integer) params.get("interval");
                     LOG.info("arg interval: {}", n);
                     interval = n;
-    
+
                     // Set the reply result
                     return ServiceInvocationReply.builder().build();
                 } else if (serviceName.equals("disconnect")) {
                     Map<String, Object> params = request.getParams();
                     int delayMS = (Integer) params.get("delayMS");
                     LOG.info("arg delay: {}", delayMS);
-    
+
                     final Timer timer = new Timer();
                     timer.schedule(new TimerTask() {
                         @Override
@@ -452,11 +450,11 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                     }, delayMS);
                     return ServiceInvocationReply.builder().build();
                 }
-    
+
                 return ServiceInvocationReply.builder().setMessage("unknown service: " + serviceName).setCode(220).build();
             };
         }
-    
+
         // Simulate the measuring points of devices
         public static Map<String, Object> simulateMeasurePoints() {
             Map<String, Object> data=new HashMap<String, Object>();
@@ -465,10 +463,10 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
             data.put("voltage", random.nextDouble()*(VOL_MAX - VOL_MIN) + VOL_MIN);
             data.put("current", random.nextDouble()*(CUR_MAX - CUR_MIN) + CUR_MIN);
             data.put("current_d", random.nextDouble()*(CUR_D_MAX - CUR_D_MIN) + CUR_D_MIN);
-    
+
             return data;
         }
-    
+
         // Post measuring point of voltage
         private static void postVoltage(final MqttClient client) {
             Map<String, Object> measurePoints = simulateMeasurePoints();
@@ -477,7 +475,7 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                         .setQos(0)
                         .addMeasurePoint("voltage", measurePoints.get("voltage"))
                         .build();
-    
+
                 MeasurepointPostResponse response = client.publish(request);
                 if (response.isSuccess()) {
                     LOG.info("measure points(voltage) are published successfully");
@@ -488,12 +486,12 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                 LOG.error("failed to publish measure point(voltage)", e);
             }
         }
-    
+
         // Post measuring point of current
         private static void postCurrent(final MqttClient client) {
             Map<String, Object> measurePoints = simulateMeasurePoints();
             try {
-    
+
                 // Simulate the measuring points according to battery
                 cur_count += interval;
                 if(cur_count >= CUR_PERIOD) {
@@ -502,12 +500,12 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                     if (flag) change = "current";
                     else change = "current_d";
                 }
-    
+
                 MeasurepointPostRequest request = MeasurepointPostRequest.builder()
                         .setQos(0)
                         .addMeasurePoint("current", measurePoints.get(change))
                         .build();
-    
+
                 MeasurepointPostResponse response = client.publish(request);
                 if (response.isSuccess()) {
                     LOG.info("measure points(current) are published successfully");
@@ -518,7 +516,7 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                 LOG.error("failed to publish measure point(voltage)", e);
             }
         }
-    
+
         // Post measuring point of temperature
         private static void postTemp(final MqttClient client) {
             Map<String, Object> measurePoints = simulateMeasurePoints();
@@ -539,12 +537,12 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                         temp_count = interval;
                     }
                 }
-    
+
                 MeasurepointPostRequest request = MeasurepointPostRequest.builder()
                         .setQos(0)
                         .addMeasurePoint("temp", measurePoints.get("temp"))
                         .build();
-    
+
                 MeasurepointPostResponse response = client.publish(request);
                 if (response.isSuccess()) {
                     LOG.info("measure points(Temp) are published successfully");
@@ -555,7 +553,7 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                 LOG.error("failed to publish measure points", e);
             }
         }
-    
+
         // Monitoring the voltage, temperature and current of device
         public static void monitor(final MqttClient client) throws Exception {
             System.out.println("post measure points start ...");
@@ -568,12 +566,12 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                         } catch (InterruptedException e) {
                             System.out.println("post thread end.");
                         }
-    
+
                     }
                 }
             };
             t1.start();
-    
+
             Thread t2 = new Thread() {
                 public void run() {
                     while (true) {
@@ -583,12 +581,12 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                         } catch (InterruptedException e) {
                             System.out.println("post thread end.");
                         }
-    
+
                     }
                 }
             };
             t2.start();
-    
+
             Thread t3 = new Thread() {
                 public void run() {
                     while (true) {
@@ -598,26 +596,26 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
                         } catch (InterruptedException e) {
                             System.out.println("post thread end.");
                         }
-    
+
                     }
                 }
             };
             t3.start();
         }
-    
+
     }
 
     ```
-2. Check the running results of the program. The program will return the following sample results. 
+2. Check the running results of the program. The program will return the following sample results.
 
     ```
     onConnectSuccess
     waiting commands from cloud
     ```
     ```java
-    "C:\Program Files\Java\jdk1.8.0_191\bin\java.exe" 
-    
-    2019-12-08 13:00:40 DEBUG DefaultProcessor:245 - connect complete , reconnect false , serverUri tcp://mqtt-ppe1.envisioniot.com:21883 
+    "C:\Program Files\Java\jdk1.8.0_191\bin\java.exe"
+
+    2019-12-08 13:00:40 DEBUG DefaultProcessor:245 - connect complete , reconnect false , serverUri tcp://mqtt-ppe1.envisioniot.com:21883
     2019-12-08 13:00:40 INFO  SmartBatterySample:46 - Connect Success.
     post measure points start ...
     2019-12-08 13:00:40 INFO  SmartBatterySample:57 - Waiting commands from cloud
@@ -646,7 +644,7 @@ snippet is implemented in the multi-thread mode to post the voltage, temperature
 6. Check the measurement points which are posted to the cloud under the **Measurement Points** tab on the **Device Details** page.
 
     ![](media/feature_details.png)
-    
+
 
 ## Step 9: Checking the Data Insight of the Device
 
@@ -658,4 +656,3 @@ Go to **Time Series Data Management > Data Insights** and select the **SmartBatt
 ## Next Lab
 
 [Simulating Measurement Points](302-2_simulating_measure_points.md)
-

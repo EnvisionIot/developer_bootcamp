@@ -27,7 +27,7 @@ A model is the abstraction of the features of an object that is connected to the
 
     ![](media/model_create.png)
 
-3. From the list of created model, click **Edit**, and then click the **Feature Definition** tab on the **Model Details** page.
+3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab on the **Model Details** page.
 
 4. Click **Edit > Add > Create Custom Feature**, and create the following custom features in the **Add Feature** window.
     ![](media/feature_add.png)
@@ -47,8 +47,7 @@ A model is the abstraction of the features of an object that is connected to the
 
 ## Step 2: Creating a Product
 
-A smart battery product is a collection of battery devices that have the same features. With the model as a base, a product
-further defines the communication specifications for the device.
+A smart battery product is a collection of battery devices that have the same features. With the model as a base, a product further defines the communication specifications for the device.
 
 In this step, create a product called **SmartBattery_Product_a01**. We shall assume that a device of this product model sends data in JSON format and that the CA certificate is not used (only secret-based authentication is enforced).
 
@@ -96,7 +95,7 @@ EnOS Time Series Database (TSDB) provides a variety of storage options for you t
 
 In this step, configure a storage policy for the measurement points that are defined in the **SmartBattery_Model_a01** model.
 
-1. Select **Time Series Data Management > Storage Policy** from the left navigation menu.
+1. Select **Time Series Data Management > Storage Policies** from the left navigation menu.
 
 2. Click the **+** icon and **Create Group** to create a storage policy group.
 
@@ -160,7 +159,7 @@ After the development environment is set up, follow the steps below to connect t
         client.connect()  # connect in sync
     ```
 
-3. Use the connect function to connect the Smart Battery to EnOS Cloud. Example:
+3. Use the `connect()` function to connect the Smart Battery to EnOS Cloud. Example:
 
     ```python
     def on_connect():
