@@ -12,20 +12,20 @@ The scenario is depicted in the following chart:
 
 This tutorial will walk you through a typical path for smart battery management, as per the below.
 
-- Registering & connecting a Smart Battery to EnOS.
+- Registering and connecting a Smart Battery to EnOS.
 - Simulating the battery to post measurement points data using a Java program developed through Java SDK.
 - Monitoring the alerts of the Smart Battery.
 
 ## Before You Start
 
 - Ensure that you have signed up for an individual account or an enterprise account to access the **EnOS Management Console**.
-- Ensure that your account have been assigned full access to the model service, device connectivity & management services, and data management services (in the training, this is already done by the trainer).
+- Ensure that your account have been assigned full access to the IoT Hub and Enterprise Data Platform services (in the training, this is already done by the trainer).
 
 ## Labs
 
 This tutorial includes the following units:
 
-[Lab 1. Connecting a Smart Battery to EnOS (Java)](302-1_connecting_device_to_EnOS_cloud.md) 
+[Lab 1. Connecting a Smart Battery to EnOS (Java)](302-1_connecting_device_to_EnOS_cloud.md)
 
 [Lab 1. Connecting a Smart Battery to EnOS (Python)](302-1_connecting_device_to_EnOS_cloud_python.md)
 

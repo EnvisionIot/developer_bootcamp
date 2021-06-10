@@ -2,7 +2,7 @@
 
 Before connecting devices to EnOS IoT Hub, you need to register the devices in the EnOS Management Console.
 
-This tutorial will use a smart battery device as an example, and focus on how to register a smart device that connects 
+This tutorial will use a smart battery device as an example, and focus on how to register a smart device that connects
 directly to the EnOS Cloud.
 
 > **Note**: You will need to replace the configuration name with your own by following the naming pattern: `xxx_studentId`.
@@ -13,9 +13,9 @@ directly to the EnOS Cloud.
 
 ## Step 1: Defining a Model
 
-A model is the abstraction of the features of an object that is connected to the IoT Hub. The device model defines the features of a device, including its attributes, measurement points, services, and events. 
+A model is the abstraction of the features of an object that is connected to the IoT Hub. The device model defines the features of a device, including its attributes, measurement points, services, and events.
 
-1. In the EnOS Management Console, click **Model** from the left navigation menu.
+1. In the EnOS Management Console, click **Models** from the left navigation menu.
 
 2. Click **New Model**, enter the following in the **New Model** window, and click **OK**.
     - Identifier: SmartBattery_Model_a01
@@ -27,39 +27,39 @@ A model is the abstraction of the features of an object that is connected to the
 
     ![](media/model_create.png)
 
-3. From the list of created model, click **Edit**, and then click the **Feature Definition** tab of the **Model Details** screen.
+3. From the list of created model, click **Edit**, and then click the **Feature Definition** tab on the **Model Details** page.
 
-4. Click **Edit**, **Add**, and create the following custom features in the **Add Feature** window.
+4. Click **Edit > Add > Create Custom Feature**, and create the following custom features in the **Add Feature** window.
     ![](media/feature_add.png)
 
     Use the following **Point Types** for the corresponding **Measurement Points**.
 
     | Measurement Point  | Point Type   |
     | ----------------   | ------------ |
-    | accumulating_power | AI Raw Data  |
-    | voltage_dq         | AI Raw Data  |
-    | cycle_number       | Generic Data |    
-    | discharge_energy   | AI Raw Data  |
-    | health_level       | DI Data      |
-    | voltage            | AI Raw Data  |
-    | temp               | AI Raw Data  | 
-    | current            | AI Raw Data  | 
-    
+    | accumulating_power | AI           |
+    | voltage_dq         | AI           |
+    | cycle_number       | Generic      |    
+    | discharge_energy   | AI           |
+    | health_level       | DI           |
+    | voltage            | AI           |
+    | temp               | AI           |
+    | current            | AI           |
+
 ## Step 2: Creating a Product
 
-A smart battery product is a collection of battery devices that have the same features. With the model as a base, a product 
+A smart battery product is a collection of battery devices that have the same features. With the model as a base, a product
 further defines the communication specifications for the device.
 
 In this step, create a product called **SmartBattery_Product_a01**. We shall assume that a device of this product model sends data in JSON format and that the CA certificate is not used (only secret-based authentication is enforced).
 
-1. In the EnOS Management Console, select **Asset Management > Product**.
+1. In the EnOS Management Console, select **Device Management > Products**.
 
 2. Click **New Product**, enter the following in the **New Product** window, and click **OK**.
 
     - Product Name: SmartBattery_Product_a01
     - Asset Type: Device
     - Model: SmartBattery_Model_a01
-    - Data Type: JSON
+    - Data Type: EnOS IoT
     - Certificate-Based Authentication: Disabled
     - Description: Computer Battery
 
@@ -71,28 +71,27 @@ For details about the configuration of a product, see [Creating a Device Collect
 
 A device is the instance of a model and belongs to a certain product. It inherits not only the basic features of the product, but also its communication features (the device key-secret pair, and if enabled, device certificate used for secure communication).
 
-In this step, create a device named **SmartBattery_Device_a01**, which belongs to the **SmartBattery_Product_a01** created in 
+In this step, create a device named **SmartBattery_Device_a01**, which belongs to the **SmartBattery_Product_a01** created in
 the previous step.
 
-1. In the EnOS Management Console, select **Asset Management > Device Asset**.
+1. In the EnOS Management Console, select **Device Management > Device Assets**.
 
 2. Click **New Device**, enter the following in the **New Device** window, and click **OK**.
 
     - Product: SmartBattery_Product_a01
     - Device Name: SmartBattery_Device_a01
+    - Device Key: Enter the device key
     - Timezone/City: UTC+08:00
     - Use DST: No
-    - Device Key: Optional (it can be generated automatically by the system)
-    <!-- - brand: Enter the brand information of the battery (an attribute defined for the model) -->
 
 ![](media/device_register.png)
 
-## Step 4: Configuring the TSDB Storage Policy
+## Step 4: Configuring TSDB Storage Policy for Storing Device Data
 
 EnOS Time Series Database (TSDB) provides a variety of storage options for you to store important and frequently-accessed business data. Through configuring storage policies, time-series data can be routed to different datastores based on data types and storage time, thus reducing data storage costs and enhancing data access efficiency.
 
-**Note**: 
- - By default, the uploaded data will is not stored in TSDB. You must configure data storage policy before the data is uploaded to EnOS Cloud.
+**Note**:
+ - By default, the uploaded data will not stored in TSDB. You must configure data storage policy before the data is uploaded to EnOS Cloud.
  - Each model can be associated to only one storage policy group.
 
 In this step, configure a storage policy for the measurement points that are defined in the **SmartBattery_Model_a01** model.
@@ -232,8 +231,8 @@ After the Smart Battery is connected to EnOS, follow the steps below to simulate
 
         return data
     ```
-    
-3. Use the `post_measure_points()` and `monitor()` function to upload the measurement points of the Smart Battery to EnOS Cloud. See the following code 
+
+3. Use the `post_measure_points()` and `monitor()` function to upload the measurement points of the Smart Battery to EnOS Cloud. See the following code
 snippet.
 
     ```python
@@ -388,7 +387,7 @@ snippet.
     measurepoint post response code: 200, {'cycle_number': 0, 'temp': 53.70875593556161, 'voltage': 4.3430578089373055, 'current': 40.01262380152207, 'accumulating_power': 538.3030862568646}
     measurepoint post response code: 200, {'cycle_number': 0, 'temp': 56.207075645498826, 'voltage': 4.24141682055193, 'current': 41.34971752375547, 'accumulating_power': 713.6844736871919}
     ```
-    
+
 4. Check the status change of the Smart Battery device in the Device List on the EnOS Management Console. The status of the device will change from Inactive to Online.
 
     ![](media/device_online.png)
@@ -400,7 +399,7 @@ snippet.
 6. Check the measurement points which are posted to the cloud under the **Measurement Points** tab on the **Device Details** page.
 
     ![](media/feature_details.png)
-    
+
 ## Step 9: Checking the Data Insight of the Device
 
 Go to **Time Series Data Management > Data Insights** and select the **SmartBattery_Device_a01** device to view the real-time current data report in minutes.
@@ -411,4 +410,3 @@ Go to **Time Series Data Management > Data Insights** and select the **SmartBatt
 ## Next Lab
 
 [Simulating Measurement Points](302-2_simulating_measure_points.md)
-
