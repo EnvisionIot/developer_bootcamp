@@ -11,27 +11,27 @@ In this tutorial, we will simulate a smart battery that sends data to EnOS. We w
 ## Before You Start
 
 - Ensure that you have registered the device to simulate and configured the TSDB storage policy for it.
-- Ensure that you have access to device management. If not, contact your OU administrator to grant you the following permissions:
-    - Model
+- Ensure that you have access to the Device Management service. If not, contact your OU administrator to grant you the following permissions:
+    - Models
     - Device Management
-    - Alert
-    - Times Series Data
+    - Alert Management
+    - Times Series Data Management
 
 ## Step 1: Adding a Device Simulator
 
-In the EnOS Management Console, click **Asset Management > Simulator** from the left navigation menu.
+In the EnOS Management Console, click **Device Management > Simulators** from the left navigation menu.
 
 1. Click **New Simulator**, and select the device that you have registered for the simulation.
 
-2. The device list shows all the devices that have been created in the current OU. 
+2. The device list shows all the devices that have been created in the current OU.
 
-> **Note**: You can only simulate a device with an **inactive** status. You cannot simulate a device that is already activated and is online or offline.
+> **Note**: You can only simulate a device with **inactive** status. You cannot simulate a device that is already activated and is online or offline.
 
 3. Click **OK** to create a simulator for the selected device.
 
 ![](media/simulator_add_new.png)
 
-In the list of simulators, you can see the simulator you just created. 
+In the list of simulators, you can see the simulator you just created.
 
 Next, you need to define the simulation data sample for it.
 
@@ -39,27 +39,27 @@ Next, you need to define the simulation data sample for it.
 
 ## Step 2. Defining and Uploading the Simulation Data Sample
 
-1. In the list of simulators, click **... > Define Sample** for the simulator you just created.
+1. In the list of simulators, click **Edit Sample** for the simulator you just created.
 
 2. Click **Download** in the pop-up window.
 
 3. Input the simulation data sample in the downloaded template.
-    
-    - The first column **timeOfDay** refers to the _relative time stamp_: you can enter the relative timestamp within one day (24 hours) using the format H:MM:SS.    
-    - The rest of the column headers are for the names of model points. You only need to enter the identifier of the model point to be simulated rather than entering all model points.     
-    - The content under the header are point values. If the data type is array, the format is [value1, value2, value3, ...]. Leave the cell empty if there is no value at the current time point.
 
-4. In the pop-up window, click **Upload** to upload the simulation data.
+    - The first column **timeOfDay** refers to the _relative time stamp_: you can enter the relative timestamp within one day (24 hours) using the format H:MM:SS.    
+    - The rest of the column headers are for the measurement points that are defined in the device model. You only need to enter the identifier of the measurement points to be simulated rather than entering all of them.     
+    - The values are simulated measurement point values. If the data type is array, the format is [value1, value2, value3, ...]. Leave the cell empty if there is no value at the current time point.
+
+4. When completed editing the template, in the **Define Sample** pop-up window, click **Upload** to upload the simulation data.
 
 5. Click **OK**.
 
-See [AESC_DEMO_Easy.csv](media/AESC_DEMO_Easy.csv) for a sample data upload template.
+See [AESC_DEMO_Easy.csv](media/AESC_DEMO_Easy.csv) for a ready-to-use template with simulated data.
 
 ![](media/upload.png)
 
-When we create the alert rule later, we will be setting the alert threshold to 60 milliampere. So in this sample, we need to modify the value in the `current` column so that at least one value is above 60 to trigger the alert "Current is above threshold".
+When we create the alert rules later, we will be setting the alert threshold to 60 milliampere. So in this sample, we need to modify the value in the `current` column so that at least one value is above 60 to trigger the alert "Current is above threshold".
 
-The best practice is setting some values above 60 at earlier moments so that you do not have to wait long to see an alert triggered. In this tutorial, the time zone where the author is is UTC+08:00. The time is 10:00 when the author is writing this tutorial. Setting abnormal values at 0:02:00, 0:07:00, and 0:10:00, will therefore trigger alerts at 10:02:00, 10:07:00, and 10:10:00 of the author’s local time.
+The best practice is setting some values above 60 at earlier moments so that you do not have to wait long to see an alert triggered. In this tutorial, the time zone of the author is UTC+08:00. The time is 10:00 when the author is writing this tutorial. Setting abnormal values at 0:02:00, 0:07:00, and 0:10:00, will therefore trigger alerts at 10:02:00, 10:07:00, and 10:10:00 of the author’s local time.
 
 ![](media/sim_data.png)
 
@@ -71,9 +71,9 @@ You can actually set your preferred end time, but setting it to a later time lea
 
 ![](media/simulator_start.png)
 
-## Step 4: Checking the Data Insight of the Device
+## Step 4: Checking the Device Data
 
-Go to **Time Series Data Management > Data Insights** and select the **SmartBattery_Device_a01** device to view the real-time current data report in minutes.
+Go to **Time Series Data Management > Data Insights** and select the **SmartBattery_Device_a01** device to view the real-time current data report in minutes. See the following example:
 
 ![](media/data_insight.png)
 
