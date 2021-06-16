@@ -34,9 +34,10 @@ If your OU has not installed the Data Calculation Templates, you need first inst
 
 ## Step 2: Creating a Stream Data Processing Job
 
-1. Log in to the EnOS Management Console and click **Stream Data Processing > Stream Development**.
-2. Click the **+** icon above the stream processing job list to open the **New Stream** window.
-3. For **Method**, select **New** to create a stream data processing job.
+1. Log in to the EnOS Management Console and click **Stream Processing > Pipeline Designer**.
+2. Click the **+** icon above the stream processing job list to open the **New Pipeline** window.
+3. For **Pipeline Type**, select **General**.
+4. For **Method**, select **New** to create a stream data processing job.
 5. Enter the name and description of the stream processing job.
 6. For **Template**, select **Time Window Aggregation**.
 7. For **Version**, select **0.1.0**.
@@ -44,11 +45,9 @@ If your OU has not installed the Data Calculation Templates, you need first inst
 
 <img src="media/create_stream.png" style="zoom: 80%;" />
 
-
-
 ## Step 3: Configuring the Stream Data Processing Job
 
-In the **Window Strategy** section, provide the following.
+In the **Window Policy** section, complete the following configuration.
 
 | Field           | Value           | Description                                                  |
 | --------------- | --------------- | ------------------------------------------------------------ |
@@ -73,8 +72,7 @@ See the following example of the completed configuration:
 
 ![](media/stream_config.png)
 
-For more information about the *Time Window Aggregation* template, see [Configuring a Time Window Data Aggregation Job](https://support.envisioniot.com/docs/data-asset/en/latest/howto/streaming/configuring_ai_template.html).
-
+For more information about the *Time Window Aggregation* template, see [Configuring a Time Window Data Aggregation Job](https://support.envisioniot.com/docs/stream-processing/en/latest/configuring_ai_template.html).
 
 
 ## Step 4: Publishing the Stream Data Processing Job
@@ -83,7 +81,7 @@ After the stream data processing job configuration is completed, you can publish
 
 1. Click **Save** to save the configuration of the stream data processing job.
 
-2. Click **Release** to publish the job online.
+2. Click **Publish** to publish the job online.
 
    ![](media/publishing_stream.png)
 
@@ -95,13 +93,13 @@ Before starting the stream processing job, make sure that the corresponding syst
 
 Follow the steps below to start the stream processing job.
 
-1. Open the **Stream Operation** page, and check the status of the system pipelines under the **System Pipeline** tab.
+1. Open the **Pipeline Operation** page, and check the status of the system pipelines under the **System Pipeline** tab.
 
-2. In the list of system pipelines, click the **Start** icon ![start_icon](https://support.envisioniot.com/docs/data-asset/en/latest/_images/start_icon1.png) to start the required system pipeline.
+2. In the list of system pipelines, click the **Start** icon to start the required system pipeline.
 
    ![](media/starting_system_pipeline.png)
 
-3. Once the system pipeline has started, you can start your stream processing job. On the **Stream Operation** page, find the data processing job you have published under the **User Pipeline** tab, and click the **Start** icon ![](media/start_icon.png) to start the job. See the following example:
+3. Once the system pipeline is started and running, you can start your stream processing job. On the **Pipeline Operation** page, find the data processing job you have published under the **User Pipeline** tab, and click the **Start** icon to start the pipeline. See the following example:
 
    ![](media/starting_stream.png)
 
@@ -113,7 +111,7 @@ The data processing job will start running if there is no error.
 
 ## Step 6: Viewing the Job Running Results
 
-On the **Stream Operation** page, find the running stream data processing job under the **User Pipeline** tab, and click the job name to open the **Stream Details** page. You can view the following information about the job.
+On the **Pipeline Operation** page, find the running stream data processing job under the **User Pipeline** tab, and click the job name to open the **Stream Details** page. You can view the following information about the job.
 
 - **Summary**: View the summary of the running stream, such as the count of processed data records and the record throughput.
 
