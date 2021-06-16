@@ -1,6 +1,6 @@
 # Lab 2. Calculating the Running-Average of the Battery Voltage
 
-The EnOS Stream Analytics service provides visualized template-based configurations to help you quickly develop stream analytics jobs to process time series data ingested from real-time or offline channels.
+The EnOS Stream Analytics service provides visualized template-based configuration to help you quickly develop stream analytics jobs to process time series data ingested from real-time or offline channels.
 
 After the storage policies are configured for the data uploaded from the battery, we can now develop a stream data processing job to calculate the running-average of the battery voltage. We will use the **Time Window Aggregation** template for the calculation.
 
@@ -18,7 +18,7 @@ The input data, output data, and the template to use for the stream data process
 
 If your OU has not installed the Data Calculation Templates, you need first install the templates before you can start.
 
-1. Log in to the EnOS Management Console and click **Stream Processing > Streamsets Libs**.
+1. Log in to the EnOS Management Console and click **Stream Processing > Pipeline Library**.
 
 2. Click the **Template** tab to view the data calculation templates that can be installed. Currently, the following templates are available.
 
@@ -30,8 +30,6 @@ If your OU has not installed the Data Calculation Templates, you need first inst
 3. Find the template to be installed and click **Install**. The system will start the installation immediately.
 
    <img src="media/installing_stream_template.png" style="zoom:50%;" />
-
- 
 
 
 ## Step 2: Creating a Stream Data Processing Job
@@ -75,7 +73,7 @@ See the following example of the completed configuration:
 
 ![](media/stream_config.png)
 
-For more information about the *Time Window Aggregation* template, see [Configuring a Time Window Data Aggregation Job](https://support.envisioniot.com/docs/data-asset/en/latest/howto/streaming/configuring_ai_template.html). 
+For more information about the *Time Window Aggregation* template, see [Configuring a Time Window Data Aggregation Job](https://support.envisioniot.com/docs/data-asset/en/latest/howto/streaming/configuring_ai_template.html).
 
 
 
@@ -99,7 +97,7 @@ Follow the steps below to start the stream processing job.
 
 1. Open the **Stream Operation** page, and check the status of the system pipelines under the **System Pipeline** tab.
 
-2. In the list of system pipelines, click the **Start** icon ![start_icon](https://support.envisioniot.com/docs/data-asset/en/latest/_images/start_icon1.png) to start the required system pipeline. 
+2. In the list of system pipelines, click the **Start** icon ![start_icon](https://support.envisioniot.com/docs/data-asset/en/latest/_images/start_icon1.png) to start the required system pipeline.
 
    ![](media/starting_system_pipeline.png)
 

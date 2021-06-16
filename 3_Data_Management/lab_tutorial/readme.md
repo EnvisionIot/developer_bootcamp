@@ -1,17 +1,17 @@
 # Data Asset Management Workshop
 
-With your devices connected, your data will start to accumulate in EnOS. As it could be quite a challenge to manage the vast amount of IoT data, you can use the Data Asset Management to help you manage and reduce your cost on data storage, lower the development barrier of stream analytics, and increase data access efficiency.
+With your devices connected, your data will start to accumulate in EnOS. As it could be quite a challenge to manage the huge amount of IoT data, you can use EnOS Enterprise Data Platform service to help you manage data assets and reduce your cost on data storage, lower the development barrier of stream analytics, and increase data access efficiency.
 
 
 ## Scenario
 
-This workshop will walk you through the steps on how to create stream data processing jobs with a template and StreamSets operators to calculate the discharge energy and health level of the battery.
+This workshop will walk you through the steps on how to create stream data processing pipelines with a template and operators to calculate the discharge energy and health level of the battery.
 
 ## Before You Start
 
 - Ensure that you have signed up for an individual account or an enterprise account to access the **EnOS Management Console**.
 - Ensure that your account have been assigned full access to the model service, device connectivity & management service, and asset tree service.
-- Read through the [Real-time Data Flow](https://support.envisioniot.com/docs/data-asset/en/latest/learn/data_flow.html) document to get an overview of data flows in EnOS.
+- Read through the [Real-time Data Flow](https://support.envisioniot.com/docs/data-asset/en/latest/learn/data_flow.html) documentation to get an overview of data flows in EnOS.
 
 ## Labs
 
@@ -40,4 +40,3 @@ This tutorial includes the following units:
 [Lab 6. Generating Data Quality Report](303-6_generating_data_quality_report.md)
 
 30 minutes
-

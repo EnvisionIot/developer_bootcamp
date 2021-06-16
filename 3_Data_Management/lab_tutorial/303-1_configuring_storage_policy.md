@@ -1,12 +1,12 @@
-# Lab 1: Configuring the Storage Policy for the Battery Data
+# Lab 1: Configuring Storage Policy for Battery Data
 
-The EnOS Time Series Database (TSDB) provides a variety of storage options for you to store important and frequently-accessed business data. Through the configuring of storage policies, time-series data can be routed to different datastores based on data types and storage time, thus reducing data storage costs and enhancing data access efficiency.
+The EnOS Time Series Database (TSDB) provides a variety of storage options for you to store important and frequently-accessed business data. Through configuring storage policies, time-series data can be routed to different datastores based on data types and storage time, thus reducing data storage costs and enhancing data access efficiency.
 
-**Note**: By default, the uploaded data is not stored in TSDB. You must configure the data storage policy before the data is uploaded to EnOS Cloud.
+**Note**: By default, the uploaded data is not stored in TSDB. You must configure data storage policy before the data is uploaded to EnOS Cloud.
 
-In this lab, we will configure a storage policy for the following measurement points that are defined in the **SmartBattery_Demo** model.
+In this lab, we will configure storage policies for the following measurement points that are defined in the **SmartBattery_Demo** model.
 
-| Measuring Point  | Storage Type | Description                                                  |
+| Measurement Point  | Storage Type | Description                                                  |
 | ---------------- | ------------ | ------------------------------------------------------------ |
 | current          | AI Raw Data  | Real-time discharge current of the battery                   |
 | voltage          | AI Raw Data  | Real-time voltage of the battery                             |
@@ -16,17 +16,17 @@ In this lab, we will configure a storage policy for the following measurement po
 | health_level     | DI Data      | Output point of the stream processing job for analyzing the health level of the battery |
 | cycle_number     | Generic Data | Number of charge-discharge cycles that has happened on the battery                                 |
 
-For a detailed description of the supported storage types, see [Configuring TSDB Storage](https://support.envisioniot.com/docs/data-asset/en/latest/configuring_tsdb_storage.html).
+For detailed description of the supported storage types, see [Configuring TSDB Storage](https://support.envisioniot.com/docs/time-series-data/en/latest/configuring_tsdb_storage.html).
 
 ## Step 1: Creating a Storage Policy Group
 
-Storage policy groups enable you to manage the time-series data for different projects separately. Before configuring storage policies for the measurement points, you must create a storage policy group.
+Storage policy groups enable you to store the time-series data for different projects separately. Before configuring storage policies for the measurement points, you must create a storage policy group.
 
 However, note that each model can be associated to only one storage policy group.
 
-1. Log in to the EnOS Management Console and select **Time Series Data Management > Storage Policy** from the left navigation menu.
+1. Log in to the EnOS Management Console and select **Time Series Data Management > Storage Policies** from the left navigation menu.
 
-2. Click **Create Group** or the **+** icon to create a storage policy group and complete its configuration.
+2. Click **+ > Create Group** in the upper right corner of the page to create a storage policy group and complete its configuration.
 
    - **Group Name**: Enter a name for the storage policy group.
    - **Group Model**: Search and select the **SmartBattery_Demo** model (or the model you created yourself) to be associated with the storage policy group.
@@ -73,4 +73,3 @@ Follow the same steps to configure the storage policies for the other storage ty
 ## Next Lab
 
 [Calculating the Running-Average of the Battery Voltage](303-2_calculating_average_voltage.md)
-
