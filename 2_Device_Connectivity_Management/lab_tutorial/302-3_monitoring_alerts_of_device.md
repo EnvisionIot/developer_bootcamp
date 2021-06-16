@@ -49,7 +49,7 @@ active alerts and history alerts that are reported for the device on the **Alert
     ![](media/alert_record.png)
 
 
- ## Step 2: Monitoring Alerts from the EnOS Management Console
+## Step 2: Monitoring Alerts from the EnOS Management Console
 
 In **Alert Management > Alert Records**, select your smart battery model and view the historical alerts. You can see that several alerts have been triggered by the anormal data.
 

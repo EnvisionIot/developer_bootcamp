@@ -5,14 +5,20 @@ The features of the EnOS Stream Analysis service include high scalability, high 
 
 This workshop will guide you through the steps on how to create stream data processing jobs with a template and StreamSets operators to calculate the discharge energy and health level of the battery.
 
-.. toctree::
-   :maxdepth: 1
-   :caption:
 
-   overview
-   configuring_storage_policy
-   calculating_discharge_energy
-   calculating_health_level
-   monitoring_alerts
-   archiving_data
-   generating_data_quality_report
+Topics
+-----------------
+
+[Overview](readme.md)
+
+[Configuring Storage Policy for the Device Data](303-1_configuring_storage_policy.md)
+
+[Calculating the Running-Average of the Battery Voltage](303-2_calculating_average_voltage.md)
+
+[Calculating the Health Level of the Battery](303-3_calculating_health_level.md)
+
+[Monitoring Health Level Alerts](303-4_monitoring_alerts.md)
+
+[Archiving Uploaded Data of the Battery](303-5_archiving_data.md)
+
+[Generating Data Quality Report](303-6_generating_data_quality_report.md)
