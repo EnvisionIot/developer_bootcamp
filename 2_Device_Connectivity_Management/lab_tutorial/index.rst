@@ -9,12 +9,12 @@ This tutorial walks you through the steps of registering a smart battery device 
 Topics
 -----------------
 
-[Overview](readme.md)
+`Overview <readme.md>`__
 
-[Connecting a Smart Battery to EnOS (Java)](302-1_connecting_device_to_EnOS_cloud.md)
+`Connecting a Smart Battery to EnOS (Java) <302-1_connecting_device_to_EnOS_cloud.md>`__
 
-[Connecting a Smart Battery to EnOS (Python)](302-1_connecting_device_to_EnOS_cloud_python.md)
+`Connecting a Smart Battery to EnOS (Python) <302-1_connecting_device_to_EnOS_cloud_python.md>`__
 
-[Simulating Measurement Points](302-2_simulating_measure_points.md)
+`Simulating Measurement Points <302-2_simulating_measure_points.md>`__
 
-[Monitoring the Alerts of a Smart Battery](302-3_monitoring_alerts_of_device.md)
+`Monitoring the Alerts of a Smart Battery <302-3_monitoring_alerts_of_device.md>`__

@@ -9,16 +9,16 @@ This workshop will guide you through the steps on how to create stream data proc
 Topics
 -----------------
 
-[Overview](readme.md)
+`Overview <readme.md>`__
 
-[Configuring Storage Policy for the Device Data](303-1_configuring_storage_policy.md)
+`Configuring Storage Policy for the Device Data <303-1_configuring_storage_policy.md>`__
 
-[Calculating the Running-Average of the Battery Voltage](303-2_calculating_average_voltage.md)
+`Calculating the Running-Average of the Battery Voltage <303-2_calculating_average_voltage.md>`__
 
-[Calculating the Health Level of the Battery](303-3_calculating_health_level.md)
+`Calculating the Health Level of the Battery <303-3_calculating_health_level.md>`__
 
-[Monitoring Health Level Alerts](303-4_monitoring_alerts.md)
+`Monitoring Health Level Alerts <303-4_monitoring_alerts.md>`__
 
-[Archiving Uploaded Data of the Battery](303-5_archiving_data.md)
+`Archiving Uploaded Data of the Battery <303-5_archiving_data.md>`__
 
-[Generating Data Quality Report](303-6_generating_data_quality_report.md)
+`Generating Data Quality Report <303-6_generating_data_quality_report.md>`__
