@@ -119,11 +119,11 @@ There are many other widgets on DTV which you can explore, or you can read about
 
 Since we want to see how the battery current changes over time, we will use the **Mix Chart** widget.
 
-1. In the **Page Editor**, hover over ![add_button](media/add_button.png) on the toolbar and select **Widget (New)**. The **Chart Editor** appears on the same pane.
+1. In the **Page Editor**, hover over **Add** on the toolbar and select **Widget (New)**. The **Chart Editor** appears on the same pane.
 
 2. In the **Chart Selection** section, select **Mix Chart** ![mix_chart](media/mix_chart.png).
 
-3. In the **Basic Information** > **Basic Options** panel, you can specify a title and a basic description for your widget.
+3. In the **Basic Information** > **Basic Options** panel, specify a title and a basic description for your widget.
 
 4.  Configure the **Data Fields** section as follows:
    - From the **Data Source** list, select **AI Raw Data**.
@@ -133,11 +133,13 @@ Since we want to see how the battery current changes over time, we will use the 
    - For **Dimension**, add the **timeOfDay** data field. This is the horizontal axis of the chart.
    - For **Measurement**, add the **current** data field. This is the vertical axis of the chart.
 
-5. You can choose to style how your chart looks like in **Chart Style**. For information on styling options, you can refer to the [Chart Reference Documentation](https://support.envisioniot.com/docs/dtv/en/latest/reference.html).
+5. In the **Measurement Style** section, from the **Chart Type** list, select **Line**. This plots your data on a line chart.
 
-6. After you have finished, click **Save**, which is located below the chart.
+6. You can choose to style how your chart looks like in **Chart Style**. For information on styling options, you can refer to the [Chart Reference Documentation](https://support.envisioniot.com/docs/dtv/en/latest/reference.html).
 
-7. To view your new widget on the dashboard, click the return arrow ![back_icon](media/back_icon.png) located on the toolbar.
+7. After you have finished, click **Save**, which is located below the chart.
+
+8. To view your new widget on the dashboard, click the return arrow ![back_icon](media/back_icon.png) located on the toolbar.
 
 
 
