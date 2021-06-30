@@ -21,10 +21,10 @@ Let's have a tour around the Dashboard Editor, so that later you can easily navi
 
 
 
-![page_editor](page_editor.png)
+![page_editor](media/page_editor.png)
 
 
-![chart_editor](chart_editor.png)
+![chart_editor](media/chart_editor.png)
 
 
 
@@ -38,11 +38,11 @@ Specific tags are required for the DTV to identify the asset data to be synchron
 
    
 
-![tagging_asset](tagging_asset.png)
+![tagging_asset](media/tagging_asset.png)
 
 3. In the **Time Series Data Management > Data Insights** page, enter the query conditions and check whether the asset measurement point data is stored in TSDB.
 
-![check_tsdb_data](checking_tsdb_data.png)
+![check_tsdb_data](media/checking_tsdb_data.png)
 
 
 
@@ -69,7 +69,7 @@ You need to create a project, and then a page to hold widgets.
 
 
 
-   ![new_project](new_project.png)
+   ![new_project](media/new_project.png)
 
 
 
@@ -87,14 +87,14 @@ You need to create a project, and then a page to hold widgets.
 
 
 
-   ![new_page](new_page.png)
+   ![new_page](media/new_page.png)
 
 
 6. Click **OK**. Your page is created.
 
  1. On the sidebar, expand your project, click on the page that you just created. The **Page Editor** appears on the right pane.
 
-   ![empty_page_editor](empty_page_editor.png)
+   ![empty_page_editor](media/empty_page_editor.png)
 
 
 
@@ -119,9 +119,9 @@ There are many other widgets on DTV which you can explore, or you can read about
 
 Since we want to see how the battery current changes over time, we will use the **Mix Chart** widget.
 
-1. In the **Page Editor**, hover over ![add_button](add_button.png) on the toolbar and select **Widget (New)**. The **Chart Editor** appears on the same pane.
+1. In the **Page Editor**, hover over ![add_button](media/add_button.png) on the toolbar and select **Widget (New)**. The **Chart Editor** appears on the same pane.
 
-2. In the **Chart Selection** section, select **Mix Chart** ![mix_chart](mix_chart.png).
+2. In the **Chart Selection** section, select **Mix Chart** ![mix_chart](media/mix_chart.png).
 
 3. In the **Basic Information** > **Basic Options** panel, you can specify a title and a basic description for your widget.
 
@@ -137,11 +137,11 @@ Since we want to see how the battery current changes over time, we will use the 
 
 6. After you have finished, click **Save**, which is located below the chart.
 
-7. To view your new widget on the dashboard, click the return arrow ![back_icon](back_icon.png) located on the toolbar.
+7. To view your new widget on the dashboard, click the return arrow ![back_icon](media/back_icon.png) located on the toolbar.
 
 
 
-![finished](finished.png)
+![finished](media/finished.png)
 
 
 
@@ -161,12 +161,12 @@ See the following example:
 
 **Table Chart**
 
-![table](table_chart.png)
+![table](media/table_chart.png)
 
 **Donut Gauge Chart**
 
-![gauge](gauge_chart.png)
+![gauge](media/gauge_chart.png)
 
 **Pie Chart**
 
-![pie](pie_chart.png)
+![pie](media/pie_chart.png)
