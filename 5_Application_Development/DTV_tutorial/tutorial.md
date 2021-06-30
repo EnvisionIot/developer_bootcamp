@@ -133,7 +133,7 @@ Since we want to see how the battery current changes over time, we will use the 
    - For **Dimension**, add the **timeOfDay** data field. This is the horizontal axis of the chart.
    - For **Measurement**, add the **current** data field. This is the vertical axis of the chart.
 
-5. You can choose to style how your chart looks like in **Chart Style**. For information on styling options, you can go to the **Mix Chart** reference.
+5. You can choose to style how your chart looks like in **Chart Style**. For information on styling options, you can refer to the [Chart Reference Documentation](https://support.envisioniot.com/docs/dtv/en/latest/reference.html).
 
 6. After you have finished, click **Save**, which is located below the chart.
 
