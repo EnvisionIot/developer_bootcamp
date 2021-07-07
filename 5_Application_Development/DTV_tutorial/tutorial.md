@@ -1,6 +1,6 @@
 # Visualizing your Data
 
-To see a visualization of your data, you can use the **EnOS Digital Twin Visualization (DTV)** service. DTV (link to DTV doc) is a simple yet powerful application that enables users to build data visualization pages through a low-code/no-code drag-and-drop experience.
+To see a visualization of your data, you can use the **EnOS Digital Twin Visualization (DTV)** service. DTV is a simple yet powerful application that enables users to build data visualization pages through a low-code/no-code drag-and-drop experience.
 
 In this tutorial, we will learn how to navigate around the DTV Dashboard Editor, and create a widget that displays how the battery current changes over time.
 
@@ -119,11 +119,11 @@ There are many other widgets on DTV which you can explore, or you can read about
 
 Since we want to see how the battery current changes over time, we will use the **Mix Chart** widget.
 
-1. In the **Page Editor**, hover over ![add_button](media/add_button.png) on the toolbar and select **Widget (New)**. The **Chart Editor** appears on the same pane.
+1. In the **Page Editor**, hover over **Add** on the toolbar and select **Widget (New)**. The **Chart Editor** appears on the same pane.
 
 2. In the **Chart Selection** section, select **Mix Chart** ![mix_chart](media/mix_chart.png).
 
-3. In the **Basic Information** > **Basic Options** panel, you can specify a title and a basic description for your widget.
+3. In the **Basic Information** > **Basic Options** panel, specify a title and a basic description for your widget.
 
 4.  Configure the **Data Fields** section as follows:
    - From the **Data Source** list, select **AI Raw Data**.
@@ -133,17 +133,16 @@ Since we want to see how the battery current changes over time, we will use the 
    - For **Dimension**, add the **timeOfDay** data field. This is the horizontal axis of the chart.
    - For **Measurement**, add the **current** data field. This is the vertical axis of the chart.
 
-5. You can choose to style how your chart looks like in **Chart Style**. For information on styling options, you can refer to the [Chart Reference Documentation](https://support.envisioniot.com/docs/dtv/en/latest/reference.html).
+5. In the **Measurement Style** section, from the **Chart Type** list, select **Line**. This plots your data on a line chart.
 
-6. After you have finished, click **Save**, which is located below the chart.
+6. You can choose to style how your chart looks like in **Chart Style**. For information on styling options, you can refer to the [Chart Reference Documentation](https://support.envisioniot.com/docs/dtv/en/latest/reference.html).
 
-7. To view your new widget on the dashboard, click the return arrow ![back_icon](media/back_icon.png) located on the toolbar.
+7. After you have finished, click **Save**, which is located below the chart.
 
+8. To view your new widget on the dashboard, click the return arrow ![back_icon](media/back_icon.png) located on the toolbar.
 
 
 ![finished](media/finished.png)
-
-
 
 
 
@@ -151,21 +150,27 @@ Since we want to see how the battery current changes over time, we will use the 
 
 Now, you can create a page for monitoring the performance of your batteries with the following charts:
 
-1. A Table that contains performance data of your batteries
-2. A Donut Gauge that displays the health level of your batteries
-3. A Pie Chart that displays the capacity of your batteries
+1. A **Table** that contains performance data of your batteries
+2. A **Donut Gauge** that displays the health level of your batteries
+3. A **Pie Chart** that displays the capacity of your batteries
 
 
 
-See the following example:
+See the following examples:
+
+
 
 **Table Chart**
 
 ![table](media/table_chart.png)
 
+
+
 **Donut Gauge Chart**
 
 ![gauge](media/gauge_chart.png)
+
+
 
 **Pie Chart**
 
