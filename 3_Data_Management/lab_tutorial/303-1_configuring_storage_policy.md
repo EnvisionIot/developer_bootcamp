@@ -11,8 +11,7 @@ In this lab, we will configure storage policies for the following measurement po
 | current          | AI Raw Data  | Real-time discharge current of the battery                   |
 | voltage          | AI Raw Data  | Real-time voltage of the battery                             |
 | temp             | AI Raw Data  | Real-time temperature of the battery                         |
-| voltage_dq       | AI Raw Data  | Output point of the stream processing job for measuring the data quality of the battery voltage |
-| discharge_energy | AI Raw Data  | Output point of the stream processing job for calculating the discharge energy of the battery |
+| temp_avg         | AI Raw Data  | Output point of the stream processing job for calculating the average temperature of the battery per minute |
 | health_level     | DI Data      | Output point of the stream processing job for analyzing the health level of the battery |
 | cycle_number     | Generic Data | Number of charge-discharge cycles that has happened on the battery                                 |
 
