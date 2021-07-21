@@ -18,7 +18,7 @@ To meet the requirement of the above scenario, we need to use the following Stre
 | ------------------------------ | ------------------------------------------------------------ |
 | EDH Kafka Consumer             | Gets complete data records from Kafka                     |
 | Point Selector                 | Specifies data records of the `SmartBattery_Demo::temp` measurement point as the input data |
-| Sliding Time Window Aggregator | Aggregates the temperature data every 2 minutes to calculate the average temperature |
+| Fixed Time Window Aggregator   | Aggregates the temperature data every 2 minutes to calculate the average temperature |
 | TSL Asset Lookup               | Gets the `UpperLimitTemp` attribute information of the battery model |
 | Python Evaluator               | Calculates the health level of the battery by customized Python script |
 | EDH Kafka Producer             | Sends the output results to Kafka                          |
