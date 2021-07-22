@@ -213,7 +213,7 @@ When the configuration of the operators is completed, we can now validate the co
 
 3. Click Save to save the configuration of the stream data processing job.
 
-4. Click Release to publish the job online.
+4. Click Publish to publish the job online.
 
    ![](media/streamset_pipeline_publish.png)
 
