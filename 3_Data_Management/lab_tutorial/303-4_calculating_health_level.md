@@ -243,7 +243,7 @@ On the **Stream Operation** page, find the running stream data processing job un
 
 - **Summary**: View the summary of the running stream, such as the count of processed data records and the record throughput.
 
-  ![](media/streamset_result_summary.PNG)
+  ![](media/streamset_result_summary.png)
 
 - **Log**: Click the **View Logs** icon on the upper right corner to check the running log of the job.
 
