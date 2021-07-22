@@ -102,9 +102,19 @@ See the following example:
 
 ![](media/point_selector_config.png)
 
-### Sliding Time Window Aggregator
+### Fixed Time Window Aggregator
 
-The **Sliding Time Window Aggregator** uses a sliding window for data aggregation. As opposed to a tumbling window, the sliding window slides over the incoming stream of data. Because of this, sliding windows can overlap, giving a smoother aggregation over the incoming stream of data. The following figure illustrates the difference between a tumbling window and a sliding window.
+The **Fixed Time Window Aggregator** aggregates the data of a single point by the fixed time window. The settings for this stage are as per the below.
+
+•	Window type: Tumbling window.
+
+•	Supported aggregators: max/min/avg/count/sum/first/last.
+
+•	Latency settings: Support the processing of data that arrives 0~60 minutes late.
+
+•	Early output: Support the early output of intermediate results before the time window is closed (by fixed frequency or by arriving input data).
+
+•	This stage cannot guarantee idempotence of the calculation results due to failure retries caused by any reasons, such as cluster node exceptions.
 
 ![](media/sliding_window.png)
 
@@ -115,8 +125,6 @@ Complete the configuration of **Input/Output** with the following settings:
 | Input Point         | SmartBattery_Demo::temp     | Specifies the `temp` point data as the input         |
 | Fixed Window Size   | 2                           | Specifies the duration of the time window            |
 | Fixed Window Unit   | minute                      | Unit of the time window                               |
-| Sliding Window Size | 1                           | Specifies the step length of the time window         |
-| Sliding Window Unit | minute                      | Unit of the time window                               |
 | Aggregator Policy   | avg                         | Calculates the average temperature value                 |
 | Output Point        | SmartBattery_Demo::temp_avg | Specifies the point that receives the output results |
 
