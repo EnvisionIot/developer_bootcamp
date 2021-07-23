@@ -66,4 +66,4 @@ After completing the above configuration, click **OK** to submit the data archiv
 
 ## Next Lab
 
-[Generating Data Quality Report](303-6_generating_data_quality_report.md)
+[Calculating the Running-Average of the Battery Voltage](303-3_calculating_average_voltage.md)
