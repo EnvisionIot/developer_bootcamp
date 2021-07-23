@@ -1,4 +1,4 @@
-# Lab 4. Monitoring Health Level Alerts
+# Lab 5. Monitoring Health Level Alerts
 
 The EnOS Alert Management service enables you to define, receive, and process alerts for the assets of your organization.
 
@@ -144,8 +144,3 @@ After the alert rules are enabled, the alert service will start monitoring the h
 
 4. Click the **History Alerts** tab and use the same steps to query history alert records of your battery device.
 
-
-
-## Next Lab
-
-[Archiving Uploaded Data of the Battery](303-5_archiving_data.md)
