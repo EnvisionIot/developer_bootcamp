@@ -1,4 +1,4 @@
-# Lab 3. Calculating the Health Level of the Battery
+# Lab 4. Calculating the Health Level of the Battery
 
 The EnOS Stream Analytics service also provides a user-friendly UI for designing stream data processing jobs (pipelines) with StreamSets operators. You can quickly configure a pipeline by adding operators (stages) to the pipeline, completing data ingestion, filtering, processing, and storage tasks without programming.
 
@@ -266,5 +266,5 @@ See the following example of the queried data:
 
 ## Next Lab
 
-[Monitoring Health Level Alerts](303-4_monitoring_alerts.md)
+[Monitoring Health Level Alerts](303-5_monitoring_alerts.md)
 
