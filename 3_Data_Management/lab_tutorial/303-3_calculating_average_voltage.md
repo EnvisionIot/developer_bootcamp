@@ -1,4 +1,4 @@
-# Lab 2. Calculating the Running-Average of the Battery Voltage
+# Lab 3. Calculating the Running-Average of the Battery Voltage
 
 The EnOS Stream Analytics service provides visualized template-based configuration to help you quickly develop stream analytics jobs to process time series data ingested from real-time or offline channels.
 
