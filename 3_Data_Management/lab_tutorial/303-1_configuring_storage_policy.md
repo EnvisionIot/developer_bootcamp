@@ -71,4 +71,4 @@ Follow the same steps to configure the storage policies for the other storage ty
 
 ## Next Lab
 
-[Calculating the Running-Average of the Battery Voltage](303-2_calculating_average_voltage.md)
+[Archiving Uploaded Data of the Battery](303-2_archiving_data.md)
