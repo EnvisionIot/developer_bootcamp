@@ -1,4 +1,4 @@
-# Lab 5: Archiving Uploaded Data of the Battery
+# Lab 2: Archiving Uploaded Data of the Battery
 
 The EnOS Data Asset Management service achieves data backup by archiving data of huge size and with lower access frequency to a target database.
 
