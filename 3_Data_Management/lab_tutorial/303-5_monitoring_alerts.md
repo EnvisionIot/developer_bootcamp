@@ -144,3 +144,4 @@ After the alert rules are enabled, the alert service will start monitoring the h
 
 4. Click the **History Alerts** tab and use the same steps to query history alert records of your battery device.
 
+5. Please confirm the Alerts are triggered. This will be used in the later application deployment workshop 
