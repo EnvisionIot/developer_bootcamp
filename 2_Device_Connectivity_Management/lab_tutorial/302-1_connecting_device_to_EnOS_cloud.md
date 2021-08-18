@@ -26,6 +26,7 @@ A model is the abstraction of the features of an object that is connected to the
     - Source Model: No
     - Description: Model for smart battery a01
 ```
+
     ![](media/model_create.png)
 
 3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab on the **Model Details** page.
