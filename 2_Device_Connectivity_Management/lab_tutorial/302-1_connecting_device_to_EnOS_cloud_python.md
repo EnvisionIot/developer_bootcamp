@@ -18,18 +18,19 @@ A model is the abstraction of the features of an object that is connected to the
 1. In the EnOS Management Console, click **Models** from the left navigation menu.
 
 2. Click **New Model**, enter the following in the **New Model** window, and click **OK**.
+'''
     - Identifier: SmartBattery_Model_a01
     - Model Name: SmartBattery_Model_a01
     - Category: NA
     - Created From: No
     - Source Model: No
     - Description: Model for smart battery a01
-
+'''
     ![](media/model_create.png)
 
-3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab on the **Model Details** page.
+4. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab on the **Model Details** page.
 
-4. There are two ways to create custom features: manually adding each custom feature, or importing from a file. 
+5. There are two ways to create custom features: manually adding each custom feature, or importing from a file. 
     - Manually adding: Click **Edit > Add > Create Custom Feature**, and create the following custom features in the **Add Feature** window.
        ![](media/feature_add_new.png)
 
@@ -58,7 +59,6 @@ In this step, create a product called **SmartBattery_Product_a01**. We shall ass
 1. In the EnOS Management Console, select **Device Management > Products**.
 
 2. Click **New Product**, enter the following in the **New Product** window, and click **OK**.
-
     - Product Name: SmartBattery_Product_a01
     - Asset Type: Device
     - Model: SmartBattery_Model_a01

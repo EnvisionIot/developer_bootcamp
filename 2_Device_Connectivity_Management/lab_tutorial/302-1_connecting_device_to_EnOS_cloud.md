@@ -18,20 +18,21 @@ A model is the abstraction of the features of an object that is connected to the
 1. In the EnOS Management Console, click **Models** from the left navigation menu.
 
 2. Click **New Model**, enter the following in the **New Model** window, and click **OK**.
-```
->    - Identifier: SmartBattery_Model_a01
->    - Model Name: SmartBattery_Model_a01
->    - Category: NA
->    - Created From: No
->    - Source Model: No
->    - Description: Model for smart battery a01
-```
+
+    - Identifier: SmartBattery_Model_a01
+    - Model Name: SmartBattery_Model_a01
+    - Category: NA
+    - Created From: No
+    - Source Model: No
+    - Description: Model for smart battery a01
+
     ![](media/model_create.png)
 
 3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab on the **Model Details** page.
 
 4. There are two ways to create custom features: manually adding each custom feature, or importing from a file. 
     - Manually adding: Click **Edit > Add > Create Custom Feature**, and create the following custom features in the **Add Feature** window.
+      ![](media/newFeature.PNG)
        ![](media/feature_add_new.png)
 
        Use the following **Point Types** for the corresponding **Measurement Points**.
@@ -101,7 +102,7 @@ The EnOS Time Series Database (TSDB) provides a variety of storage options for y
 In this step, configure a storage policy for the measurement points that are defined in the **SmartBattery_Model_a01** model.
 
 1. Select **Time Series Data Management > Storage Policies** from the left navigation menu.
-
+   ![](media/tsdb.png)
 2. Click the **+** icon and **Create Group** to create a storage policy group.
 
    - **Group Name**: Enter a name for the storage policy group.
