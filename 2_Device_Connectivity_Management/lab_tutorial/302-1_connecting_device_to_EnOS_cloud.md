@@ -18,7 +18,6 @@ A model is the abstraction of the features of an object that is connected to the
 1. In the EnOS Management Console, click **Models** from the left navigation menu.
 
 2. Click **New Model**, enter the following in the **New Model** window, and click **OK**.
-```
     - Identifier: SmartBattery_Model_a01
     - Model Name: SmartBattery_Model_a01
     - Category: NA
