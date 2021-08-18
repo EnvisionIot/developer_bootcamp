@@ -19,12 +19,12 @@ A model is the abstraction of the features of an object that is connected to the
 
 2. Click **New Model**, enter the following in the **New Model** window, and click **OK**.
 ```
->    - Identifier: SmartBattery_Model_a01
->    - Model Name: SmartBattery_Model_a01
->    - Category: NA
->    - Created From: No
->    - Source Model: No
->    - Description: Model for smart battery a01
+    - Identifier: SmartBattery_Model_a01
+    - Model Name: SmartBattery_Model_a01
+    - Category: NA
+    - Created From: No
+    - Source Model: No
+    - Description: Model for smart battery a01
 ```
     ![](media/model_create.png)
 
