@@ -29,21 +29,25 @@ A model is the abstraction of the features of an object that is connected to the
 
 3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab on the **Model Details** page.
 
-4. Click **Edit > Add > Create Custom Feature**, and create the following custom features in the **Add Feature** window.
-    ![](media/feature_add.png)
+4. There are two ways to create custom features: manually adding each custom feature, or importing from a file. 
+    - Manually adding: Click **Edit > Add > Create Custom Feature**, and create the following custom features in the **Add Feature** window.
+       ![](media/feature_add_new.png)
 
-    Use the following **Point Types** for the corresponding **Measurement Points**.
+       Use the following **Point Types** for the corresponding **Measurement Points**.
 
-    | Measurement Point  | Point Type   |
-    | ----------------   | ------------ |
-    | accumulating_power | AI           |
-    | voltage_dq         | AI           |
-    | cycle_number       | Generic      |    
-    | discharge_energy   | AI           |
-    | health_level       | DI           |
-    | voltage            | AI           |
-    | temp               | AI           |
-    | current            | AI           |
+        | Measurement Point  | Point Type   |
+        | ----------------   | ------------ |
+        | accumulating_power | AI           |
+        | voltage_dq         | AI           |
+        | cycle_number       | Generic      |    
+        | discharge_energy   | AI           |
+        | health_level       | DI           |
+        | voltage            | AI           |
+        | temp               | AI           |
+        | current            | AI           |
+        | voltage_avg        | AI           |
+
+    - Importing from a file: Click **Edit > Import Model** and upload an Excel or JSON file. You can use [this file](media/model_SmartBattery.json) for this tutorial.
 
 ## Step 2: Creating a Product
 
