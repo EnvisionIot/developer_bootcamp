@@ -18,13 +18,14 @@ A model is the abstraction of the features of an object that is connected to the
 1. In the EnOS Management Console, click **Models** from the left navigation menu.
 
 2. Click **New Model**, enter the following in the **New Model** window, and click **OK**.
+```
 >    - Identifier: SmartBattery_Model_a01
 >    - Model Name: SmartBattery_Model_a01
 >    - Category: NA
 >    - Created From: No
 >    - Source Model: No
 >    - Description: Model for smart battery a01
-
+```
     ![](media/model_create.png)
 
 3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab on the **Model Details** page.
