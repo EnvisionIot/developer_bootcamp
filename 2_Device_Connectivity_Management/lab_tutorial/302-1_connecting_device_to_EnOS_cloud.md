@@ -18,7 +18,6 @@ A model is the abstraction of the features of an object that is connected to the
 1. In the EnOS Management Console, click **Models** from the left navigation menu.
 
 2. Click **New Model**, enter the following in the **New Model** window, and click **OK**.
-
     - Identifier: SmartBattery_Model_a01
     - Model Name: SmartBattery_Model_a01
     - Category: NA
@@ -30,9 +29,9 @@ A model is the abstraction of the features of an object that is connected to the
 
 3. From the list of created models, click the **Edit** icon, and then click the **Feature Definition** tab on the **Model Details** page.
 
+![](media/newFeature.PNG)
 4. There are two ways to create custom features: manually adding each custom feature, or importing from a file. 
     - Manually adding: Click **Edit > Add > Create Custom Feature**, and create the following custom features in the **Add Feature** window.
-      ![](media/newFeature.PNG)
        ![](media/feature_add_new.png)
 
        Use the following **Point Types** for the corresponding **Measurement Points**.
