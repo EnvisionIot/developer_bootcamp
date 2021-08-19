@@ -23,7 +23,7 @@ A model is the abstraction of the features of an object that is connected to the
     - Category: NA
     - Created From: No
     - Source Model: No
-    - Description: Model for smart battery a01
+    - Description: 'Model for smart battery a01'
 
     ![](media/model_create.png)
 
@@ -47,6 +47,7 @@ A model is the abstraction of the features of an object that is connected to the
         | temp               | AI           |
         | current            | AI           |
         | voltage_avg        | AI           |
+
 
     - Importing from a file: Click **Edit > Import Model** and upload an Excel or JSON file. You can use [this file](media/model_SmartBattery.json) for this tutorial.
 
