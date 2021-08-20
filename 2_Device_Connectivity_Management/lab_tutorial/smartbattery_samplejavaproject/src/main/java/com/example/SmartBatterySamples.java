@@ -14,14 +14,28 @@ import java.util.Random;
 
 import java.util.*;
 
+/**
+ *  @class SmartBatterySamples
+ *  @brief Sample class to illustrate how developers can push data to EnOS
+ *
+ *  The class provides functions pertaining to the Smart Battery Use Case in the training documents.
+ *  It explicitly allows developers to:
+ *  a) Connect to EnOS via MQTT
+ *  b) Upload measure points such as voltage, current and temperature
+ *
+ *  @note that this class is purely for demonstration only.
+ *  Developers should still adhere to the design patterns required in a production grade development
+ *
+ */
 public class SmartBatterySamples {
+
     private final static Logger LOG = LoggerFactory.getLogger(SmartBatterySamples.class);
 
-    private final static String PLAIN_SERVER_URL = "tcp://mqtt-ppe1.envisioniot.com:21883"; // The MQTT broker address, which can be found from EnOS Console > Help > Environment Information
+    private final static String PLAIN_SERVER_URL = "tcp://mqtt-cn5.envisioniot.com:11883"; // The MQTT broker address, which can be found from EnOS Console > Help > Environment Information
 
-    private final static String PRODUCT_KEY = "tLtF7bCb"; // Product key, which is obtained after you register the device
-    private final static String DEVICE_KEY = "chengloy001"; // Device key, which is obtained after you register the device
-    private final static String DEVICE_SECRET = "TszHLOIBSYcrHCxNXfUU"; // Device secret, which is obtained after you register the device
+    private final static String PRODUCT_KEY = "dSRsW10z"; // Product key, which is obtained after you register the device
+    private final static String DEVICE_KEY = "inKJ1zYSX4"; // Device key, which is obtained after you register the device
+    private final static String DEVICE_SECRET = "247B8L1rBrR1waIeNZwZ"; // Device secret, which is obtained after you register the device
     private static int interval = 5; //Data upload frequency: 5 seconds
     private static final double VOL_MAX = 26;
     private static final double VOL_MIN = 22;
@@ -40,21 +54,23 @@ public class SmartBatterySamples {
     private static boolean temp_flag = true;
 
     public static void main(String[] args) {
-        LoginInput input = new NormalDeviceLoginInput(PLAIN_SERVER_URL, PRODUCT_KEY, DEVICE_KEY, DEVICE_SECRET);
-        final MqttClient client = new MqttClient(new DefaultProfile(input));
+
+        LoginInput loginInput = new NormalDeviceLoginInput(PLAIN_SERVER_URL, PRODUCT_KEY, DEVICE_KEY, DEVICE_SECRET);
+        final MqttClient client = new MqttClient(new DefaultProfile(loginInput));
 
         client.connect(new ConnCallback() {
 
+            @Override
             public void connectComplete(boolean status) {
 
-                if (status) {
+                if (!status) {
                     LOG.info("Connect Success.");
 
                     // Set service handler to handle service command from cloud
                     client.setArrivedMsgHandler(ServiceInvocationCommand.class, createServiceCommandHandler(client));
                     client.setArrivedMsgHandler(MeasurepointSetCommand.class, createMeasurePointSetHandler(client));
                     try {
-                        monitor(client);
+                        monitor(client); //Mock method which simulates the monitoring of the battery and posting of data to EnOS
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -66,11 +82,13 @@ public class SmartBatterySamples {
                 }
             }
 
+            @Override
             public void connectLost(Throwable reason) {
                 LOG.info("Connect Lost.");
                 client.close();
             }
 
+            @Override
             public void connectFailed(Throwable reason) {
                 LOG.info("Connect Failed.");
                 client.close();
@@ -142,7 +160,7 @@ public class SmartBatterySamples {
         };
     }
 
-    // Simulate the measuring points of devices
+    // Simulate the measure points of devices
     public static Map<String, Object> simulateMeasurePoints() {
         Map<String, Object> data=new HashMap<String, Object>();
         Random random = new Random();
@@ -154,7 +172,7 @@ public class SmartBatterySamples {
         return data;
     }
 
-    // post measuring point of voltage
+    //! post measuring point of voltage
     private static void postVoltage(final MqttClient client) {
         Map<String, Object> measurePoints = simulateMeasurePoints();
         try {
@@ -174,7 +192,7 @@ public class SmartBatterySamples {
         }
     }
 
-    // post measure point of current
+    //! post measure point of current
     private static void postCurrent(final MqttClient client) {
         Map<String, Object> measurePoints = simulateMeasurePoints();
         try {
@@ -204,7 +222,7 @@ public class SmartBatterySamples {
         }
     }
 
-    // post measure point of temperature
+    //! post measure point of temperature
     private static void postTemp(final MqttClient client) {
         Map<String, Object> measurePoints = simulateMeasurePoints();
         try {
@@ -241,6 +259,11 @@ public class SmartBatterySamples {
         }
     }
 
+    /**
+     * Method which simulates the monitoring of battery and posting of results to EnOS
+     * @param client
+     * @throws Exception
+     */
     // Monitoring the voltage, temperature and current of device
     public static void monitor(final MqttClient client) throws Exception {
         System.out.println("post measure points start ...");
@@ -289,5 +312,4 @@ public class SmartBatterySamples {
         };
         t3.start();
     }
-
 }
