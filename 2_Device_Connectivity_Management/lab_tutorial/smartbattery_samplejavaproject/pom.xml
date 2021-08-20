@@ -23,7 +23,7 @@
         <dependency>
             <groupId>com.envisioniot</groupId>
             <artifactId>enos-mqtt</artifactId>
-            <version>2.1.7-SNAPSHOT</version>
+            <version>2.2.15</version>
         </dependency>
 
         <dependency>

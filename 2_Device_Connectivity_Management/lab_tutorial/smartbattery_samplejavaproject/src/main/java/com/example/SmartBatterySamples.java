@@ -1,6 +1,6 @@
 package com.example;
 
-import com.envisioniot.enos.iot_mqtt_sdk.core.IConnectCallback;
+import com.envisioniot.enos.iot_mqtt_sdk.core.ConnCallback;
 import com.envisioniot.enos.iot_mqtt_sdk.core.MqttClient;
 import com.envisioniot.enos.iot_mqtt_sdk.core.login.LoginInput;
 import com.envisioniot.enos.iot_mqtt_sdk.core.login.NormalDeviceLoginInput;
@@ -43,27 +43,35 @@ public class SmartBatterySamples {
         LoginInput input = new NormalDeviceLoginInput(PLAIN_SERVER_URL, PRODUCT_KEY, DEVICE_KEY, DEVICE_SECRET);
         final MqttClient client = new MqttClient(new DefaultProfile(input));
 
-        client.connect(new IConnectCallback() {
-            public void onConnectSuccess() {
-                LOG.info("Connect Success.");
+        client.connect(new ConnCallback() {
 
-                // Set service handler to handle service command from cloud
-                client.setArrivedMsgHandler(ServiceInvocationCommand.class, createServiceCommandHandler(client));
-                client.setArrivedMsgHandler(MeasurepointSetCommand.class, createMeasurePointSetHandler(client));
-                try {
-                    monitor(client);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            public void connectComplete(boolean status) {
+
+                if (status) {
+                    LOG.info("Connect Success.");
+
+                    // Set service handler to handle service command from cloud
+                    client.setArrivedMsgHandler(ServiceInvocationCommand.class, createServiceCommandHandler(client));
+                    client.setArrivedMsgHandler(MeasurepointSetCommand.class, createMeasurePointSetHandler(client));
+                    try {
+                        monitor(client);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    LOG.info("Waiting commands from cloud");
                 }
-                LOG.info("Waiting commands from cloud");
+                else {
+                    LOG.info("Connect in-complete due to security reasons");
+                    client.close();
+                }
             }
 
-            public void onConnectLost() {
+            public void connectLost(Throwable reason) {
                 LOG.info("Connect Lost.");
                 client.close();
             }
 
-            public void onConnectFailed(int reason) {
+            public void connectFailed(Throwable reason) {
                 LOG.info("Connect Failed.");
                 client.close();
             }
