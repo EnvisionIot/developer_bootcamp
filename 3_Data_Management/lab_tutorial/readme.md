@@ -21,22 +21,19 @@ This tutorial includes the following units:
 
 10 minutes
 
-[Lab 2. Calculating the Running-Average of the Battery Voltage](303-2_calculating_average_voltage.md)
-
-20 minutes
-
-[Lab 3. Calculating the Health Level of the Battery](303-3_calculating_health_level.md)
-
-30 minutes
-
-[Lab 4. Monitoring Health Level Alerts](303-4_monitoring_alerts.md)
-
-20 minutes
-
-[Lab 5. Archiving Uploaded Data of the Battery](303-5_archiving_data.md)
+[Lab 2. Archiving Uploaded Data of the Battery](303-2_archiving_data.md)
 
 10 minutes
 
-[Lab 6. Generating Data Quality Report](303-6_generating_data_quality_report.md)
+[Lab 3. Calculating the Running-Average of the Battery Voltage](303-3_calculating_average_voltage.md)
+
+20 minutes
+
+[Lab 4. Calculating the Health Level of the Battery](303-4_calculating_health_level.md)
 
 30 minutes
+
+[Lab 5. Monitoring Health Level Alerts](303-5_monitoring_alerts.md)
+
+20 minutes
+
