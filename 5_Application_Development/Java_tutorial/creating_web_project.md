@@ -121,8 +121,8 @@ In this step, configure the application properties file with the following value
    ![](media/app_properties.png)
 
    environment URL can be found from the development portal
-   ![](media/environment.png)
-   ![](media/apim_info.png)
+   ![](media/environment.PNG)
+   ![](media/apim_info.PNG)
 
    
 
