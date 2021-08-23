@@ -183,6 +183,10 @@ After the development environment is set up, follow the steps below to connect t
     ```
     The productKey, deviceKey, and deviceSecret are the device properties generated when you register the Smart Battery.
 
+    environment URL can be found from the development portal
+ ![](media/environment.png)
+ ![](media/apim_info.png)
+
 2. Declare the main function **connect()** for initializing device connection. Example:
     ```java
     public static void main(String[] args) {
