@@ -120,6 +120,10 @@ In this step, configure the application properties file with the following value
 
    ![](media/app_properties.png)
 
+    environment URL can be found from the development portal
+ ![](media/environment.png)
+ ![](media/apim_info.png)
+
    
 
 2. Open the `src/main/java/com.example.batteryweb` directory, and click **File > New > Java Class** from the menu to create a class named `AppConfig` for reading and writing in the properties file.
