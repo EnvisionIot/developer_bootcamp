@@ -49,7 +49,7 @@ A model is the abstraction of the features of an object that is connected to the
         | voltage_avg        | AI           |
 
 
-
+## 
 
     - Importing from a file: Click **Edit > Import Model** and upload an Excel or JSON file. 
     - You can use [this file](media/model_SmartBattery.json) for this tutorial.
