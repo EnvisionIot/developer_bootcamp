@@ -95,11 +95,17 @@ Follow the steps below to start the stream processing job.
 
 1. Open the **Pipeline Operation** page, and check the status of the system pipelines under the **System Pipeline** tab.
 
-2. In the list of system pipelines, click the **Start** icon to start the required system pipeline.
+2. Configure the resource before you start the pipeline 
+
+![](media/configureResource1.PNG)
+![](media/configureResource2.PNG)
+
+3. In the list of system pipelines, click the **Start** icon to start the required system pipeline.
 
    ![](media/starting_system_pipeline.png)
+   
 
-3. Once the system pipeline is started and running, you can start your stream processing job. On the **Pipeline Operation** page, find the data processing job you have published under the **User Pipeline** tab, and click the **Start** icon to start the pipeline. See the following example:
+4. Once the system pipeline is started and running, you can start your stream processing job. On the **Pipeline Operation** page, find the data processing job you have published under the **User Pipeline** tab, and click the **Start** icon to start the pipeline. See the following example:
 
    ![](media/starting_stream.png)
 
