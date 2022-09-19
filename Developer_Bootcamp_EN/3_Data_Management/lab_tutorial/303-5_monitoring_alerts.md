@@ -1,147 +1,128 @@
-# Lab 5. Monitoring Health Level Alerts
+# Lab 5. Monitor Health Level Alerts
 
-The EnOS Alert Management service enables you to define, receive, and process alerts for the assets of your organization.
+The EnOS Alert Management service enables you to define, receive, and process alerts of the assets in your organization.
 
-In this lab, we will enable the alert service to monitor the real-time health level of the battery. To get started, we need to define the alert severity, alert type, alert content, and alert triggering rule in the EnOS Management Console based on requirements of the business scenario.
+In this lab, you will enable the alert service to monitor the real-time health level of the battery. To get started, you need to define the alert severity, alert type,and alert rule in the EnOS Management Console.
 
-## Step 1: Creating the Alert Severity
+## Step 1: Create Alert Severities
 
-In [Lab 3](303-3 calculating_health_level.md), we defined 3 battery health levels. Create the following alert severity levels for the 3 health levels.
+In [Lab 4: Calculate the Health Level of the Battery](303-4_calculating_health_level.md), you have defined 3 battery health levels. In this lab, create the corresponding alert severity levels for the 3 health levels by the following steps:
 
-| Health Level Code | Alert Severity ID | Description                        |
-| ----------------- | ----------------- | ---------------------------------- |
-| 90                | Normal_Alert      | The battery is healthy             |
-| 60                | Warning_Alert     | The battery is unhealthy           |
-| 30                | Fatal_Alert       | The battery is extremely unhealthy |
+1. Log in to the EnOS Management Console and select **Alert Management > Alert Severities** from the left navigation menu.
 
-1. Log in to the EnOS Management Console and select **Alert > Alert Severity** from the left navigation menu.
+2. Click **New Severity** on the **Alert Severities** page, and configure the following fields in the **New Severity** pop-up window.
+   
+   - Severity ID: enter **Warning_Alert**.
+   - Severity Description: enter the description of the alert severity.
+   - Severity Tag: click **Add Tag**, and enter **alert_severity** for Key and **warning** for Value.
 
-2. Click **New Severity** and type the ID, description, and tag (optional) for the corresponding severity level.
+   ![](media/alert_severity.png)
 
-   <img src="media/alert_severity.png" width="450px" />
+1. Click **Confirm** to create the **Warning_Alert** alert severity.
 
-3. Click **Confirm** to save the alert severity.
+2. Create **Fatal_Alert** and **Normal Alert** accordingly with the following fields:
 
-See the following example of the created alert severity levels:
+| Health Level Code | Severity ID    | Severity Tag                       |
+| ----------------- | -------------- | ---------------------------------- |
+| 90                | Normal_Alert   | `alert_severity` : `normal`        |
+| 60                | Warning_Alert  | `alert_severity` : `warning`       |
+| 30                | Fatal_Alert    | `alert_severity` : `fatal`         |
+
+The 3 alert severities you just created should look like this:
 
 ![](media/alert_severity_all.png)
 
+## Step 2: Create an Alert Type
 
+Alert types are defined to distinguish the status of assets and the possible causes of alerts. Create an alert type by the following steps:
 
-## Step 2: Creating the Alert Type
+1. In the EnOS Management Console, click **Alert Management > Alert Types** from the left navigation menu.
 
-Alert types are defined to distinguish status of assets and possible causes of alerts, so that we can better monitor the status of assets.
-
-1. Select **Alert > Alert Type** from the left navigation menu.
-
-2. Click **New Type** and provide an ID, description, and tag (optional) for the alert type.
-
-   <img src="media/alert_type.png" width="450px" />
+2. Click **New Type** on the **Alert Type** page, and configure the following fields in the **New Type** pop-up window:
+   
+   - Type ID: enter the ID of the type, for example, **health_level**.
+   - Type Description: enter the description of the alert type.
+   - Type Tag: click **Add Tag**, and enter **alert_type** for Key and **health** for Value.
 
 3. Click **Confirm** to save the alert type.
 
+![](media/alert_type.png)
+## Step 3: Configure Alert Rules
 
+Alert rules define the triggering conditions of alerts. In this lab, you need to create alert rules for the **Warning_Alert** and **Fatal_Alert** severity levels separately.
 
-## Step 3: Creating the Alert Content
+Create the alert rule for the **Warning_Alert** severity level by the following steps:
 
-Alert content describes the status of assets and possible causes of alerts.
+1. In to the EnOS Management Console, click **Alert Management > Alert Rules** from the left navigation menu.
 
-1. Select **Alert > Alert Content** from the left navigation menu.
+2. Click **New Rule** on the **Alert Rules** page, and configure the following fields in the **Basic Information** section:
 
-2. Click **New Content** and provide the following in the **Add Alert Content** window.
+   - Rule Name: enter the rule name, for example, **health_level_warning**.
+   - Rule ID: enter an ID for the alert rule, for example, `SMH-60`.
+   - Description: enter the description for the alert rule.
+   - Enable Alert Rule: enable.
+   
+3. Configure the following fields in the **Trigger** section:
+   
+   - Trigger Source: select `Iot Hub` | `Measurement Point` | `Smartbattery_Model` | `health_level` to specify the model and measurement point for the alert rule.
+   - Scope: select **All Devices** to apply the alert rule to all devices of the model.
 
-   - **Content ID**: Enter an ID for the alert content.
+4. Configure the following fields in the **Alert Condition** section:
 
-   - **Content Description**: Enter a description of the alert content. In this lab, use the statement `Health level code:${health_level}` as the alert content. In this way, we can include the real-time health level of the battery in the alert content.
+   - Alert Condition: select **Threshold** from the dropdown list, and click **Add Condition Group > Add Condition** to add the following alert conditions:
+     - `health_level` | `>` | `Value` | `30`
+     - `health_level` | `<=` | `Value` | `60`
+   - Timing: disable. 
 
-   - **Model Name**: Select the **SmartBattery_Demo** model from the drop-down list.
+5. Configure the following fields in the **Alert Details** section:
 
-   - **Type**: Select the **Health Level** alert type from the list of defined alert types.
+   - Alert Content: enter **Health level code:${health_level}** to include the real-time health level of the battery in the alert content.
+   - Alert Severity: select **Warning Alert** from the dropdown list.
+   - Alert Type: select **health_level** in the **Select Alert Type** pop-up window.
+   - Alert Triggering Delay: enter **0** to trigger the alert immediately when conditions are met.
 
-   <img src="media/alert_content.png" width="450px" />
+6. Click **Confirm** to create the alert rule for the **Warning_Alert** severity level.
 
-3. Click **Confirm** to save the alert content.
+Create the alert rule for the **Fatal_Alert** severity level by the following steps:
 
+1. In to the EnOS Management Console, click **Alert Management > Alert Rules** from the left navigation menu.
 
+2. Click **New Rule** on the **Alert Rules** page, and configure the following fields in the **Basic Information** section:
 
-## Step 4: Creating the Alert Rule
+   - Rule Name: enter the rule name, for example, **health_level_fatal**.
+   - Rule ID: enter an ID for the alert rule, for example, `SMH-30`.
+   - Description: enter the description for the alert rule.
+   - Enable Alert Rule: enable.
+   
+3. Configure the following fields in the **Trigger** section:
+   
+   - Trigger Source: select `Iot Hub` | `Measurement Point` | `Smartbattery_Model` | `health_level` to specify the model and measurement point for the alert rule.
+   - Scope: select **All Devices** to apply the alert rule to all devices of the model.
 
-Alert rules define the triggering conditions of alerts. In this lab, create alert rules for the **Warning_Alert** and **Fatal_Alert** severity levels separately.
+4. Configure the following fields in the **Alert Condition** section:
 
-Follow the steps below to create alert triggering rule for the **Warning_Alert** severity level.
+   - Alert Condition: select **Threshold** from the dropdown list, and click **Add Condition Group > Add Condition** to add the following alert conditions:
+     - `health_level` | `>` | `Value` | `60`
 
-1. Select **Alert > Alert Rule** from the left navigation menu.
+   - Timing: disable. 
 
-2. Click **New Rule** and provide the following in the **Add Alert Rule** window.
+5. Configure the following fields in the **Alert Details** section:
 
-   - **Rule ID**: Enter an ID for the alert rule, for example, `SMH-60`.
+   - Alert Content: enter **Health level code:${health_level}** to include the real-time health level of the battery in the alert content.
+   - Alert Severity: select **Fatal Alert** from the dropdown list.
+   - Alert Type: select **health_level** in the **Select Alert Type** pop-up window.
+   - Alert Triggering Delay: enter **0** to trigger the alert immediately when conditions are met.
 
-   - **Select Model**: Select the **SmartBattery_Demo** model and the **health_level** measurement point from the drop-down list. The alert rule applies to the battery health level only.
+6. Click **Confirm** to create the alert rule for the **Fatal_Alert** severity level.
 
-   - **Condition**: Specify the triggering condition for the alert and enter the corresponding value or value scope for the condition. Based on the business scenario, for the **Warning_Alert** severity level, the conditions are `health_level>30` and `health_level<=60`.
-
-   - **Scope**: Select **All Devices** to apply the alert rule to all devices under the model.
-
-   - **Alert Content**: Select the **HealthLevelAlert** content from the pop-up window.
-
-   - **Alert Severity**: Select the **Warning Alert** severity level from the drop-down list.
-
-   - **Alert Triggering Delay**: Enter **0** to trigger the alert immediately when the condition is met.
-
-   - **Enable**: Select to enable the alert rule.
-
-   ![](media/alert_rule_1.png)
-
-3. Click **Confirm** to save the alert rule setting for the **Warning_Alert** severity level.
-
-Follow the steps below to create alert triggering rule for the **Fatal_Alert** severity level.
-
-1. Select **Alert > Alert Rule** from the left navigation menu.
-
-2. Click **New Rule** and provide the following in the **Add Alert Rule** window.
-
-   - **Rule ID**: Enter an ID for the alert rule, for example, `SMH-30`.
-
-   - **Select Model**: Select the **SmartBattery_Demo** model and the **health_level** measurement point from the drop-down list. The alert rule applies to the battery health level only.
-
-   - **Condition**: Specify the triggering condition for the alert and enter the corresponding value or value scope for the condition. Based on the business scenario, for the **Fatal_Alert** severity level, the condition is `health_level<=30`.
-
-   - **Scope**: Select **All Devices** to apply the alert rule to all devices under the model.
-
-   - **Alert Content**: Select the **HealthLevelAlert** content from the pop-up window.
-
-   - **Alert Severity**: Select the **Fatal Alert** severity level from the drop-down list.
-
-   - **Alert Triggering Delay**: Enter **0** to trigger the alert immediately when the condition is met.
-
-   - **Enable**: Select to enable the alert rule.
-
-   ![](media/alert_rule_2.png)
-
-3. Click **Confirm** to save the alert rule setting for the **Fatal_Alert** severity level.
-
-Verify the created alert rules. See the following example:
+The 2 alert rules you just created should look like this in the alert rule list:
 
 ![](media/alert_rules.png)
 
+## Step 4: View the Alert Records
 
+With alert rules created, the alert starts to monitor the health level of the battery device. You can view real-time and historical alerts triggered by abnormal data on the **Alert Records** page.
 
-## Step 5: Viewing the Alert Records
+![](media/alert_records.png)
 
-After the alert rules are enabled, the alert service will start monitoring the health level of the battery and report alerts if the health level meets the triggering conditions.
-
-1. Select **Alert > Alert Record** from the left navigation menu.
-
-2. Under the **Active Alerts** tab, set filtering conditions to query active alert records of your battery device as per the below.
-
-   - **Model**: Select the **SmartBattery_Demo** model from the drop-down list to query alert records of all devices under the model.
-
-   - **Asset ID**: To query alert records of a specific asset, enter the asset ID in this field.
-
-3. Click the **Search** button to query alert records. See the following example:
-
-   ![](media/alert_records.png)
-
-4. Click the **History Alerts** tab and use the same steps to query history alert records of your battery device.
-
-5. Please confirm the Alerts are triggered. This will be used in the later application deployment workshop 
+Be sure that the alerts are triggered, so that you can use it later in the Application Deployment workshop.

@@ -1,16 +1,14 @@
-# Lab 4. Developing by Yourself
+# Lab 4. Develop by Yourself
 
-In this lab, you will need to complete the most important part of the application development:
+In this lab, you need to complete the most important part of the application development: 
 
-<u>*Get the battery history data and display it in the front end.*</u>
+Get the battery history data and display the data in the front end.
 
-The time for you is **30 minutes**.
+## Step 1: Get the History Data of a Specific Battery
 
-## Step 1: Getting the History Data of a Specific Battery
+Invoke **Get Asset AI Raw Data** API and configure the `get_asset_ai_raw_data` function by the following steps to get the history data of a specific battery device:
 
-> To get the battery history data, you can invoke the EnOS API *Get Asset AI Raw Data*. The request format is:
->
-> https://{apigw-address}/tsdb-service/v2.0/ai?orgId={}&modelId={}&assetIds={}&measurepoints={}&startTime={}&endTime={}&pageSize={}&accessKey={}&localTimeAccuracy={}
+> The request format of **Get Asset AI Raw Data** is `https://{apigw-address}/tsdb-service/v2.0/ai?orgId={}&modelId={}&assetIds={}&measurepoints={}&startTime={}&endTime={}&pageSize={}&accessKey={}&localTimeAccuracy={}`.
 
 1. In the `services.py` file, find the `get_asset_ai_raw_data` stub function. Refer to the EnOS API documentation, and try to finish it by yourself.
 
@@ -28,19 +26,18 @@ The time for you is **30 minutes**.
        pass
    ```
 
-2. **30 minutes starts now**
+2. After you have completed the code development, click **Run > Run** to start the application.
 
-3. After you have completed the code development, click **Run > Run** to start the application.
-
-4. Open a browser and enter `http://127.0.0.1:5000` in the address field. Check the data charts for the battery voltage, current, and temperature. See the following example:
+3. Open a browser and enter `http://127.0.0.1:5000` in the address field. Check the data charts for the battery voltage, current, and temperature. 
 
 <img src="media/application-6.png" style="zoom:75%;" />
 
-## Step 2: Changing Data Uploading Frequency
+## Step 2: Change Data Uploading Frequency
 
-We can now check the results of the changed battery data uploading frequency.
+Now, you can change the data uploading frequency of the application by the following steps:
 
-Change the high frequency mode to (2s), and the data uploading frequency will be changed from 5s to 2s. See the following example:
+1. In the frontend page, click **Data Upload Frequency** box to open a dropdown list.
+2. Select **High-2s** from the dropdown list to change the data upload frequency from 5 seconds to 2 seconds.
 
 ![application-7](media/application-7.png) 
 

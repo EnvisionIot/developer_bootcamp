@@ -1,5 +1,7 @@
 ![Developer Bootcamp](media/Academy_Developer_Bootcamp.png)
 
+[EN](Developer_Bootcamp_EN/README.md) | [中文](Developer_Bootcamp_CN/README.md)
+
 Welcome on board to the EnOS Developer Bootcamp!
 
 In this training, you’ll:

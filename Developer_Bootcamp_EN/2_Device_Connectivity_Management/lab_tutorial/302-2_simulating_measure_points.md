@@ -1,82 +1,96 @@
-# Lab 2. Simulating Measurement Points
+# Lab 2. Simulate Measurement Points
 
-##  Using the Device Simulator
-To get started without any programing (device-end development) to verify features that require data ingestion as the prerequisite, or to troubleshoot issues, you can use the device simulator that EnOS provides. The device simulator also helps with the below.
+Device simulators enable you to simulate devices that connect and send data to EnOS without using the EnOS Java SDK. You can use device simulators for the following purposes:
 
-- Getting started with EnOS: You can use this function to simulate a device to transmit data to understand how to use the capabilities of EnOS.
-- Testing and debugging: During application development, you might sometimes need to simulate a device to send a specific value to verify a device function. Real devices rarely send that specific value. In this case you can use the device simulator to facilitate application development.
+- Getting started with EnOS: you can use device simulators to transmit simulated data to understand how to use EnOS.
+- Testing and debugging: in application development, you might sometimes need to simulate devices to send specific values for function verification.
 
-In this tutorial, we will simulate a smart battery that sends data to EnOS. We will insert some abnormal data into the data sample so that we can leverage the data to trigger alerts, and view the data in line chart in **Time Series Data Management > Data Insights**.
+In this lab, you will simulate a smart battery device that sends data to EnOS. You will insert some abnormal data into the data sample to trigger alerts, and view the device data in **Time Series Data Management > Data Insights**.
 
 ## Before You Start
 
-- Ensure that you have registered the device to simulate and configured the TSDB storage policy for it.
-- Ensure that you have access to the Device Management service. If not, contact your OU administrator to grant you the following permissions:
+- Ensure that you have registered the device to simulate and configured the related TSDB storage policy.
+- Ensure that you have access to the following device services:
+
     - Models
     - Device Management
     - Alert Management
     - Times Series Data Management
 
-## Step 1: Adding a Device Simulator
+> **Note**: If you don't have permissions for services above, contact your OU administrator.
 
-In the EnOS Management Console, click **Device Management > Simulators** from the left navigation menu.
+## Step 1: Add a Device Simulator
 
-1. Click **New Simulator**, and select the device that you have registered for the simulation.
+Add a device simulator to the smart battery device you created by the following steps:
 
-2. The device list shows all the devices that have been created in the current OU.
+1. In the EnOS Management Console, click **Device Management > Simulators** from the left navigation menu.
 
-> **Note**: You can only simulate a device with **inactive** status. You cannot simulate a device that is already activated and is online or offline.
+2. Click **New Simulator**, and you can view the list of all devices in the **Add Simulator** page.
 
-3. Click **OK** to create a simulator for the selected device.
+    ![](media/simulator_add_new.png)
 
-![](media/simulator_add_new.png)
+3. Select the smart battery device in the device list.
 
-In the list of simulators, you can see the simulator you just created.
+    > **Note**: You can only simulate a device with **inactive** or **offline** status.
 
-Next, you need to define the simulation data sample for it.
+4. Click **OK** to add a simulator for the selected device.
+
+In the simulator list, you can see the simulator you just added.
 
 ![](media/simulator.png)
 
-## Step 2. Defining and Uploading the Simulation Data Sample
+## Step 2. Define the Simulation Data Sample
 
-1. In the list of simulators, click **Edit Sample** for the simulator you just created.
+After adding the simulator, you need to define the simulation data sample by the following steps:
 
-2. Click **Download** in the pop-up window.
+1. In the list of simulators, locate the simulator you just added and click **Edit Sample**.
 
-3. Input the simulation data sample in the downloaded template.
+2. On the **Define Sample** pop-up window, click **Download** to download the sample data template.
 
-    - The first column **timeOfDay** refers to the _relative time stamp_: you can enter the relative timestamp within one day (24 hours) using the format H:MM:SS.    
-    - The rest of the column headers are for the measurement points that are defined in the device model. You only need to enter the identifier of the measurement points to be simulated rather than entering all of them.     
-    - The values are simulated measurement point values. If the data type is array, the format is [value1, value2, value3, ...]. Leave the cell empty if there is no value at the current time point.
+3. Enter data in the template, in which:
 
-4. When completed editing the template, in the **Define Sample** pop-up window, click **Upload** to upload the simulation data.
+    - The first column **timeOfDay** refers to relative time stamps. You can enter the relative timestamp within one day (24 hours) in the format `HH:MM:SS`.
+    - The rest of the column headers are the measurement points that are defined in the device model. You only need to enter the identifier of the measurement points to be simulated rather than entering all of them.
+    - The cell values are the values of simulated measurement points. If the data type is array, the format should be `[value1, value2, value3, ...]`. Leave the cell empty if there is no value at the current time point.
 
-5. Click **OK**.
+4. On the **Define Sample** pop-up window, click **Upload** to upload the defined simulation data file.
 
-See [AESC_DEMO_Easy.csv](media/AESC_DEMO_Easy.csv) for a ready-to-use template with simulated data.
+5. Click **OK** to define the data sample for the simulator.
+
+> **Note**: You need to add some abnormal high values, which are more than `50`, for the **temp** measurement point to have different health level results later in [Lab 4: Calculate the Health Level of the Battery](../../3_Data_Management/lab_tutorial/303-4_calculating_health_level.md). 
 
 ![](media/upload.png)
 
-When we create the alert rules later, we will be setting the alert threshold to 60 milliampere. So in this sample, we need to modify the value in the `current` column so that at least one value is above 60 to trigger the alert "Current is above threshold".
-
-The best practice is setting some values above 60 at earlier moments so that you do not have to wait long to see an alert triggered. In this tutorial, the time zone of the author is UTC+08:00. The time is 10:00 when the author is writing this tutorial. Setting abnormal values at 0:02:00, 0:07:00, and 0:10:00, will therefore trigger alerts at 10:02:00, 10:07:00, and 10:10:00 of the author’s local time.
+A ready-to-use template with simulated data: [AESC_DEMO_Easy.csv](media/AESC_DEMO_Easy.csv).
 
 ![](media/sim_data.png)
 
-## Step 3: Starting the Device Simulator
+## Step 3: Start the Device Simulator
 
-You can start simulators one by one or in batch. For this tutorial, we shall set the end time for 24 hours later.
+After uploading the simulation data sample, you need to start the device simulator by the following steps:
 
-You can actually set your preferred end time, but setting it to a later time leaves enough time for TSDB to ingest enough data to generate a report.
+1. In the list of simulators, locate the smart battery simulator and click the **Start** icon.
+ 
+2. On the **Start Simulation** pop-up window, select an end date for the simulation. In this lab, set the end time for 24 hours later.
+
+    > **Note**: You can actually set a preferred end time, but a later end time leaves enough time for TSDB to ingest enough data to generate a report.
+
+3. Click **OK** to start the simulator.
 
 ![](media/simulator_start.png)
 
-## Step 4: Checking the Device Data
+## Step 4: Check the Device Data
 
-Go to **Time Series Data Management > Data Insights** and select the **SmartBattery_Device_a01** device to view the real-time current data report in minutes. See the following example:
+You can view the real-time data report on the measurement points of the smart battery device by the following steps:
+
+1. In the EnOS Management Console, click **Time Series Data Management > Data Insights**.
+
+2. In the **Select Devices** section, select **Smartbattery_Device**.
+
+3. In the **Selected Measuring Points** section, select the measurement points to view the real-time data chart or table.
 
 ![](media/data_insight.png)
 
 ## Next Lab
 
-[Monitoring Alerts of Smart Battery](302-3_monitoring_alerts_of_device.md)
+[Lab 3. Monitor Alerts of Smart Battery](302-3_monitoring_alerts_of_device.md)

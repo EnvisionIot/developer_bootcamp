@@ -1,69 +1,52 @@
-# Lab 2: Archiving Uploaded Data of the Battery
+# Lab 2. Archive Uploaded Battery Data
 
-The EnOS Data Asset Management service achieves data backup by archiving data of huge size and with lower access frequency to a target database.
+The EnOS Data Archiving service achieves data backup by archiving data and synchronizing the archived data to the specified databases.
 
-In this lab, configure a data archiving job to store all the uploaded data of the battery for further processing and analysis in the upcoming labs.
+In this lab, you will configure a data archiving job to store all the uploaded data of the smart battery device for further processing and analyzing in the upcoming labs.
 
-## Step 1: Creating a Data Archiving Job
+## Step 1: Create a Data Archiving Job
 
-1. Log in to the EnOS Managememt Console and select **Data Archiving** from the left navigation menu.
+To archive data, you need to create data archiving jobs by the following steps:
 
-2. Click **New Job** and provide the following information on the pop-up window.
+1. In the EnOS Management Console, click **Data Archiving** from the left navigation menu.
 
-   - **Data Source**: Select **Real-Time Message Channel** from the drop-down list for archiving real-time data uploaded from the battery.
-   - **Job Type**: *Real-Time*.
-   
-<img src="media/creating_archiving_job.png" style="zoom: 80%;" />
-   
-3. Click **OK** to create the data archiving job and open the detailed configuration page.
+2. On the **Data Archiving** page, click **New Job**, and select **Real-Time Message Channel** as Data Source in the **New Job** pop-up window.
 
+![](media/creating_archiving_job.png)
 
-## Step 2: Configuring the Data Archiving Job
+1. Click **OK** to create the data archiving job and open the **New Job** configuration page.
 
-Follow the instructions in the sections below to complete the configuration of the data archiving job.
+## Step 2: Configure the Data Archiving Job
 
-### Basic Information
+Further configure the data archiving job on the **New Job** configuration page by the following steps:
 
-Complete the basic information configuration, including the name and description. See the following example:
+1. In the **Basic Information** section, configure the following fields:
 
-<img src="media/archiving_basic_config.PNG" style="zoom:80%;" />
+   - Name: enter the name of the data archiving job, for example, **smart_battery**.
+   - Description: enter the description of the data archiving job.
 
-### Storage Configuration
+   ![](media/archiving_basic_config.PNG)
 
-Complete the data storage configuration, including the configuration of the storage resource, properties of the archived file, etc.
+1. In the **Storage Configuration** section, configure the following fields:
 
-1. **Resource Type**: Select **HDFS** as the target storage system for storing the archived files.
-
-2. **Storage Resource**: Select the corresponding HDFS storage resource that has been requested through Resource Management for the organization.
-
-3. **Storage Path**: Specify the path where the archived files are located in the storage system and select the time partition format for the storage path root directory. The path must start and end with "/". For detailed information about the time partition format, see [Storage Path Partition Parameters](https://support.envisioniot.com/docs/data-asset/en/latest/reference/archive_storage#storage-path-partition-parameters).
-
-4. Select **Generate path by event time**.
-
-5. **File Name**: Enter a name for the archived file. Once a data archiving file is generated, the system will append a time stamp suffix after the file name.
-
-6. Use the default values for the remaining fields. See the following example:
+   - Storage Type: select **HDFS** from the dropdown list.
+   - Storage Resource: select the corresponding HDFS storage resource that has been requested through **Resource Management** for the OU.
+   - Storage Path: enter the storage path, specify the time partition format, and select **Generate path by event time**. The path must start and end with "/", and for more information on the time partition format, see [Storage Path Partition Parameters](https://support-cn5.envisioniot.com/docs/data-archiving/en/2.3.0/archive_storage.html#storage-path-partition-parameters).
+   - File Name: enter the name for the data archiving file. The system appends a time stamp suffix `_UTC` after the file name.
+   - Use the default values for the rest fields.
 
    ![](media/archiving_storage_config.png)
 
+2. In the **Archive Configuration** section, select **1 Hour** as Archive Cycle. When falling in the same archiving cycle, the archived data will be saved into the same file and sliced by a specified file size.
 
-### Archive Configuration
+3. In the **Data Configuration** section, select **Smartbattery_Model** as Model.
 
-Currently, data archiving by every 1 hour, 12 hours, or 24 hours is supported. If the archived data falls in the same archiving cycle, the data will be saved in 1 file and sliced by the specified file size.
+4. Click **OK** to save the configuration.
 
-### Data Configuration
+The system automatically starts reading and archiving data from the specified message channel after you submit the archiving job configuration.
 
-In the **Model** field, search and select the **SmartBattry_Demo** model, so that the uploaded data of all assets belonging to the model will be archived.
-
-<img src="media/archiving_data_config.png" width="500px" />
-
-
-
-## Step 3: Starting the Data Archiving Job
-
-After completing the above configuration, click **OK** to submit the data archiving job. The job configuration will take effect immediately once it is submitted, and the system starts reading and archiving data from the specified message channel.
-
+For more information on generating archived files, see [Generation of Archived Files](https://support.envisioniot.com/docs/data-archiving/en/2.3.0/archive_storage#generation-of-archived-files).
 
 ## Next Lab
 
-[Calculating the Running-Average of the Battery Voltage](303-3_calculating_average_voltage.md)
+[Lab 3. Calculate the Running-Average of the Battery Voltage](303-3_calculating_average_voltage.md)

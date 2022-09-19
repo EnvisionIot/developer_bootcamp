@@ -1,18 +1,17 @@
-# Lab 4. Developing by Yourself
+# Lab 4. Develop by Yourself
 
-In this lab, you will need to complete the most important part of the application development:
+In this lab, you need to complete the most important part of the application development: 
 
-<u>*Get the battery history data and display it in the front end.*</u>
+Get the battery history data and display it in the front end.
 
-The time for you is **30 minutes**.
 
-## Step 1: Getting the History Data of a Specific Battery
+## Step 1: Get the History Data of a Specific Battery
 
-> To get the battery history data, you can invoke the EnOS API *Get Asset AI Raw Data*. The request format is:
->
-> https://{apigw-address}/tsdb-service/v2.0/ai?orgId={}&modelId={}&assetIds={}&measurepoints={}&startTime={}&endTime={}&pageSize={}&accessKey={}&localTimeAccuracy={}
+Invoke **Get Asset AI Raw Data** API and configure `DataService` and `DataController` classes by the following steps to get the historical data of a specific smart battery device:
 
-1. Open the `DataService` class and add the following code for getting battery history data from EnOS Cloud.
+> The request format of **Get Asset AI Raw Data** is `https://{apigw-address}/tsdb-service/v2.0/ai?orgId={}&modelId={}&assetIds={}&measurepoints={}&startTime={}&endTime={}&pageSize={}&accessKey={}&localTimeAccuracy={}`
+
+1. Open the `DataService` class and add the following codes to get battery history data from EnOS Cloud.
 
    ```
    public GetDataResponse getHistoryData(String assetId, String startTime, String endTime) {
@@ -36,9 +35,9 @@ The time for you is **30 minutes**.
    }
    ```
    
-2. Open the `DataController` class and add the following code for returning the queried battery history data through HTTP.
+2. Open the `DataController` class and add the following codes to return the queried battery history data through HTTP.
 
-   ```
+   ```java
    @RequestMapping("/battery/tsdb/{id}")
    public Map<String, Object> tsdb(@PathVariable("id") String id) {
        DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -77,20 +76,19 @@ The time for you is **30 minutes**.
        return result;
    }
    ```
-   
-3. **30 minutes starts now**
 
-4. After you have completed the code development, open the `BatteryWebApplication` class, and click **Run 'BatteryWebApplication'** to start the application.
+3. After you have completed the code development, open the `BatteryWebApplication` class and click **Run 'BatteryWebApplication'** to start the application.
 
-5. Open a browser and enter `http://127.0.0.1:8080` in the address field. Check the data charts for the battery voltage, current, and temperature. See the following example:
+4. Open a browser and enter `http://127.0.0.1:8080` in the address field. Check the data charts for the battery voltage, current, and temperature. 
 
 <img src="media/application-6.png" style="zoom:75%;" />
 
-## Step 2: Changing Data Uploading Frequency
+## Step 2: Change Data Upload Frequency
 
-We can now check the results of the changed battery data uploading frequency.
+Now, you can change the data uploading frequency of the application by the following steps:
 
-Change the high frequency mode to (2s), and the data uploading frequency will be changed from 5s to 2s. See the following example:
+1. In the frontend page, click **Data Upload Frequency** box to open a dropdown list.
+2. Select **High-2s** from the dropdown list to change the data upload frequency from 5 seconds to 2 seconds.
 
 ![application-7](media/application-7.png) 
 

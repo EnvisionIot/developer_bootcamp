@@ -1,43 +1,45 @@
-# Lab 2. Creating a Web Project
+# Lab 2. Create a Web Project
 
-In this lab, we will create a Python Flask web project for developing the application.
+In this lab, we will create a Python Flask web project to develop an application.
 
-## Step 1: Installing the Python Dependency
+## Step 1: Install Python Dependency
 
-Ensure that you have installed Python 3 and PyCharm on your workstation. If not, please refer to Day 1 for the environment setup.
+Install `Flask` and `EnOS Python Core SDK` by the following steps:
 
-1. Install the Flask Web Framework.
+1. Open JetBrains PyCharm Community Edition and enter the following codes in terminal to install `flask` framework:
 
    ```
    pip install flask
    ```
 
-2. Install the EnOS Python Core SDK. We will use this SDK to access EnOS APIs.
+2. In Pycharm terminal, enter the following codes to install EnOS Python Core SDK:
 
    ```
    pip install aphrodite
    ```
 
-## Step 2: Creating a Project
+## Step 2: Create a Project
 
-We will use PyCharm for developing the application. 
+Create a Python Flask project in Pycharm by the following steps:
 
 1. Open the JetBrains PyCharm Community Edition and select **File > New Project** from the menu.
 
-2. On the **Create Project** window:
+2. Configure the following fields on the **Create Project** window:
 
-- Browse and select the target project folder.
-- Choose the existing Python interpreter and click **Create**.
+   - Location: browse and select the target project folder
+   - Existing Interpreter: enbale, and select **Python 3.7** from the dropdown list of **Interpreter**
 
-<img src="media/create_project.png" style="zoom:67%;" />
+3. click **Create**.
 
-3. In the project, select **File > New > Python File** from the menu and create a python file named `run.py`.
+    <img src="media/create_project.png" style="zoom:67%;" />
+
+4. In the project, select **File > New > Python File** from the menu and create a python file named `run.py`.
 
    ![create_python_file](media/create_python_file.png)
 
-   Open the `run.py` file and add the following code.
+5. Open the `run.py` file and add the following codes:
 
-   ```
+   ```python
    from flask import Flask, request, render_template  # Lightweight web framework
    from datetime import timedelta, datetime
    from services import *
@@ -177,26 +179,26 @@ We will use PyCharm for developing the application.
     ```
         app = Flask(__name__, template_folder='./templates/', static_url_path="", static_folder='./static/')
     ```
-4. In the project, select **File > New > Python File** from the menu and create a python file named `services.py`.
+6. In the project, select **File > New > Python File** from the menu and create a python file named `services.py`.
 
    ![create_python_file2](media/create_python_file2.png)
 
-   Open the `services.py` file and add following code. 
+7. Open the `services.py` file and add following codes:
 
-   ```
+   ```python
    from poseidon import poseidon  # This is the python SDK for EnOS API.
    import urllib.parse as parser  # The library to convert a dictionary into query string.
    
-   # The AccessKey and SecretKey, you get it when you register an application
+   # The AccessKey and SecretKey, you get it when you register an application. Replace the value with the Access Key and Secret Key of the SmartBattery_Demo application.
    app_access_key = '0787eefe-d96c-4db6-a97c-c5ee16ce9a93'
    app_secret_key = '7b12307f-4993-4ef3-8554-93c6cc0e3cb6'
    
-   # The api gateway address
+   # The api gateway address. Replace the value with the gateway address of the EnOS_Training OU.
    api_gateway = 'https://apim-ppe1.envisioniot.com'
    
-   # This is the training OU Id in which we perform our experiment
+   # The training OU Id in which we perform our experiment. Replace the value with the ID of the EnOS_Training OU.
    training_orgId = 'o15724268424841'
-   # Asset Tree Id
+   # Asset Tree Id. Replace the value with the ID of the asset tree of your smart battery devices.
    battery_provider_treeId = '50XiYXpx'
    
    
@@ -251,17 +253,17 @@ We will use PyCharm for developing the application.
        pass
    ```
 
-5. The final Python project structure is as per the following.
+The configured Python project structure should look like this:
 
 <img src="media/python_project_structure.png" alt="python_project_structure" style="zoom:50%;" />
 
-## Step 3: Adding the Front End
+## Step 3: Add the Front End
 
-In this step, we will extract the provided front-end package to the Python web project with the below.
+After configuring the Python project, you need to extract the provided front-end package to the Python web project by the following steps:
 
 1. Download the front-end package `Front_End.zip` from https://github.com/EnvisionIot/developer_bootcamp/tree/master/App_Front_End.
 
-2. Extract the front-end package to the `root` directory of the Python web project. Ensure that the `static` directory,  `templates` directory, the `run.py` and `services.py` file are under the same directory. The directory structure is as follows.
+2. Extract the front-end package to the `root` directory of the Python web project. Ensure that `static`,  `templates`, `run.py` and `services.py` are under the same directory. The directory structure should look like this:
 
    ```shell
    ├── root
@@ -271,7 +273,7 @@ In this step, we will extract the provided front-end package to the Python web p
    │   ├── services.py
    ```
 
-3. In the project root directory, run the following command to start the application.
+3. In the project root directory, run the following command to start the application:
 
    ```
    python run.py
@@ -279,13 +281,13 @@ In this step, we will extract the provided front-end package to the Python web p
 
    ![start_app](media/start_app.png)
 
-4. Open a browser and enter `http://127.0.0.1:5000` in the address field to view the application. See the following example.
+4. Open a browser and enter `http://127.0.0.1:5000` in the address field to view the application. 
 
    ![application](media/application-0.png)
 
-As shown in the above figure, no data is displayed.
+Currently, no data is displayed in the application page.
 
-In the next step, we will try calling EnOS APIs for the following.
+In the next step, you will try to call EnOS APIs to perform the following tasks:
 
 - Get the battery asset list
 - Get battery asset information
@@ -296,4 +298,4 @@ In the next step, we will try calling EnOS APIs for the following.
 
 ## Next Unit
 
-[Invoking EnOS APIs](invoking_api_python.md)
+[Lab 3. Invoke EnOS APIs](invoking_api_python.md)
